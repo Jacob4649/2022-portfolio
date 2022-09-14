@@ -1,26 +1,12 @@
-import React from 'react';
-import logo from '../public/images/logo.svg';
+import { Outlet } from 'react-router-dom';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+/**
+ * The root component for this application
+ * @returns Root component for this SPA
+ */
+export default function App() {
+  return <>
+    <Outlet/>
+  </>;
 }
-
-export default App;
