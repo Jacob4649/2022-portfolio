@@ -29,6 +29,7 @@
 .nav-div > * {
     margin: 10px;
     align-self: center;
+    transition: all 0.25s ease-in-out;
 }
 
 .nav-div > a {
@@ -51,12 +52,16 @@
     border: none;
 }
 
-.logo {
+.logo > img {
     transition: 0.25s all ease-in-out;
 }
 
-.logo-collapsed {
+.logo-collapsed > img {
     animation: shrink-logo forwards 0.3s;
+}
+
+.collapsed a {
+    scale: 120%;
 }
 
 @keyframes shrink-logo {
