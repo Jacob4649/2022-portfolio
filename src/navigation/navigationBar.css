@@ -50,3 +50,25 @@
     background-image: none;
     border: none;
 }
+
+.logo {
+    transition: 0.25s all ease-in-out;
+}
+
+.logo-collapsed {
+    animation: shrink-logo forwards 0.3s;
+}
+
+@keyframes shrink-logo {
+    0% {
+        width: auto;
+        opacity: 100%;
+        scale: 100%;
+    }
+
+    100% {
+        width: 0;
+        opacity: 0%;
+        scale: 0%;
+    }
+}

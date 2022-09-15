@@ -21,16 +21,19 @@ interface NavigationBarProps {
  */
 export default function NavigationBar(props: NavigationBarProps) {
     let className: string = "nav-bar";
+    let logoClassName: string = "logo";
 
-    if (props.collapsed)
+    if (props.collapsed) {
         className += " collapsed";
+        logoClassName += " logo-collapsed";
+    }
 
     return <div className={className} style={{
         height: props.height
     }}>
         <div className="nav-parent">
             <div className="nav-div">
-                <p>JACOB KLIMCZAK</p>
+                <p className={logoClassName}>JACOB KLIMCZAK</p>
                 <Link to="/">
                     <img src={home}></img>
                 </Link>
