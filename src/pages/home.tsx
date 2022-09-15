@@ -13,5 +13,11 @@ export default function Home(props: any) {
             }}>
             </div>
         </div>
+        <div>
+            Projects
+            <p>
+                This is some text
+            </p>
+        </div>
     </>;
 }

@@ -1,10 +1,11 @@
 .nav-bar {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    border: 1px solid black;
-    height: 4rem;
+    border-bottom: 1px solid white;
+    background-image: linear-gradient(#111111, #222222);
+    transition: 0.25s all ease-in-out;
 }
 
 .nav-parent {
@@ -32,7 +33,7 @@
 
 .nav-div > a {
     font-size: larger;
-    color: black;
+    color: white;
     text-decoration: none;
     cursor: pointer;
     font-weight: lighter;
@@ -40,6 +41,12 @@
 
 .nav-div > p {
     font-size: larger;
-    color: black;
+    color: white;
     cursor: pointer;
+}
+
+.collapsed {
+    background-color: #002847ff;
+    background-image: none;
+    border: none;
 }
