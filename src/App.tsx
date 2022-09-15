@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import './App.css';
+import NavigationBar from './navigation/navigationBar';
 
 /**
  * The root component for this application
@@ -7,6 +8,7 @@ import './App.css';
  */
 export default function App() {
   return <>
-    <Outlet/>
+    <NavigationBar />
+    <Outlet />
   </>;
 }
