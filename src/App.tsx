@@ -1,4 +1,4 @@
-import { useRef, useEffect, useMemo, useState, MutableRefObject } from 'react';
+import { useRef, useEffect, useMemo, useState, MutableRefObject, useLayoutEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import './App.css';
 import NavigationBar from './navigation/navigationBar';
@@ -11,7 +11,7 @@ const defaultNavHeight: number = 4;
 /**
  * Collapsed height of nav bar in rem
  */
- const collapsedNavHeight: number = 2.5;
+const collapsedNavHeight: number = 2.5;
 
 /**
  * The root component for this application
@@ -31,7 +31,7 @@ export default function App() {
 
   return <>
     <NavigationBar collapsed={collapsed} height={activeHeight} />
-    <div ref={ref} className='padding'/>
+    <div ref={ref} className='padding' />
     <Outlet />
   </>;
 }

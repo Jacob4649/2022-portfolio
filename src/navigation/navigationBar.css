@@ -39,6 +39,7 @@
     cursor: pointer;
     font-weight: lighter;
     flex: none;
+    text-align: center;
 }
 
 .nav-div > p {
@@ -55,10 +56,17 @@
 
 .logo > img {
     transition: 0.25s all ease-in-out;
+    animation: shrink-logo reverse 0.3s;
+}
+
+.logo-collapsed {
+    width: 0;
+    flex: none !important;
 }
 
 .logo-collapsed > img {
     animation: shrink-logo forwards 0.3s;
+    width: 0;
 }
 
 .collapsed a {
