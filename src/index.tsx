@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import NoMatch from './navigation/noMatch';
 import Home from './pages/home';
+import { Projects } from './pages/projects/projects';
+import Project from './pages/projects/project';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -14,8 +16,12 @@ root.render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />}>
-        <Route index element={<Navigate to='home' replace/>}/>
-        <Route path="home" element={<Home/>}/>
+        <Route index element={<Navigate to='home' replace />} />
+        <Route path="home" element={<Home />} />
+        <Route path="projects">
+          <Route index element={<Projects />} />
+          <Route path=":projectId" element={<Project />} />
+        </Route>
         <Route path="*" element={<NoMatch />} />
       </Route>
     </Routes>
