@@ -1,0 +1,89 @@
+.nav-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-bottom: 1px solid white;
+    background-image: linear-gradient(#111111, #222222);
+    transition: 0.25s all ease-in-out;
+}
+
+.nav-parent {
+    backdrop-filter: blur(10px);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    vertical-align: middle;
+}
+
+.nav-div {
+    vertical-align: middle;
+    display: flex;
+    padding: 1rem;
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.nav-div > * {
+    margin: 10px;
+    align-self: center;
+    transition: all 0.25s ease-in-out;
+}
+
+.nav-div > a {
+    font-size: larger;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: lighter;
+    flex: none;
+    text-align: center;
+}
+
+.nav-div > p {
+    font-size: larger;
+    color: white;
+    cursor: pointer;
+}
+
+.collapsed {
+    background-color: #002847ff;
+    background-image: none;
+    border: none;
+}
+
+.logo > img {
+    transition: 0.25s all ease-in-out;
+    animation: shrink-logo reverse 0.3s;
+}
+
+.logo-collapsed {
+    width: 0;
+    flex: none !important;
+}
+
+.logo-collapsed > img {
+    animation: shrink-logo forwards 0.3s;
+    width: 0;
+}
+
+.collapsed a {
+    scale: 120%;
+    flex: 1;
+}
+
+@keyframes shrink-logo {
+    0% {
+        width: auto;
+        opacity: 100%;
+        scale: 100%;
+    }
+
+    100% {
+        width: 0;
+        opacity: 0%;
+        scale: 0%;
+    }
+}
