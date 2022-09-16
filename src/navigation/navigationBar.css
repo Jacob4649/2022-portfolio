@@ -4,7 +4,7 @@
     left: 0;
     right: 0;
     border-bottom: 1px solid white;
-    background-image: linear-gradient(#111111, #222222);
+    background-image: linear-gradient(#111111, #444444);
     transition: 0.25s all ease-in-out;
 }
 
@@ -57,6 +57,7 @@
 .logo > img {
     transition: 0.25s all ease-in-out;
     animation: shrink-logo reverse 0.3s;
+    translate: 0 0.25rem;
 }
 
 .logo-collapsed {
@@ -72,6 +73,10 @@
 .collapsed a {
     scale: 120%;
     flex: 1;
+}
+
+.current-item {
+    scale: 120%;
 }
 
 @keyframes shrink-logo {
