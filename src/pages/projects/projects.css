@@ -51,6 +51,21 @@
 .thumbnail-content {
     color: white;
     font-weight: lighter;
+    margin-bottom: 1rem;
+}
+
+.thumbnail-tags {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.thumbnail-tags > img {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
 }
 
 @keyframes slide-in {

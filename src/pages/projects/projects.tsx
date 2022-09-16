@@ -83,6 +83,11 @@ export function ProjectThumbnail(props: ProjectThumbnailProps) {
             {content}
         </div>);
 
+    let directoryEntry = directory.find(x => x.id == projectId);
+
+    if (directoryEntry && directoryEntry.hasTags())
+        children.push(<directoryEntry.TagComponent className='thumbnail-tags'></directoryEntry.TagComponent>);
+
     return <div className={rootClass} onClick={() => {
         setRootClass(prev => `${prev} selected-project`)
         new Promise(resolve => setTimeout(resolve, 250)).then(() => navigate(`/projects/${projectId}`));
