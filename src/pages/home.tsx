@@ -28,7 +28,7 @@ const textOptions: string[] = ["Aspiring Full Stack Developer", "University Of T
  * @returns a random item from the text options
  */
 function randomItem(prevItem: string | undefined = undefined) {
-    let activeTextOptions = prevItem ? textOptions.filter(x => x != prevItem) : textOptions;
+    let activeTextOptions = prevItem ? textOptions.filter(x => x !== prevItem) : textOptions;
     return activeTextOptions[Math.floor(Math.random() * activeTextOptions.length)];
 }
 
@@ -66,7 +66,7 @@ export default function Home(props: any) {
 
     useEffect(() => {
         if (adding) {
-            if (text == selectedText) {
+            if (text === selectedText) {
                 setTimeout(() => setAdding(false), textInterval);
             } else {
                 setTimeout(() => setText(prev => selectedText.substring(0, prev.length + 1)), backspaceInterval);

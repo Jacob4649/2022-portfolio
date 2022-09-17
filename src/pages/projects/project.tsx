@@ -11,7 +11,7 @@ export default function Project(props: any) {
     const navigate = useNavigate();
     const params = useParams();
     const projectId = params["projectId"];
-    const project = directory.find(x => x.id == projectId)?.component;
+    const project = directory.find(x => x.id === projectId)?.component;
 
     if (!project)
         navigate('/project-not-found');

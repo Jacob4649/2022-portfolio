@@ -137,7 +137,7 @@ export function ProjectThumbnail(props: ProjectThumbnailProps) {
             {content}
         </div>);
 
-    let directoryEntry = directory.find(x => x.id == projectId);
+    let directoryEntry = directory.find(x => x.id === projectId);
 
     if (directoryEntry && directoryEntry.hasDisplayedTags())
         children.push(<directoryEntry.TagComponent className='thumbnail-tags'></directoryEntry.TagComponent>);
