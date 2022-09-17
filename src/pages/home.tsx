@@ -93,11 +93,11 @@ export default function Home(props: any) {
                 <span className='cursor-text'>{text}</span>
             </div>
             <div className='socials-container'>
-                <a href='https://github.com/Jacob4649' target="_blank">
+                <a href='https://github.com/Jacob4649' target="_blank" rel="noreferrer">
                     <img src={githubLogo} alt="Github"></img>
                 </a>
 
-                <a href='https://www.instagram.com/jacob__klimczak/' target="_blank">
+                <a href='https://www.instagram.com/jacob__klimczak/' target="_blank" rel="noreferrer">
                     <img src={instagramLogo} alt="Instagram"></img>
                 </a>
             </div>
