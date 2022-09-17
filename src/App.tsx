@@ -1,4 +1,4 @@
-import { useRef, useEffect, useMemo, useState, MutableRefObject, useLayoutEffect } from 'react';
+import { MutableRefObject, useEffect, useMemo, useRef, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import './App.css';
 import NavigationBar from './navigation/navigationBar';

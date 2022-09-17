@@ -1,4 +1,3 @@
-import { setMaxListeners } from 'events';
 import { useEffect, useRef, useState } from 'react';
 import Vivus from 'vivus';
 import logoTrace from '../../public/images/logo-trace.svg';
@@ -22,14 +21,14 @@ const backspaceInterval = 75;
 /**
  * Array of possible text options
  */
-const textOptions: string[] = ["Aspiring Full Stack Developer", "University Of Toronto", "Computer Science"];
+const textOptions: string[] = ["Aspiring Full Stack Developer", "University Of Toronto", "Computer Science", "Technology Enthusiast"];
 
 /**
  * @param prevItem the previously selected item
  * @returns a random item from the text options
  */
 function randomItem(prevItem: string | undefined = undefined) {
-    let activeTextOptions = prevItem ? textOptions.filter(x => x != prevItem) : textOptions;
+    let activeTextOptions = prevItem ? textOptions.filter(x => x !== prevItem) : textOptions;
     return activeTextOptions[Math.floor(Math.random() * activeTextOptions.length)];
 }
 
@@ -67,7 +66,7 @@ export default function Home(props: any) {
 
     useEffect(() => {
         if (adding) {
-            if (text == selectedText) {
+            if (text === selectedText) {
                 setTimeout(() => setAdding(false), textInterval);
             } else {
                 setTimeout(() => setText(prev => selectedText.substring(0, prev.length + 1)), backspaceInterval);
@@ -75,7 +74,7 @@ export default function Home(props: any) {
         } else {
             if (text.length === 0) {
                 setTimeout(() => {
-                    setSelectedText(randomItem());
+                    setSelectedText(randomItem(selectedText));
                     setAdding(true);
                 }, backspaceInterval);
             } else {
@@ -85,7 +84,9 @@ export default function Home(props: any) {
     }, [text, selectedText, adding]);
     return <>
         <div className="landing-screen">
-            <object className="landing-logo" ref={ref} type="image/svg+xml" data={logoTrace} />
+            <object className="landing-logo" ref={ref} type="image/svg+xml" data={logoTrace}>
+                Jacob Klimczak
+            </object>
             <div className='cursor-text-container'>
                 <span className='cursor-text'>{text}</span>
             </div>
