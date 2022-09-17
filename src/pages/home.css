@@ -1,15 +1,26 @@
 .landing-screen {
     height: calc(100vh - 4rem);
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background-color: #002847ff;
 }
 
 .landing-logo {
     width: 50%;
     height: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
     background-size: 100% 140%;
     background-repeat: no-repeat;
     background-position: center;
+}
+
+.cursor-text-container {
+    text-align: center;
+}
+
+.cursor-text {
+    color: white;
+    font-size: xx-large;
+    font-weight: lighter;
+    display: inline-block;
 }
