@@ -75,7 +75,7 @@ export default function Home(props: any) {
         } else {
             if (text.length === 0) {
                 setTimeout(() => {
-                    setSelectedText(randomItem());
+                    setSelectedText(randomItem(selectedText));
                     setAdding(true);
                 }, backspaceInterval);
             } else {
