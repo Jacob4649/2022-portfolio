@@ -116,7 +116,8 @@ const tagsBundle: { [key: string]: string } = {
     lua: "https://img.shields.io/badge/lua-%232C2D72.svg?style=for-the-badge&logo=lua&logoColor=white",
     java: "https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white",
     windows: "https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white",
-    kotlin: "https://img.shields.io/badge/kotlin-%237F52FF.svg?style=for-the-badge&logo=kotlin&logoColor=white"
+    kotlin: "https://img.shields.io/badge/kotlin-%237F52FF.svg?style=for-the-badge&logo=kotlin&logoColor=white",
+    reactRouter: "https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white"
 }
 
 /**
@@ -127,7 +128,7 @@ const tagsBundle: { [key: string]: string } = {
  */
 const typesBundle: { [key: string]: string[] | null } = {
     all: null,
-    web: ["javaScript", "typeScript", "react", "web"],
+    web: ["javaScript", "typeScript", "react", "web", "reactRouter"],
     analytics: ["r", "analytics"],
     android: ["android"],
     windows: ["windows"]
@@ -141,13 +142,13 @@ const directory: Project[] = [
         <ProjectThumbnail projectId='code-ninjas-session-tracker' title='Session Tracker'
             subheading='Tracks Customer Sessions For Code Ninjas Mississauga West'
             content='Built in React with JavaScript, using Firebase for database.'
-            image={codeNinjas}></ProjectThumbnail>, ["firebase", "react", "javaScript"], 3),
+            image={codeNinjas}></ProjectThumbnail>, ["firebase", "react", "javaScript", "reactRouter"], 3),
 
     new Project('portfolio', <Portfolio />,
         <ProjectThumbnail projectId='portfolio' title='Portfolio'
             subheading='The Portfolio Website You Are On Right Now'
             content='Built in React with TypeScript. Hosted with Firebase.'
-            image={siteLogo}></ProjectThumbnail>, ["firebase", "react", "typeScript"], 2),
+            image={siteLogo}></ProjectThumbnail>, ["firebase", "react", "typeScript", "reactRouter"], 2),
 
     new Project('expedia-analytics', <ExpediaAnalytics />,
         <ProjectThumbnail projectId='expedia-analytics' title='Expedia Search Analytics'
