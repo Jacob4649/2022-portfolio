@@ -1,15 +1,17 @@
 import { ReactNode } from "react";
-import { ProjectThumbnail } from "../projects";
-import CodeNinjasTracker from "./codeNinjasTracker";
-import codeNinjas from '../../../../public/images/white-belt-512.png';
+import androidLogo from '../../../../public/images/android.svg';
+import covidLogo from '../../../../public/images/covid-19.svg';
 import siteLogo from '../../../../public/images/logo-rounded-rect.svg';
 import rLogo from '../../../../public/images/r-logo.svg';
-import covidLogo from '../../../../public/images/covid-19.svg';
 import rotogranlogo from '../../../../public/images/rotogran-logo.png';
-import Portfolio from "./portfolio";
+import codeNinjas from '../../../../public/images/white-belt-512.png';
+import { ProjectThumbnail } from "../projects";
+import CodeNinjasTracker from "./codeNinjasTracker";
 import ExpediaAnalytics from "./expediaAnalytics";
-import VaccineAnalysis from "./vaccineAnalysis";
+import Portfolio from "./portfolio";
 import RotogranERP from "./rotogranERP";
+import RotogranERPAndroid from "./rotogranERPAndroid";
+import VaccineAnalysis from "./vaccineAnalysis";
 
 /**
  * Represents a project on this portfolio
@@ -45,18 +47,25 @@ class Project {
     displayedTags: string[];
 
     /**
+     * How impressive this project is from 1-5 (1 = low, 5 = high)
+     */
+    wowFactor: number;
+
+    /**
      * Creates a new Project
      * @param id id for the project
      * @param component page component for the project
      * @param thumbnail thumbnail for the project
      * @param tags all the tags this project should have
+     * @param wowFactor how impressive this project is from 1-5 (1 = low, 5 = high)
      */
-    constructor(id: string, component: ReactNode, thumbnail: ReactNode, tags: string[] = []) {
+    constructor(id: string, component: ReactNode, thumbnail: ReactNode, tags: string[] = [], wowFactor: number = 1) {
         this.id = id;
         this.component = component;
         this.thumbnail = thumbnail;
         this.tags = tags;
         this.displayedTags = this.tags.filter(x => tagsBundle[x]);
+        this.wowFactor = wowFactor;
     }
 
     /**
@@ -106,7 +115,8 @@ const tagsBundle: { [key: string]: string } = {
     "c#": "https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=c-sharp&logoColor=white",
     lua: "https://img.shields.io/badge/lua-%232C2D72.svg?style=for-the-badge&logo=lua&logoColor=white",
     java: "https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white",
-    windows: "https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white"
+    windows: "https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white",
+    kotlin: "https://img.shields.io/badge/kotlin-%237F52FF.svg?style=for-the-badge&logo=kotlin&logoColor=white"
 }
 
 /**
@@ -131,37 +141,37 @@ const directory: Project[] = [
         <ProjectThumbnail projectId='code-ninjas-session-tracker' title='Session Tracker'
             subheading='Tracks Customer Sessions For Code Ninjas Mississauga West'
             content='Built in React with JavaScript, using Firebase for database.'
-            image={codeNinjas}></ProjectThumbnail>, ["firebase", "react", "javaScript"]),
+            image={codeNinjas}></ProjectThumbnail>, ["firebase", "react", "javaScript"], 3),
 
     new Project('portfolio', <Portfolio />,
         <ProjectThumbnail projectId='portfolio' title='Portfolio'
             subheading='The Portfolio Website You Are On Right Now'
             content='Built in React with TypeScript. Hosted with Firebase.'
-            image={siteLogo}></ProjectThumbnail>, ["firebase", "react", "typeScript"]),
+            image={siteLogo}></ProjectThumbnail>, ["firebase", "react", "typeScript"], 2),
 
     new Project('expedia-analytics', <ExpediaAnalytics />,
         <ProjectThumbnail projectId='expedia-analytics' title='Expedia Search Analytics'
             subheading='Analysis Of Expedia Recommended Bookings'
             content='Analysis in R using publicly available Expedia dataset.'
-            image={rLogo}></ProjectThumbnail>, ["r"]),
+            image={rLogo}></ProjectThumbnail>, ["r"], 1),
 
     new Project('vaccine-analysis', <VaccineAnalysis />,
         <ProjectThumbnail projectId='vaccine-analysis' title='COVID-19 Vaccine Tweet Analysis'
             subheading='Sentiment Analysis Of COVID-19 Tweets'
             content='Used VADER to breakdown sentiment towards vaccination during the COVID-19 pandemic by state.'
-            image={covidLogo}></ProjectThumbnail>, ["python", "kaggle", "twitter", "analytics"]),
+            image={covidLogo}></ProjectThumbnail>, ["python", "kaggle", "twitter", "analytics"], 2),
 
     new Project('rotogran-erp', <RotogranERP />,
         <ProjectThumbnail projectId='rotogran-erp' title='Rotogran ERP System'
             subheading='ERP System For Rotogran International Inc'
             content='ERP System with backend mostly in C#, and client applications for a variety of platforms.'
-            image={rotogranlogo}></ProjectThumbnail>, ["c#", "net", "lua", "java", "mssql", "windows"]),
+            image={rotogranlogo}></ProjectThumbnail>, ["c#", "net", "lua", "java", "mssql", "windows"], 5),
 
-    new Project('rotogran-erp-android', <RotogranERP />,
-        <ProjectThumbnail projectId='rotogran-erp' title='Rotogran ERP System'
-            subheading='ERP System For Rotogran International Inc'
-            content='ERP System with backend mostly in C#, and client applications for a variety of platforms.'
-            image={rotogranlogo}></ProjectThumbnail>, ["c#", "net", "lua", "java", "mssql", "windows"])
+    new Project('rotogran-erp-android', <RotogranERPAndroid />,
+        <ProjectThumbnail projectId='rotogran-erp-android' title='Rotogran ERP Android App'
+            subheading='Android Client For Rotogran ERP System'
+            content='Android ERP app for Android used by Rotogran International Inc.'
+            image={androidLogo}></ProjectThumbnail>, ["android", "java", "kotlin"], 5)
 ];
 
-export default directory;
+export default directory.sort((a, b) => b.wowFactor - a.wowFactor);
