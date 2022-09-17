@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import Vivus from 'vivus';
 import logoTrace from '../../public/images/logo-trace.svg';
+import githubLogo from '../../public/images/github-logo-white.svg'
+import instagramLogo from '../../public/images/instagram-logo-white.svg'
 import './home.css';
 
 /**
@@ -89,6 +91,15 @@ export default function Home(props: any) {
             </object>
             <div className='cursor-text-container'>
                 <span className='cursor-text'>{text}</span>
+            </div>
+            <div className='socials-container'>
+                <a href='https://github.com/Jacob4649' target="_blank">
+                    <img src={githubLogo} alt="Github"></img>
+                </a>
+
+                <a href='https://www.instagram.com/jacob__klimczak/' target="_blank">
+                    <img src={instagramLogo} alt="Instagram"></img>
+                </a>
             </div>
         </div>
     </>;
