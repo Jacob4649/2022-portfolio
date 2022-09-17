@@ -4,8 +4,10 @@ import CodeNinjasTracker from "./codeNinjasTracker";
 import codeNinjas from '../../../../public/images/white-belt-512.png';
 import siteLogo from '../../../../public/images/logo-rounded-rect.svg';
 import rLogo from '../../../../public/images/r-logo.svg';
+import covidLogo from '../../../../public/images/covid-19.svg';
 import Portfolio from "./portfolio";
 import ExpediaAnalytics from "./expediaAnalytics";
+import VaccineAnalysis from "./vaccineAnalysis";
 
 /**
  * Represents a project on this portfolio
@@ -133,7 +135,13 @@ const directory: Project[] = [
         <ProjectThumbnail projectId='expedia-analytics' title='Expedia Search Analytics'
             subheading='Analysis Of Expedia Recommended Bookings'
             content='Analysis in R using publicly available Expedia dataset.'
-            image={rLogo}></ProjectThumbnail>, ["r"])
+            image={rLogo}></ProjectThumbnail>, ["r"]),
+
+    new Project('vaccine-analysis', <VaccineAnalysis />,
+        <ProjectThumbnail projectId='vaccine-analysis' title='COVID-19 Vaccine Tweet Analysis'
+            subheading='Sentiment Analysis Of COVID-19 Tweets'
+            content='Used VADER to breakdown sentiment towards vaccination during the COVID-19 pandemic by state.'
+            image={covidLogo}></ProjectThumbnail>, ["python", "analytics"])
 ];
 
 export default directory;
