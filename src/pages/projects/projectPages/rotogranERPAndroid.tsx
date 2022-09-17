@@ -23,6 +23,7 @@ export default function RotogranERPAndroid(props: any) {
                 <li>Manage active tasks, and task queues for all workers</li>
                 <li>Track current inventory, view low stock items</li>
                 <li>Show parts orders, and their status (i.e. how far from completion, shipping status, what parts are bottlenecks, etc...)</li>
+                <li>UI and UX mirroring aspects of desktop client</li>
             </ul>
             The application enabled easy, on-the-go access to all work orders, past and present.
         </div>
