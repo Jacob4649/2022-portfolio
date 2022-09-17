@@ -6,6 +6,7 @@
     padding-right: 4rem;
     padding-bottom: 4rem;
     padding-top: calc(4rem - 4em);
+    justify-content: center;
 }
 
 .projects-container > * {
