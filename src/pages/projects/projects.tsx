@@ -1,7 +1,7 @@
-import './projects.css';
-import React, { ReactNode, ReactElement, useState, SetStateAction } from 'react';
+import { ReactElement, ReactNode, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import directory from './projectPages/projectDirectory';
+import './projects.css';
 
 /**
  * Properties for a project type component

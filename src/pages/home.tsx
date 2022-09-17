@@ -1,4 +1,3 @@
-import { setMaxListeners } from 'events';
 import { useEffect, useRef, useState } from 'react';
 import Vivus from 'vivus';
 import logoTrace from '../../public/images/logo-trace.svg';
