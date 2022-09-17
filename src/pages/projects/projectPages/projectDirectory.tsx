@@ -3,7 +3,9 @@ import { ProjectThumbnail } from "../projects";
 import CodeNinjasTracker from "./codeNinjasTracker";
 import codeNinjas from '../../../../public/images/white-belt-512.png';
 import siteLogo from '../../../../public/images/logo-rounded-rect.svg';
+import rLogo from '../../../../public/images/r-logo.svg';
 import Portfolio from "./portfolio";
+import ExpediaAnalytics from "./expediaAnalytics";
 
 /**
  * Represents a project on this portfolio
@@ -120,11 +122,18 @@ const directory: Project[] = [
             subheading='Tracks Customer Sessions For Code Ninjas Mississauga West'
             content='Built in React with JavaScript, using Firebase for database.'
             image={codeNinjas}></ProjectThumbnail>, ["firebase", "react", "javaScript"]),
+
     new Project('portfolio', <Portfolio />,
         <ProjectThumbnail projectId='portfolio' title='Portfolio'
             subheading='The Portfolio Website You Are On Right Now'
             content='Built in React with TypeScript. Hosted with Firebase.'
-            image={siteLogo}></ProjectThumbnail>, ["firebase", "react", "typeScript"])
+            image={siteLogo}></ProjectThumbnail>, ["firebase", "react", "typeScript"]),
+
+    new Project('expedia-analytics', <ExpediaAnalytics />,
+        <ProjectThumbnail projectId='expedia-analytics' title='Expedia Search Analytics'
+            subheading='Analysis Of Expedia Recommended Bookings'
+            content='Analysis in R using publicly available Expedia dataset.'
+            image={rLogo}></ProjectThumbnail>, ["r"])
 ];
 
 export default directory;
