@@ -142,7 +142,7 @@ const directory: Project[] = [
         <ProjectThumbnail projectId='vaccine-analysis' title='COVID-19 Vaccine Tweet Analysis'
             subheading='Sentiment Analysis Of COVID-19 Tweets'
             content='Used VADER to breakdown sentiment towards vaccination during the COVID-19 pandemic by state.'
-            image={covidLogo}></ProjectThumbnail>, ["python", "analytics"])
+            image={covidLogo}></ProjectThumbnail>, ["python", "kaggle", "twitter", "analytics"])
 ];
 
 export default directory;
