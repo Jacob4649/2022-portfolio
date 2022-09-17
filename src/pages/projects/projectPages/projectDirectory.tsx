@@ -2,6 +2,8 @@ import { ReactNode } from "react";
 import { ProjectThumbnail } from "../projects";
 import CodeNinjasTracker from "./codeNinjasTracker";
 import codeNinjas from '../../../../public/images/white-belt-512.png';
+import siteLogo from '../../../../public/images/logo-rounded-rect.svg';
+import Portfolio from "./portfolio";
 
 /**
  * Represents a project on this portfolio
@@ -117,7 +119,12 @@ const directory: Project[] = [
         <ProjectThumbnail projectId='code-ninjas-session-tracker' title='Session Tracker'
             subheading='Tracks Customer Sessions For Code Ninjas Mississauga West'
             content='Built in React with JavaScript, using Firebase for database.'
-            image={codeNinjas}></ProjectThumbnail>, ["firebase", "react", "typeScript"])
+            image={codeNinjas}></ProjectThumbnail>, ["firebase", "react", "javaScript"]),
+    new Project('portfolio', <Portfolio />,
+        <ProjectThumbnail projectId='portfolio' title='Portfolio'
+            subheading='The Portfolio Website You Are On Right Now'
+            content='Built in React with TypeScript. Hosted with Firebase.'
+            image={siteLogo}></ProjectThumbnail>, ["firebase", "react", "typeScript"])
 ];
 
 export default directory;
