@@ -19,7 +19,7 @@
     text-align: center;
     padding: 0.25rem;
     border: 1px solid white;
-    display: block  ;
+    display: block;
     width: 50%;
     margin-left: auto;
     margin-right: auto;
@@ -61,4 +61,23 @@
     100% {
         opacity: 0%;
     }
+}
+
+.socials-container {
+    text-align: center;
+    padding: 2rem;
+}
+
+.socials-container > * {
+    margin: 1rem;
+}
+
+.socials-container img:hover {
+    scale: 110%;
+}
+
+.socials-container img {
+    height: 5rem;
+    width: auto;
+    transition: all 0.25s ease-in-out;
 }
