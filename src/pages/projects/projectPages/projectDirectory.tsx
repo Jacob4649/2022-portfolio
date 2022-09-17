@@ -148,7 +148,7 @@ const directory: Project[] = [
         <ProjectThumbnail projectId='portfolio' title='Portfolio'
             subheading='The Portfolio Website You Are On Right Now'
             content='Built in React with TypeScript. Hosted with Firebase.'
-            image={siteLogo}></ProjectThumbnail>, ["firebase", "react", "typeScript", "reactRouter"], 2),
+            image={siteLogo}></ProjectThumbnail>, ["firebase", "react", "typeScript", "reactRouter"], 1),
 
     new Project('expedia-analytics', <ExpediaAnalytics />,
         <ProjectThumbnail projectId='expedia-analytics' title='Expedia Search Analytics'
