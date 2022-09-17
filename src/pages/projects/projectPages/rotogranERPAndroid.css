@@ -68,4 +68,8 @@ h1 {
     .writeup {
         margin-left: 22vw;
     }
+
+    h1 {
+        padding-left: 22vw;
+    }
 }
