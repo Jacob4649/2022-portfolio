@@ -21,7 +21,7 @@ const backspaceInterval = 75;
 /**
  * Array of possible text options
  */
-const textOptions: string[] = ["Aspiring Full Stack Developer", "University Of Toronto", "Computer Science"];
+const textOptions: string[] = ["Aspiring Full Stack Developer", "University Of Toronto", "Computer Science", "Technology Enthusiast"];
 
 /**
  * @param prevItem the previously selected item
