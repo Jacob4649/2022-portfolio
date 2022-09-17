@@ -1,8 +1,8 @@
-import { MutableRefObject, ReactElement, useEffect, useRef, useState } from 'react';
-import logoTrace from '../../public/images/logo-trace.svg';
-import logo from '../../public/images/logo.svg';
-import './home.css'
+import { setMaxListeners } from 'events';
+import { useEffect, useRef, useState } from 'react';
 import Vivus from 'vivus';
+import logoTrace from '../../public/images/logo-trace.svg';
+import './home.css';
 
 /**
  * Duration of the logo draw animation in milliseconds
@@ -10,14 +10,42 @@ import Vivus from 'vivus';
 const animationDuration = 5500;
 
 /**
+ * Time between text changes in milliseconds
+ */
+const textInterval = 5000;
+
+/**
+ * Time between backspaces in milliseconds
+ */
+const backspaceInterval = 75;
+
+/**
+ * Array of possible text options
+ */
+const textOptions: string[] = ["Aspiring Full Stack Developer", "University Of Toronto", "Computer Science"];
+
+/**
+ * @param prevItem the previously selected item
+ * @returns a random item from the text options
+ */
+function randomItem(prevItem: string | undefined = undefined) {
+    let activeTextOptions = prevItem ? textOptions.filter(x => x != prevItem) : textOptions;
+    return activeTextOptions[Math.floor(Math.random() * activeTextOptions.length)];
+}
+
+/**
  * Component for the home page
  * @param props properties for this component
  */
 export default function Home(props: any) {
 
+    const [adding, setAdding] = useState(false);
+
     const ref = useRef<HTMLObjectElement>(null);
 
-    const [drawn, setDrawn] = useState(false);
+    const [selectedText, setSelectedText] = useState(randomItem());
+
+    const [text, setText] = useState(selectedText);
 
     useEffect(() => {
 
@@ -27,21 +55,40 @@ export default function Home(props: any) {
         }).stop().reset().play();
 
         new Promise(resolve => setTimeout(resolve, animationDuration)).then(() => {
-            setDrawn(true);
+            let svg = ref.current?.contentDocument?.querySelector('svg');
+
+            if (svg) {
+                svg.style.fill = "#fff";
+                svg.style.fillOpacity = "100%";
+                svg.style.transition = "0.2s all ease-in-out"
+            }
         });
     }, []);
 
-    let toDraw = drawn ? logo : logoTrace;
-
+    useEffect(() => {
+        if (adding) {
+            if (text == selectedText) {
+                setTimeout(() => setAdding(false), textInterval);
+            } else {
+                setTimeout(() => setText(prev => selectedText.substring(0, prev.length + 1)), backspaceInterval);
+            }
+        } else {
+            if (text.length === 0) {
+                setTimeout(() => {
+                    setSelectedText(randomItem());
+                    setAdding(true);
+                }, backspaceInterval);
+            } else {
+                setTimeout(() => setText(prev => prev.substring(0, prev.length - 1)), backspaceInterval);
+            }
+        }
+    }, [text, selectedText, adding]);
     return <>
         <div className="landing-screen">
-            <object id="test" className="landing-logo" ref={ref} type="image/svg+xml" data={toDraw} />
-        </div>
-        <div>
-            Projects
-            <p>
-                This is some text
-            </p>
+            <object className="landing-logo" ref={ref} type="image/svg+xml" data={logoTrace} />
+            <div className='cursor-text-container'>
+                <span className='cursor-text'>{text}</span>
+            </div>
         </div>
     </>;
 }

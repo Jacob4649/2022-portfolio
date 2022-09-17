@@ -1,15 +1,64 @@
 .landing-screen {
     height: calc(100vh - 4rem);
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background-color: #002847ff;
 }
 
 .landing-logo {
+    margin-top: 5rem;
     width: 50%;
     height: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
     background-size: 100% 140%;
     background-repeat: no-repeat;
     background-position: center;
+}
+
+.cursor-text-container {
+    text-align: center;
+    padding: 0.25rem;
+    border: 1px solid white;
+    display: block  ;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 2vmin;
+}
+
+.cursor-text {
+    color: white;
+    font-size: 5vmin;
+    font-weight: lighter;
+    display: inline-block;
+    font-family: monospace;
+}
+
+.cursor-text::after {
+    content: "";
+    margin-left: 0.5vmin;
+    width: 1vmin;
+    height: 5vmin;
+    translate: 0 0.5vmin;
+    background: white;
+    display: inline-block;
+    animation: blink forwards 1s linear infinite;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 100%;
+    }
+
+    25% {
+        opacity: 100%;
+    }
+
+    75% {
+        opacity: 0%;
+    }
+
+    100% {
+        opacity: 0%;
+    }
 }
