@@ -5,9 +5,11 @@ import codeNinjas from '../../../../public/images/white-belt-512.png';
 import siteLogo from '../../../../public/images/logo-rounded-rect.svg';
 import rLogo from '../../../../public/images/r-logo.svg';
 import covidLogo from '../../../../public/images/covid-19.svg';
+import rotogranlogo from '../../../../public/images/rotogran-logo.png';
 import Portfolio from "./portfolio";
 import ExpediaAnalytics from "./expediaAnalytics";
 import VaccineAnalysis from "./vaccineAnalysis";
+import RotogranERP from "./rotogranERP";
 
 /**
  * Represents a project on this portfolio
@@ -100,7 +102,11 @@ const tagsBundle: { [key: string]: string } = {
     mssql: "https://img.shields.io/badge/Microsoft%20SQL%20Sever-CC2927?style=for-the-badge&logo=microsoft%20sql%20server&logoColor=white",
     python: "https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54",
     kaggle: "https://img.shields.io/badge/Kaggle-035a7d?style=for-the-badge&logo=kaggle&logoColor=white",
-    twitter: "https://img.shields.io/badge/Twitter-%231DA1F2.svg?style=for-the-badge&logo=Twitter&logoColor=white"
+    twitter: "https://img.shields.io/badge/Twitter-%231DA1F2.svg?style=for-the-badge&logo=Twitter&logoColor=white",
+    "c#": "https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=c-sharp&logoColor=white",
+    lua: "https://img.shields.io/badge/lua-%232C2D72.svg?style=for-the-badge&logo=lua&logoColor=white",
+    java: "https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white",
+    windows: "https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white"
 }
 
 /**
@@ -143,7 +149,19 @@ const directory: Project[] = [
         <ProjectThumbnail projectId='vaccine-analysis' title='COVID-19 Vaccine Tweet Analysis'
             subheading='Sentiment Analysis Of COVID-19 Tweets'
             content='Used VADER to breakdown sentiment towards vaccination during the COVID-19 pandemic by state.'
-            image={covidLogo}></ProjectThumbnail>, ["python", "kaggle", "twitter", "analytics"])
+            image={covidLogo}></ProjectThumbnail>, ["python", "kaggle", "twitter", "analytics"]),
+
+    new Project('rotogran-erp', <RotogranERP />,
+        <ProjectThumbnail projectId='rotogran-erp' title='Rotogran ERP System'
+            subheading='ERP System For Rotogran International Inc'
+            content='ERP System with backend mostly in C#, and client applications for a variety of platforms.'
+            image={rotogranlogo}></ProjectThumbnail>, ["c#", "net", "lua", "java", "mssql", "windows"]),
+
+    new Project('rotogran-erp-android', <RotogranERP />,
+        <ProjectThumbnail projectId='rotogran-erp' title='Rotogran ERP System'
+            subheading='ERP System For Rotogran International Inc'
+            content='ERP System with backend mostly in C#, and client applications for a variety of platforms.'
+            image={rotogranlogo}></ProjectThumbnail>, ["c#", "net", "lua", "java", "mssql", "windows"])
 ];
 
 export default directory;
