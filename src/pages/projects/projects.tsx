@@ -119,7 +119,7 @@ export function ProjectThumbnail(props: ProjectThumbnailProps) {
     let children: ReactElement[] = [];
 
     if (image)
-        children.push(<img src={image} className='thumbnail-image'>
+        children.push(<img alt='thumbnail' src={image} className='thumbnail-image'>
 
         </img>)
 

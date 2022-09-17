@@ -85,7 +85,7 @@ class Project {
      * @returns the tag component for this directory
      */
     TagComponent = (props: any) => <div className={props.className}>
-        {this.displayedTags.sort().map(x => <img src={tagsBundle[x]}></img>)}
+        {this.displayedTags.sort().map(x => <img alt={`${x} tag`} src={tagsBundle[x]}></img>)}
     </div>;
 
     /**

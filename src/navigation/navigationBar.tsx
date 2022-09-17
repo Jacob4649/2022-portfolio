@@ -45,7 +45,7 @@ export default function NavigationBar(props: NavigationBarProps) {
         <div className="nav-parent">
             <div className="nav-div">
                 <Link to="/" className={logoClassName}>
-                    <img src={logo} style={{
+                    <img alt="Jacob Klimczak" src={logo} style={{
                         height: props.height
                     }}></img>
                 </Link>

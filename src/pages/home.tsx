@@ -84,7 +84,9 @@ export default function Home(props: any) {
     }, [text, selectedText, adding]);
     return <>
         <div className="landing-screen">
-            <object className="landing-logo" ref={ref} type="image/svg+xml" data={logoTrace} />
+            <object className="landing-logo" ref={ref} type="image/svg+xml" data={logoTrace}>
+                Jacob Klimczak
+            </object>
             <div className='cursor-text-container'>
                 <span className='cursor-text'>{text}</span>
             </div>
