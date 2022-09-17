@@ -35,7 +35,7 @@ export default function Home(props: any) {
 
     return <>
         <div className="landing-screen">
-            <object id="test" className="landing-logo" ref={ref} type="image/svg+xml" data={toDraw} />
+            <object className="landing-logo" ref={ref} type="image/svg+xml" data={toDraw} />
         </div>
     </>;
 }
