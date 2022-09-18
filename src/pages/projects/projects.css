@@ -123,17 +123,34 @@
     font-size: normal;
     font-weight: lighter;
     margin: 0.5rem;
-    color: black;
+    color: #6e6e73;
     align-self: center;
     display: block;
+    transition: all 0.25s ease-in-out;
 }
 
 .project-types > *:hover {
     font-size: x-large;
-    transition: all 0.25s ease-in-out;
 }
 
 .selected-type {
-    text-decoration: underline;
-    text-underline-offset: 0.2em;
+    /* text-decoration: underline; */
+    color: black;
+    /* text-underline-offset: 0.2em; */
+}
+
+.selected-type::after {
+    opacity: 100% !important;
+}
+
+.project-types > *::after {
+    display: block;
+    content: '';
+    margin-left: calc(50% - 0.3em / 2);
+    width: 0.3em;
+    height: 0.3em;
+    background: black;
+    border-radius: 1rem;
+    opacity: 0%;
+    transition: all 0.25s ease-in-out;
 }
