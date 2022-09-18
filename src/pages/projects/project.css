@@ -1,13 +1,17 @@
 .project-container {
-    animation: project-container-grow forwards 0.2s ease-in-out;
+    display: contents;
 }
 
-@keyframes project-container-grow {
+.project-container > * {
+    animation: project-container-enter forwards 0.2s ease-in-out;
+}
+
+@keyframes project-container-enter {
     0% {
-        scale: 0%;
+        translate: 110vw;
     }
 
     100% {
-        scale: 100%;
+        translate: 0;
     }
 }
