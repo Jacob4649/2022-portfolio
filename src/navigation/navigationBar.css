@@ -21,7 +21,7 @@
 .nav-div {
     vertical-align: middle;
     display: flex;
-    padding: 1rem;
+    padding: 0.7rem;
     height: auto;
     width: 100%;
     display: flex;
@@ -29,25 +29,24 @@
 }
 
 .nav-div > * {
-    margin: 10px;
     align-self: center;
     transition: all 0.25s ease-in-out;
 }
 
 .nav-div > a {
-    font-size: larger;
+    font-size: large;
     color: white;
     text-decoration: none;
     cursor: pointer;
     font-weight: lighter;
     flex: none;
     text-align: center;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
-.nav-div > p {
-    font-size: larger;
-    color: white;
-    cursor: pointer;
+.nav-div > a:not(.logo) {
+    margin: 10px;
 }
 
 .collapsed {
@@ -56,10 +55,16 @@
     border: none;
 }
 
+.logo {
+    height: 100%;
+}
+
 .logo > img {
     transition: 0.25s all ease-in-out;
     animation: shrink-logo reverse 0.3s;
-    translate: 0 0.25rem;
+    /* translate: 0 0.25rem; */
+    height: 100%;
+    width: auto;
 }
 
 .logo-collapsed {
