@@ -40,6 +40,11 @@ export default function RotogranERPAndroid(props: any) {
                     <li>UI and UX mirroring aspects of desktop client</li>
                 </ul>
             </div>
+            <div className='shadow-box shadow-box-light'>
+                <ResponsiveImageWithCaption src={homeScreen} alt="home screen">
+                    This is some text
+                </ResponsiveImageWithCaption>
+            </div>
         </div>
         The application enabled easy, on-the-go access to all work orders, past and present.
     </ProjectWithSidebar>;

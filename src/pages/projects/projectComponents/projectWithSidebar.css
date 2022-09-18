@@ -7,13 +7,13 @@
     color: black;
 }
 
-@media (max-width: 1000px) { /* mobile */
+@media (max-width: 1000px), (hover: none) { /* mobile */
     .sidebar {
         
     }
 }
 
-@media (min-width: 1001px) { /* laptop */
+@media (min-width: 1001px) and (hover: hover) { /* laptop */
     .sidebar {
         height: calc(100vh - 7rem);
         width: calc(20vw - 1rem);

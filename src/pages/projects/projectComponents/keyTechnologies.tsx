@@ -33,7 +33,7 @@ export default function KeyTechnologies(props: KeyTechnologiesProps) {
     let tags: ReactNode = undefined;
 
     if (directoryEntry)
-        tags = <directoryEntry.TagComponent className="thumbnail-tags"></directoryEntry.TagComponent>;
+        tags = <directoryEntry.TagComponent className="key-technologies-thumbnail-tags"></directoryEntry.TagComponent>;
 
     return <div className={props.className}>
         <span className="key-technologies-title">Key Technologies</span>

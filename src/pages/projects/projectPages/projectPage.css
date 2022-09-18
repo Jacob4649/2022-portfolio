@@ -31,6 +31,7 @@ h1 {
     margin-left: auto;
     margin-right: auto;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .shadow-box {

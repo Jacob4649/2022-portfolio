@@ -1,4 +1,4 @@
-.thumbnail-tags {
+.key-technologies-thumbnail-tags {
     padding: 0.5rem;
     display: flex;
     flex-direction: row;
@@ -9,7 +9,7 @@
     margin-right: auto;
 }
 
-.thumbnail-tags > img {
+.key-technologies-thumbnail-tags > img {
     margin: 0.5rem;
     border-radius: 0.5em;
 }

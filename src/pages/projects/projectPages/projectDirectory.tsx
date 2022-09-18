@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import React, { ReactNode, ComponentProps, ComponentType } from "react";
 import androidLogo from '../../../../public/images/android.svg';
 import covidLogo from '../../../../public/images/covid-19.svg';
 import siteLogo from '../../../../public/images/logo-rounded-rect.svg';
@@ -26,7 +26,7 @@ class Project {
     /**
      * Thumbnail to show when browsing through projects
      */
-    thumbnail: ReactNode;
+    Thumbnail: ComponentType;
 
     /**
      * ID to assign this project
@@ -62,7 +62,7 @@ class Project {
     constructor(id: string, component: ReactNode, thumbnail: ReactNode, tags: string[] = [], wowFactor: number = 1) {
         this.id = id;
         this.component = component;
-        this.thumbnail = thumbnail;
+        this.Thumbnail = (props: ComponentProps<any>) => <>{thumbnail}</>;
         this.tags = tags;
         this.displayedTags = this.tags.filter(x => tagsBundle[x]);
         this.wowFactor = wowFactor;
@@ -85,7 +85,7 @@ class Project {
      * @returns the tag component for this directory
      */
     TagComponent = (props: any) => <div className={props.className}>
-        {this.displayedTags.sort().map(x => <img alt={`${x} tag`} src={tagsBundle[x]}></img>)}
+        {this.displayedTags.sort().map(x => <img key={x} alt={`${x} tag`} src={tagsBundle[x]}></img>)}
     </div>;
 
     /**
