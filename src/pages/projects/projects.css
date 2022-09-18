@@ -18,7 +18,7 @@
 }
 
 .project-thumbnail-root {
-    border: 1px solid white;
+    border: 1px solid black;
     border-radius: 1rem;
     padding: 1rem;
     transition: all 0.25s ease-in-out;
@@ -43,11 +43,11 @@
     text-align: center;
     font-weight: lighter;
     font-size: x-large;
-    color: white;
+    color: black;
 }
 
 .thumbnail-subheading {
-    color: white;
+    color: black;
     font-weight: lighter;
     font-style: italic;
     text-align: center;
@@ -55,7 +55,7 @@
 }
 
 .thumbnail-content {
-    color: white;
+    color: black;
     font-weight: lighter;
     margin-bottom: 1rem;
 }
@@ -121,7 +121,7 @@
     font-size: normal;
     font-weight: lighter;
     margin: 0.5rem;
-    color: white;
+    color: black;
     align-self: center;
     display: block;
 }

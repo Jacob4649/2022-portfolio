@@ -25,13 +25,15 @@ export default function App() {
 
   const path = useLocation();
 
-  let collapsed: boolean = inView && path.pathname.toLowerCase().endsWith("home");
+  let isHome = path.pathname.toLowerCase().endsWith("home");
 
-  let activeHeight: string = collapsed ? `${collapsedNavHeight}rem` : `${defaultNavHeight}rem`;
+  let collapsed = inView && isHome;
+
+  let activeHeight = collapsed ? `${collapsedNavHeight}rem` : `${defaultNavHeight}rem`;
 
   return <>
     <NavigationBar collapsed={collapsed} height={activeHeight} />
-    <div ref={ref} className='padding' />
+    <div ref={ref} className={isHome ? "padding padding-landing-screen" : "padding"} />
     <Outlet />
   </>;
 }
