@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import directory from "./projectPages/projectDirectory";
+import './project.css';
 
 /**
  * Component that wraps a single project with the specified id
@@ -16,7 +17,7 @@ export default function Project(props: any) {
     if (!project)
         navigate('/project-not-found');
 
-    return <>
+    return <div className="project-container">
         {project}
-    </>;
+    </div>;
 }

@@ -1,0 +1,13 @@
+.project-container {
+    animation: project-container-grow forwards 0.2s ease-in-out;
+}
+
+@keyframes project-container-grow {
+    0% {
+        scale: 0%;
+    }
+
+    100% {
+        scale: 100%;
+    }
+}
