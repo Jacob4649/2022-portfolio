@@ -73,6 +73,7 @@
 
 .thumbnail-tags > img {
     margin: 0.5rem;
+    border-radius: 0.5em;
 }
 
 .projects-switching > *{
