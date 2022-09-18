@@ -114,19 +114,31 @@
 }
 
 .project-types {
-    padding: 0.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
     text-align: center;
     display: flex;
     flex-direction: row;
     height: 3em;
-    justify-content: center;    
+    justify-content: center;
+    position: sticky;
+    top: 4.5rem;
+    z-index: 1000;
+    background-color: rgb(51, 51, 51);
+    border-radius: 0.5rem;
+    box-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
 }
 
 .project-types > * {
     font-size: normal;
     font-weight: lighter;
     margin: 0.5rem;
-    color: #6e6e73;
+    color: rgb(150, 150, 150);
     align-self: center;
     display: block;
     transition: all 0.25s ease-in-out;
@@ -138,7 +150,7 @@
 
 .selected-type {
     /* text-decoration: underline; */
-    color: black;
+    color: white;
     /* text-underline-offset: 0.2em; */
 }
 
@@ -152,7 +164,7 @@
     margin-left: calc(50% - 0.3em / 2);
     width: 0.3em;
     height: 0.3em;
-    background: black;
+    background: white;
     border-radius: 1rem;
     opacity: 0%;
     transition: all 0.25s ease-in-out;
