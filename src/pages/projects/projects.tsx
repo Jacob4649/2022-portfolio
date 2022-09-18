@@ -144,7 +144,7 @@ export function ProjectThumbnail(props: ProjectThumbnailProps) {
 
     return <div className={rootClass} onClick={() => {
         setRootClass(prev => `${prev} selected-project`)
-        new Promise(resolve => setTimeout(resolve, 250)).then(() => navigate(`/projects/${projectId}`));
+        new Promise(resolve => setTimeout(resolve, 150)).then(() => navigate(`/projects/${projectId}`));
     }}>
         {children as ReactNode}
     </div>

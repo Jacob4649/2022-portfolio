@@ -14,7 +14,7 @@
 }
 
 .selected-project {
-    animation: grow forwards 0.5s ease-in-out;
+    animation: grow forwards 0.2s ease-in-out;
 }
 
 .project-thumbnail-root {
@@ -106,7 +106,7 @@
     }
 
     100% {
-        scale: 10000%
+        scale: 2000%
     }
 }
 
