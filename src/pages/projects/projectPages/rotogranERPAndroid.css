@@ -1,3 +1,23 @@
 .key-technologies-container {
     margin-top: 1rem;
 }
+
+.rotogran-text {
+    display: inline-block;
+    font-size: x-large;
+}
+
+@media (min-width: 1001px) {
+    .rotogran-text {
+        padding-right: 1rem;
+    }
+}
+
+.rotogran-site-link {
+    color: white;
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+    font-style: italic;
+    text-decoration: none;
+}

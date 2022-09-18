@@ -21,6 +21,11 @@ interface ResponsiveImageWithCaptionProps {
      */
     children?: ReactNode;
 
+    /**
+     * Inline style for the image
+     */
+    imageStyle?: any;
+
 }
 
 /**
@@ -30,7 +35,7 @@ interface ResponsiveImageWithCaptionProps {
  */
 export default function ResponsiveImageWithCaption(props: ResponsiveImageWithCaptionProps) {
     return <div className='parent-div'>
-        <img className='responsive-image' src={props.src} alt={props.alt}></img>
+        <img className='responsive-image' src={props.src} alt={props.alt} style={props.imageStyle}></img>
         <div className='responsiveCaption'>
             {props.children}
         </div>
