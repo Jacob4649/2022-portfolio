@@ -1,6 +1,5 @@
-import { TableOfContents, TableOfContentsItem } from "./tableOfContents";
-import './projectWithSidebar.css';
 import { ReactNode } from "react";
+import './projectWithSidebar.css';
 
 /**
  * Properties for a ProjectWithSidebar
