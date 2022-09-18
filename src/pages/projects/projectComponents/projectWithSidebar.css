@@ -11,6 +11,15 @@
     .sidebar {
         
     }
+
+    .back-to-projects {
+        color: white;
+        fill: white;
+        background-color: rgb(51, 51, 51);
+        max-width: 6rem;
+        position: sticky;
+        top: 4.5rem;
+    }
 }
 
 @media (min-width: 1001px) and (hover: hover) { /* laptop */
@@ -40,4 +49,38 @@
     .content {
         margin-left: 12vw;
     }
+
+    .back-to-projects {
+        color: black;
+        fill: black;
+        background-color: white;
+    }
+}
+
+.back-to-projects {
+    display: flex;
+    height: fit-content;
+    width: fit-content;
+    justify-content: center;
+    align-items: center;
+    font-size: normal;
+    font-weight: lighter;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+    border-radius: 0.3rem;
+    padding: 0.5rem;
+    box-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
+}
+
+.back-to-projects svg {
+    height: 1rem;
+    width: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-right: 0.5rem;
+}
+
+.back-to-projects:hover {
+    scale: 105%;
+    cursor: pointer;
 }
