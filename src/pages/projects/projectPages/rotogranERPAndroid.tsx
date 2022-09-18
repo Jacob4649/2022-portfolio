@@ -16,7 +16,7 @@ export default function RotogranERPAndroid(props: any) {
     const myInvolvementRef = useRef<HTMLSpanElement>(null);
 
     let sidebar = <>
-        <TableOfContents>
+        <TableOfContents className="contents">
             <TableOfContentsItem targetRef={featuresRef}>
                 Features
             </TableOfContentsItem>

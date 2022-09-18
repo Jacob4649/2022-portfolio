@@ -9,6 +9,23 @@
     width: 100%;
 }
 
+@media (max-width: 1000px) {
+    .key-technologies-container {
+        border-radius: 0.5rem;
+        box-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
+        padding: 0.5rem;
+        background-color: white;
+    }
+
+    .contents {
+        margin-top: 1rem;
+        border-radius: 0.5rem;
+        box-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
+        padding: 0.5rem;
+        background-color: white;
+    }
+}
+
 @media (min-width: 1001px) {
     .rotogran-text {
         padding-right: 1rem;

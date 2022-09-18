@@ -1,11 +1,19 @@
 import { ReactNode, MutableRefObject } from "react";
 import './tableOfContents.css';
 
+/**
+ * Props for a table of contents
+ */
 interface TableOfContentsProps {
     /**
      * Children for this table of contents
      */
     children: ReactNode;
+
+    /**
+     * Class name for this table of contents
+     */
+    className?: string;
 }
 
 /**
@@ -14,7 +22,7 @@ interface TableOfContentsProps {
  * @returns the table of contents
  */
 function TableOfContents(props: TableOfContentsProps) {
-    return <div className='table-of-contents'>
+    return <div className={'table-of-contents ' + (props.className ?? "")}>
         <span className='contents-title'>Contents</span>
         {props.children}
     </div>;
