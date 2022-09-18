@@ -143,7 +143,7 @@ export function ProjectThumbnail(props: ProjectThumbnailProps) {
         children.push(<directoryEntry.TagComponent key="tags" className='thumbnail-tags'></directoryEntry.TagComponent>);
 
     return <div className={rootClass} onClick={() => {
-        setRootClass(prev => `${prev} selected-project`)
+        setRootClass(prev => `${prev} selected-project`);
         new Promise(resolve => setTimeout(resolve, 150)).then(() => navigate(`/projects/${projectId}`));
     }}>
         {children as ReactNode}
