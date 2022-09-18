@@ -5,6 +5,8 @@
 .rotogran-text {
     display: inline-block;
     font-size: x-large;
+    text-align: center;
+    width: 100%;
 }
 
 @media (min-width: 1001px) {
