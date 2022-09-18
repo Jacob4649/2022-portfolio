@@ -27,7 +27,7 @@
         height: calc(100vh - 7rem);
         width: calc(20vw - 1rem);
         position: fixed;
-        left: calc(1rem - 10vw);
+        left: calc(1rem - 17vw);
         transition: all 0.3s ease-in-out;
         top: 5rem;
         /* border: 1px solid black; */
@@ -47,7 +47,7 @@
     }
 
     .content {
-        margin-left: 12vw;
+        margin-left: 5vw;
     }
 
     .back-to-projects {
