@@ -72,8 +72,10 @@
     margin: 1rem;
 }
 
-.socials-container img:hover {
-    scale: 110%;
+@media (hover: hover) {
+    .socials-container img:hover {
+        scale: 110%;
+    }
 }
 
 .socials-container img {

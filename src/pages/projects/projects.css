@@ -28,9 +28,11 @@
     box-shadow: 0.25rem 0.25rem 1rem rgba(0, 0, 0, 0.2);
 }
 
-.project-thumbnail-root:hover {
-    scale: 105%;
-    cursor: pointer;
+@media (hover: hover) {
+    .project-thumbnail-root:hover {
+        scale: 105%;
+        cursor: pointer;
+    }   
 }
 
 .thumbnail-image {
@@ -148,14 +150,16 @@
     font-size: normal;
     font-weight: lighter;
     margin: 0.5rem;
-    color: rgb(150, 150, 150);
+    color: rgb(200, 200, 200);
     align-self: center;
     display: block;
     transition: all 0.25s ease-in-out;
 }
 
-.project-types > *:hover {
-    font-size: x-large;
+@media (hover: hover) {
+    .project-types > *:hover {
+        font-size: x-large;
+    }
 }
 
 .selected-type {

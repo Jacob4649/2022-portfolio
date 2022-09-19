@@ -18,7 +18,9 @@
     font-style: italic;
 }
 
-.table-of-contents :not(.contents-title):hover {
-    scale: 110%;
-    cursor: pointer;
+@media (hover: hover) {
+    .table-of-contents :not(.contents-title):hover {
+        scale: 110%;
+        cursor: pointer;
+    }
 }

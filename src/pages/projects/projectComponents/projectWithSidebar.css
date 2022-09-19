@@ -80,7 +80,9 @@
     margin-right: 0.5rem;
 }
 
-.back-to-projects:hover {
-    scale: 105%;
-    cursor: pointer;
+@media (hover: hover) {
+    .back-to-projects:hover {
+        scale: 105%;
+        cursor: pointer;
+    }
 }
