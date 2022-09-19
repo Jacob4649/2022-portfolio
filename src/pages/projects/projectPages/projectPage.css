@@ -38,7 +38,6 @@ h1 {
     border-radius: 0.5rem;
     box-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
     /* display: inline-block; */
-    max-width: calc(100% - 5rem);
     width: fit-content;
     height: fit-content;
     padding: 0.5rem;

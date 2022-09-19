@@ -5,6 +5,7 @@
     vertical-align: middle;
     flex-wrap: wrap;
     align-items: center;
+    width: fit-content;
 }
 
 .responsive-image {
