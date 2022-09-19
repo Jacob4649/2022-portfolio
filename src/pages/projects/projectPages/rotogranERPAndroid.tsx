@@ -115,8 +115,8 @@ export default function RotogranERPAndroid(props: any) {
                     borderRadius: "0.5rem"
                 }}>
                     This application was built with the <b>Android SDK</b>.
-                    It makes extensive use of many elements of the SDK including <b>fragments</b>,
-                    <b>MVVM patterns</b>, and the <b>activity result flow</b>.
+                    It makes extensive use of many elements of the SDK including <b>fragments</b>, <b>MVVM patterns</b>, and
+                    the <b>activity result flow</b>.
                 </ResponsiveImageWithCaption>
             </div>
 
