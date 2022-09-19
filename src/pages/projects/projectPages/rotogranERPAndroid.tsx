@@ -91,7 +91,9 @@ export default function RotogranERPAndroid(props: any) {
                     <span className='section-title' ref={authRef}>Authentication</span>
                 </ResponsiveImageWithCaption>
                 Users are able to authenticate using their account name and password.
-                Accounts have varying levels of permissions, with administrative accounts being able to reset any user's password.
+                Accounts have varying levels of permissions.
+                Authentication is through a proprietary implementation.
+                Passwords are salted, and hashed with <b>SHA-256</b>. No part of the password is ever sent over the network.
             </div>
         </div>
     </ProjectWithSidebar >;
