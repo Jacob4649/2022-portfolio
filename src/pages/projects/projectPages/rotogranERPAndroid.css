@@ -18,11 +18,12 @@
     }
 
     .contents {
-        margin-top: 1rem;
+        margin-top: 1.5rem;
         border-radius: 0.5rem;
         box-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
         padding: 0.5rem;
         background-color: white;
+        margin-bottom: 1.5rem;
     }
 }
 
