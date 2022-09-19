@@ -78,15 +78,15 @@ export default function RotogranERPAndroid(props: any) {
 
             <div className='shadow-box shadow-box-light'>
                 <span className="section-title" ref={achievementRef}>Achievements</span>
-                Currently in <b>use</b> by Rotogran International Inc
+                Currently in <b>use</b> by Rotogran International Inc.
                 <br></br><br></br>
-                Manages more than <b>300 types of items</b> in <b>7 categories</b>
+                Manages more than <b>300 types of items</b> in <b>7 categories</b>.
                 <br></br><br></br>
-                Has tracked <b>over 200 work orders</b> and a similar number of <b>parts orders</b>
+                Has tracked <b>over 200 work orders</b> and a similar number of <b>parts orders</b>.
                 <br></br><br></br>
-                Manages <b>tasks</b> for approximately <b>40 personnel</b>
+                Manages <b>tasks</b> for approximately <b>40 personnel</b>.
                 <br></br><br></br>
-                Provides <b>quick</b>, <b>easy</b> access to all the <b>information</b> available from the desktop interface
+                Provides <b>quick</b>, <b>easy</b> access to all the <b>information</b> available from the desktop interface.
             </div>
 
             <div className='shadow-box shadow-box-dark'>
