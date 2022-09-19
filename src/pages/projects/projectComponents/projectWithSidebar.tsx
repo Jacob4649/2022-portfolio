@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import './projectWithSidebar.css';
 import { Link } from "react-router-dom";
+import arrow from '../../../../public/images/side-arrow.svg';
 
 /**
  * Properties for a ProjectWithSidebar
@@ -36,6 +37,9 @@ const backArrowPath = "M.602 23.586a2.103 2.103 0 0 0 " +
 export default function ProjectWithSidebar(props: ProjectWithSidebarProps) {
     return <>
         <div className="sidebar-dark sidebar">
+            <div className="arrow-box">
+                <img src={arrow} alt="arrow"></img>
+            </div>
             <Link to="/projects" className="back-to-projects">
                 <svg viewBox="0 0 50 50">
                     <path d={backArrowPath} />
