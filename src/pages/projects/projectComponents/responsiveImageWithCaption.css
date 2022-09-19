@@ -13,7 +13,6 @@
 }
 
 .responsive-caption {
-    color: black;
     font-size: medium;
     font-weight: lighter;
     width: fit-content;
@@ -34,6 +33,7 @@
     .responsive-caption {
         text-align: left;
         height: max-content;
+        max-width: 60%;
     }
 
     .responsive-image {
