@@ -41,3 +41,13 @@
     font-style: italic;
     text-decoration: none;
 }
+
+.shadow-box-app-home-screen {
+    background-color: #d20021;
+    color: white;
+}
+
+.lock-image {
+    margin-left: auto;
+    margin-right: auto;
+}

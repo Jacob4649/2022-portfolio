@@ -26,6 +26,11 @@ interface ResponsiveImageWithCaptionProps {
      */
     imageStyle?: any;
 
+    /**
+     * Classname for this responsive image
+     */
+    className?: string;
+
 }
 
 /**
@@ -34,7 +39,7 @@ interface ResponsiveImageWithCaptionProps {
  * @returns the component
  */
 export default function ResponsiveImageWithCaption(props: ResponsiveImageWithCaptionProps) {
-    return <div className='parent-div'>
+    return <div className={'parent-div ' + (props.className ?? "")}>
         <img className='responsive-image' src={props.src} alt={props.alt} style={props.imageStyle}></img>
         <div className='responsiveCaption'>
             {props.children}
