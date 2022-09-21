@@ -8,7 +8,7 @@ import NoMatch from './navigation/noMatch';
 import Home from './pages/home';
 import { Projects } from './pages/projects/projects';
 import Project from './pages/projects/project';
-import Contact from './pages/contact';
+import Contact from './pages/contacts/contact';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
