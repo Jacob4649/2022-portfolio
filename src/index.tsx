@@ -8,6 +8,7 @@ import NoMatch from './navigation/noMatch';
 import Home from './pages/home';
 import { Projects } from './pages/projects/projects';
 import Project from './pages/projects/project';
+import Contact from './pages/contact';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -22,6 +23,7 @@ root.render(
           <Route index element={<Projects />} />
           <Route path=":projectId" element={<Project />} />
         </Route>
+        <Route path="contact" element={<Contact />} />
         <Route path="*" element={<NoMatch />} />
       </Route>
     </Routes>
