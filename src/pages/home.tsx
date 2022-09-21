@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import Vivus from 'vivus';
 import logoTrace from '../../public/images/logo-trace.svg';
 import githubLogo from '../../public/images/github-logo-white.svg'
-import instagramLogo from '../../public/images/instagram-logo-white.svg'
+import linkedinLogo from '../../public/images/linkedin-logo-tiny.svg'
 import './home.css';
 
 /**
@@ -97,8 +97,8 @@ export default function Home(props: any) {
                     <img src={githubLogo} alt="Github"></img>
                 </a>
 
-                <a href='https://www.instagram.com/jacob__klimczak/' target="_blank" rel="noreferrer">
-                    <img src={instagramLogo} alt="Instagram"></img>
+                <a href='https://www.linkedin.com/in/jacob-klimczak/' target="_blank" rel="noreferrer">
+                    <img src={linkedinLogo} alt="LinkedIn"></img>
                 </a>
             </div>
         </div>

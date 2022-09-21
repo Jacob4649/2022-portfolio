@@ -1,0 +1,76 @@
+.linkedin-logo {
+    width: auto;
+    height: 2rem;
+}
+
+.linkedin-top-div {
+    background-color: #38434F;
+    border-top-right-radius: 0.5rem;
+    border-top-left-radius: 0.5rem;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    vertical-align: middle;
+}
+
+.linkedin-bottom-div {
+    padding: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
+
+.shadow-box-linkedin {
+    background-color: black;
+    color: white;
+    padding: 0;
+}
+
+.profile-pic {
+    border-radius: 100%;
+    width: auto;
+    height: 4rem;
+    padding: 0.5rem;
+    display: block;
+}
+
+.name {
+    font-weight: normal;
+    font-size: large;
+    padding-left: 0.5rem;
+    padding-bottom: 0.3rem;
+    display: block;
+}
+
+.linkedin-title {
+    font-size: normal;
+    padding-left: 0.5rem;
+    padding-bottom: 0.3rem;
+    display: block;
+}
+
+.positions {
+    font-size: small;
+    padding-left: 0.5rem;
+    padding-bottom: 0.7rem;
+    display: block;
+}
+
+.view-profile {
+    font-size: normal;
+    padding-top: 0.3rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-bottom: 0.3rem;
+    border: 3px solid white;
+    display: block;
+    width: fit-content;
+    border-radius: 2rem;
+    text-decoration: none;
+    color: white;
+}
+
+.view-profile:hover {
+    color: black;
+    background-color: rgba(255, 255, 255, 0.9);
+    cursor: pointer;
+}

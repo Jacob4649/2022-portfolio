@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import './rotogranERPAndroid.css';
 import './projectPage.css';
+import '../../../App.css';
 import rotogranLogo from '../../../../public/images/rotogran-logo.png';
 import rotogranApp from '../../../../public/images/project_assets/rotogran_erp_android/home-screen.png';
 import queue from '../../../../public/images/project_assets/rotogran_erp_android/queue.png';
