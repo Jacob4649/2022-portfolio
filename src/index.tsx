@@ -9,6 +9,7 @@ import Home from './pages/home';
 import { Projects } from './pages/projects/projects';
 import Project from './pages/projects/project';
 import Contact from './pages/contacts/contact';
+import About from './pages/about/about';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -24,6 +25,7 @@ root.render(
           <Route path=":projectId" element={<Project />} />
         </Route>
         <Route path="contact" element={<Contact />} />
+        <Route path="about" element={<About />} />
         <Route path="*" element={<NoMatch />} />
       </Route>
     </Routes>
