@@ -1,0 +1,24 @@
+.key-technologies-thumbnail-tags {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.key-technologies-thumbnail-tags > img {
+    margin: 0.5rem;
+    border-radius: 0.5em;
+}
+
+.key-technologies-title {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: x-large;
+    font-weight: lighter;
+}

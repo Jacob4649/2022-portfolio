@@ -1,0 +1,17 @@
+.project-container {
+    display: contents;
+}
+
+.project-container > * {
+    animation: project-container-enter forwards 0.2s ease-in-out;
+}
+
+@keyframes project-container-enter {
+    0% {
+        translate: 110vw;
+    }
+
+    100% {
+        translate: 0;
+    }
+}

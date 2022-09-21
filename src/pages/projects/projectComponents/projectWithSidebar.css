@@ -1,0 +1,132 @@
+.sidebar {
+    color: black;
+    padding: 0.5rem;
+}
+
+.content {
+    color: black;
+}
+
+@media (max-width: 1000px), (hover: none) { /* mobile */
+    .sidebar {
+        
+    }
+
+    .back-to-projects {
+        color: white;
+        fill: white;
+        background-color: rgb(51, 51, 51);
+        max-width: 6rem;
+        position: sticky;
+        top: 4.5rem;
+    }
+
+    .arrow-box {
+        width: 0;
+        height: 0;
+        opacity: 0;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+@media (min-width: 1001px) and (hover: hover) { /* laptop */
+    .sidebar {
+        height: calc(100vh - 7rem);
+        width: calc(20vw - 1rem);
+        position: fixed;
+        left: calc(1rem - 14vw);
+        transition: all 0.3s ease-in-out;
+        top: 5rem;
+        /* border: 1px solid black; */
+        border-radius: 0.5rem;
+        box-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        background-color: white;
+        overflow-y: auto;
+    }
+
+    .arrow-box {
+        width: 6vw;
+        height: 100%;
+        opacity: 100%;
+        margin: auto;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    .arrow-box img {
+        transition: all 0.2s ease-in-out;
+        position: absolute;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 50%;
+        height: auto;
+    }
+
+    .sidebar :not(.arrow-box, .arrow-box *) {
+        opacity: 0%;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .sidebar-dark {
+        background-color: rgb(51, 51, 51);
+        color: white;
+    }
+
+    .sidebar:hover {
+        left: 1rem;
+    }
+
+    .sidebar:hover :not(.arrow-box, .arrow-box *) {
+        opacity: 100%;
+    }
+
+    .sidebar:hover .arrow-box * {
+        opacity: 0;
+    }
+
+    .content {
+        margin-left: 8vw;
+    }
+
+    .back-to-projects {
+        color: black;
+        fill: black;
+        background-color: white;
+    }
+}
+
+.back-to-projects {
+    display: flex;
+    height: fit-content;
+    width: fit-content;
+    justify-content: center;
+    align-items: center;
+    font-size: normal;
+    font-weight: lighter;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+    border-radius: 0.3rem;
+    padding: 0.5rem;
+    box-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
+}
+
+.back-to-projects svg {
+    height: 1rem;
+    width: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-right: 0.5rem;
+}
+
+@media (hover: hover) {
+    .back-to-projects:hover {
+        scale: 105%;
+        cursor: pointer;
+    }
+}

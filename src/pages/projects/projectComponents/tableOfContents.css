@@ -1,0 +1,26 @@
+.table-of-contents {
+    text-align: center;
+    font-weight: lighter;
+}
+
+.contents-title {
+    font-size: x-large;
+}
+
+.table-of-contents * {
+    display: block;
+    margin: 0.5rem;
+    text-decoration: none;
+}
+
+.table-of-contents :not(.contents-title) {
+    transition: all 0.25s ease-in-out;
+    font-style: italic;
+}
+
+@media (hover: hover) {
+    .table-of-contents :not(.contents-title):hover {
+        scale: 110%;
+        cursor: pointer;
+    }
+}

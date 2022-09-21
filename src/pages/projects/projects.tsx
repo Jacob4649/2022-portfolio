@@ -68,7 +68,7 @@ export function Projects(props: any) {
             <ProjectType selectedType={type} type={"windows"} onTypeClick={typeClick} />
         </div>
         <div className={className}>
-            {directory.filter(x => x.matchesType(type)).map(x => x.thumbnail)}
+            {directory.filter(x => x.matchesType(type)).map(x => <x.Thumbnail key={x.id}></x.Thumbnail>)}
         </div>
     </>;
 }
@@ -119,32 +119,32 @@ export function ProjectThumbnail(props: ProjectThumbnailProps) {
     let children: ReactElement[] = [];
 
     if (image)
-        children.push(<img alt='thumbnail' src={image} className='thumbnail-image'>
+        children.push(<img key="image" alt='thumbnail' src={image} className='thumbnail-image'>
 
         </img>)
 
-    children.push(<div className='thumbnail-title'>
+    children.push(<div key="title" className='thumbnail-title'>
         {title}
     </div>);
 
     if (subheading)
-        children.push(<div className='thumbnail-subheading'>
+        children.push(<div key="subheading" className='thumbnail-subheading'>
             {subheading}
         </div>);
 
     if (content)
-        children.push(<div className='thumbnail-content'>
+        children.push(<div key="content" className='thumbnail-content'>
             {content}
         </div>);
 
     let directoryEntry = directory.find(x => x.id === projectId);
 
     if (directoryEntry && directoryEntry.hasDisplayedTags())
-        children.push(<directoryEntry.TagComponent className='thumbnail-tags'></directoryEntry.TagComponent>);
+        children.push(<directoryEntry.TagComponent key="tags" className='thumbnail-tags'></directoryEntry.TagComponent>);
 
     return <div className={rootClass} onClick={() => {
-        setRootClass(prev => `${prev} selected-project`)
-        new Promise(resolve => setTimeout(resolve, 250)).then(() => navigate(`/projects/${projectId}`));
+        setRootClass(prev => `${prev} selected-project`);
+        new Promise(resolve => setTimeout(resolve, 150)).then(() => navigate(`/projects/${projectId}`));
     }}>
         {children as ReactNode}
     </div>
