@@ -1,0 +1,21 @@
+.about-container > * {
+    animation: fall-in forwards ease-in-out 0.3s;
+}
+
+@keyframes fall-in {
+    0% {
+        translate: calc(100vw + 5rem) 0;
+    }
+
+    100% {
+        translate: 0 0;
+    }
+}
+
+.profile-pic-about {
+    border-radius: 100%;
+    width: auto;
+    height: 8rem;
+    padding: 0.5rem;
+    display: block;
+}

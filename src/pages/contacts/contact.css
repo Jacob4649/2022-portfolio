@@ -28,10 +28,10 @@
 }
 
 .contacts-container > * {
-    animation: fall-down forwards ease-in-out 0.3s;
+    animation: fall-in forwards ease-in-out 0.3s;
 }
 
-@keyframes fall-down {
+@keyframes fall-in {
     0% {
         translate: calc(100vw + 5rem) 0;
     }
