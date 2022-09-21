@@ -1,4 +1,42 @@
-.gmail-box .responsive-caption {
+.gmail-box .responsive-caption, .instagram-box .responsive-caption, .phone-box .responsive-caption, .github-box .responsive-caption {
     overflow-wrap: normal;
     max-width: none;
+}
+
+.instagram-box, .gmail-box, .github-box {
+    transition: all 0.3s ease-in-out;
+}
+
+.instagram-box:hover, .gmail-box:hover, .github-box:hover {
+    scale: 105%;
+    cursor: pointer;
+}
+
+.view-instagram {
+    color: white;
+    text-decoration: none;
+}
+
+.view-gmail {
+    color: black;
+    text-decoration: none;
+}
+
+.view-github {
+    color: white;
+    text-decoration: none;
+}
+
+.contacts-container > * {
+    animation: fall-down forwards ease-in-out 0.3s;
+}
+
+@keyframes fall-down {
+    0% {
+        translate: calc(100vw + 5rem) 0;
+    }
+
+    100% {
+        translate: 0 0;
+    }
 }
