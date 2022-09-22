@@ -32,7 +32,8 @@ export default function Contact(props: any) {
                         height: "3rem",
                         width: "auto",
                         padding: "0.5rem",
-                        margin: "0"
+                        margin: "0",
+                        maxWidth: "none"
                     }}>
                         jacob4649
                     </ResponsiveImageWithCaption>
