@@ -50,6 +50,7 @@
 .lock-image {
     margin-left: auto;
     margin-right: auto;
+    width: 100% !important;
 }
 
 .center-image {
