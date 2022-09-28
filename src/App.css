@@ -46,3 +46,12 @@
     font-weight: lighter;
     text-align: center;
 }
+
+.hover-box {
+    transition: all 0.3s ease-in-out;    
+}
+
+.hover-box:hover {
+    scale: 105%;
+    cursor: pointer;
+}

@@ -14,6 +14,7 @@ import ResponsiveImageWithCaption from '../projectComponents/responsiveImageWith
 import { TableOfContents, TableOfContentsItem } from '../projectComponents/tableOfContents';
 import ProjectWithSidebar from '../projectComponents/projectWithSidebar';
 import KeyTechnologies from '../projectComponents/keyTechnologies';
+import { Link, useNavigate } from 'react-router-dom';
 
 /**
  * Component for the rotogran erp android project
@@ -28,6 +29,8 @@ export default function RotogranERPAndroid(props: any) {
     const inventoryRef = useRef<HTMLSpanElement>(null);
     const achievementRef = useRef<HTMLSpanElement>(null);
     const roleRef = useRef<HTMLSpanElement>(null);
+
+    const navigate = useNavigate();
 
     let sidebar = <>
         <TableOfContents className="contents">
@@ -166,6 +169,11 @@ export default function RotogranERPAndroid(props: any) {
                 Accounts have varying levels of permissions.
                 Authentication is through a proprietary implementation.
                 Passwords are salted, and hashed with <b>SHA-256</b>. No part of the password is ever sent over the network.
+            </div>
+
+            <div className="shadow-box shadow-box-dark see-also hover-box" onClick={() => navigate('/projects/rotogran-erp')}>
+                <span className='section-title'>See Also</span>
+                <i>Main Project</i>
             </div>
         </div>
     </ProjectWithSidebar >;
