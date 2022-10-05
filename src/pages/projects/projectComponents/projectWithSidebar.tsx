@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import './projectWithSidebar.css';
 import { Link } from "react-router-dom";
 import arrow from '../../../../public/images/side-arrow.svg';
@@ -17,6 +17,21 @@ interface ProjectWithSidebarProps {
      * Children for outside of sidebar
      */
     children: ReactNode;
+
+    /**
+     * Classname for sidebar
+     */
+    sidebarClassname?: string;
+
+    /**
+     * Classname for content
+     */
+    contentClassname?: string;
+
+    /**
+     * Classname for body
+     */
+    bodyClassname?: string;
 }
 
 const backArrowPath = "M.602 23.586a2.103 2.103 0 0 0 " +
@@ -35,8 +50,22 @@ const backArrowPath = "M.602 23.586a2.103 2.103 0 0 0 " +
  * @returns the created component
  */
 export default function ProjectWithSidebar(props: ProjectWithSidebarProps) {
+
+    useEffect(() => {
+
+        const body = document.querySelector('body') as HTMLBodyElement;
+
+        if (props.bodyClassname)
+            body.classList.add(props.bodyClassname)
+
+        return () => {
+            if (props.bodyClassname)
+                body.classList.remove("rotogran-erp-body");
+        }
+    }, []);
+
     return <>
-        <div className="sidebar-dark sidebar">
+        <div className={props.sidebarClassname ?? "sidebar-dark sidebar"}>
             <div className="arrow-box">
                 <img src={arrow} alt="arrow"></img>
             </div>
@@ -48,7 +77,7 @@ export default function ProjectWithSidebar(props: ProjectWithSidebarProps) {
             </Link>
             {props.sidebar}
         </div>
-        <div className="content">
+        <div className={props.contentClassname ?? "content"}>
             {props.children}
         </div>
     </>;
