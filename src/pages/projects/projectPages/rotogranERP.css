@@ -84,7 +84,7 @@
 }
 
 @media (max-width: 1000px), (hover: none) { /* mobile */
-    .rotogran-sidebar .contents, .key-technologies-container {
+    .rotogran-sidebar .contents, .rotogran-sidebar .key-technologies-container {
         background-image: linear-gradient(127deg, rgba(215, 215, 215, 0.8), rgba(215, 215, 215, 0.9));
         border: 1px solid rgb(235, 235, 235);
         backdrop-filter: blur(0.4vmin);
