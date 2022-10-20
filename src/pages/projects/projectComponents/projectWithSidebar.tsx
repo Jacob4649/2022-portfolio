@@ -60,7 +60,7 @@ export default function ProjectWithSidebar(props: ProjectWithSidebarProps) {
 
         return () => {
             if (props.bodyClassname)
-                body.classList.remove("rotogran-erp-body");
+                body.classList.remove(props.bodyClassname);
         }
     }, []);
 

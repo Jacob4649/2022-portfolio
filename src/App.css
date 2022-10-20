@@ -55,3 +55,19 @@
     scale: 105%;
     cursor: pointer;
 }
+
+.shadow-box-dark-clear {
+    background-image: linear-gradient(127deg, rgba(51, 51, 51, 0.8), rgba(51, 51, 51, 0.9));
+    color: white;
+    border: 1px solid rgb(113, 113, 113);
+    backdrop-filter: blur(0.4vmin);
+    background-color: transparent;
+}
+
+.shadow-box-light-clear {
+    background-image: linear-gradient(127deg, rgba(215, 215, 215, 0.8), rgba(215, 215, 215, 0.9));
+    color: black;
+    border: 1px solid rgb(235, 235, 235);
+    backdrop-filter: blur(0.4vmin);
+    background-color: transparent;
+}

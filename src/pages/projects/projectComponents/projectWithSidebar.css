@@ -33,9 +33,9 @@
 @media (min-width: 1001px) and (hover: hover) { /* laptop */
     .sidebar {
         height: calc(100vh - 7rem);
-        width: calc(20vw - 1rem);
+        width: calc(30vw - 1rem);
         position: fixed;
-        left: calc(1rem - 14vw);
+        left: calc(1rem - 24vw);
         transition: all 0.3s ease-in-out;
         top: 5rem;
         /* border: 1px solid black; */

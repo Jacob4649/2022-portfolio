@@ -59,15 +59,16 @@ export default function RotogranERP(props: any) {
                 Authentication
             </TableOfContentsItem>
         </TableOfContents>
-        <KeyTechnologies projectId='rotogran-erp-android' className='key-technologies-container'>
+        <KeyTechnologies projectId='rotogran-erp' className='key-technologies-container'>
 
         </KeyTechnologies>
     </>;
 
-    return <ProjectWithSidebar sidebar={sidebar}>
-        <h1>ROTOGRAN ERP</h1>
+    return <ProjectWithSidebar sidebar={sidebar} bodyClassname="rotogran-body"
+        sidebarClassname='sidebar rotogran-sidebar'>
+        <h1 className='shadow-box-light-clear'>ROTOGRAN ERP</h1>
         <div className="shadow-box-container">
-            <div className="shadow-box shadow-box-dark">
+            <div className="shadow-box shadow-box-dark-clear">
                 <ResponsiveImageWithCaption src={rotogranLogo} alt="Rotogran Logo" imageStyle={{
                     height: "auto",
                     width: "5rem"
@@ -80,7 +81,7 @@ export default function RotogranERP(props: any) {
                 </ResponsiveImageWithCaption>
             </div>
 
-            <div className='shadow-box shadow-box-light'>
+            <div className='shadow-box shadow-box-light-clear'>
                 <span className="section-title" ref={achievementRef}>Achievements</span>
                 Currently in <b>use</b> by Rotogran International Inc.
                 <br></br><br></br>
@@ -99,11 +100,7 @@ export default function RotogranERP(props: any) {
 
             <div className='shadow-box shadow-box-dark'>
                 <span className='section-title' ref={roleRef}>My Role</span>
-                I led the creation of the <b>concept</b> for the application, <b>architected the database and systems</b>, and <b>reviewed the plans</b> with my colleagues.
-                As lead developer on the project, I was responsible for <b>big picture planning</b>, <b>familiarizing new members</b> with the codebase,
-                and <b>writing critical systems</b>. The team for this project, which was pretty small, used <b>Git for version control</b>. Because of the
-                small size of the team, I played a significant role in almost every single
-                part of this project, even including going over the <b>initial UI concepts</b>.
+
             </div>
 
             <div className='shadow-box shadow-box-app-home-screen'>

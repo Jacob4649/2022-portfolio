@@ -71,3 +71,31 @@
 .see-also {
     text-align: center;
 }
+
+.rotogran-body {
+    background-image: url('../../../../public/images/project_assets/rotogran_erp/granulator.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.rotogran-sidebar {
+    backdrop-filter: blur(0.4vmin);
+    background-color: transparent !important;
+}
+
+@media (max-width: 1000px), (hover: none) { /* mobile */
+    .rotogran-sidebar .contents, .key-technologies-container {
+        background-image: linear-gradient(127deg, rgba(215, 215, 215, 0.8), rgba(215, 215, 215, 0.9));
+        border: 1px solid rgb(235, 235, 235);
+        backdrop-filter: blur(0.4vmin);
+        background-color: transparent !important;
+    }
+}
+
+@media (min-width: 1001px) and (hover: hover) { /* laptop */
+    .rotogran-sidebar {
+        background-image: linear-gradient(127deg, rgba(51, 51, 51, 0.8), rgba(51, 51, 51, 0.9));
+        color: white !important;
+        border: 1px solid rgb(113, 113, 113);
+    }
+}
