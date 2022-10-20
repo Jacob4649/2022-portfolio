@@ -87,6 +87,7 @@ export default function Home(props: any) {
     }, [text, selectedText, adding]);
 
     let rotogranProject = projectDirectory.filter(x => x.id == 'rotogran-erp')[0];
+    let rotogranProjectAndroid = projectDirectory.filter(x => x.id == 'rotogran-erp-android')[0];
 
     return <>
         <div className="landing-screen">
@@ -114,6 +115,7 @@ export default function Home(props: any) {
         <div className='featured-projects-background-wrapper'>
             <div className='featured-projects'>
                 <rotogranProject.Thumbnail />
+                <rotogranProjectAndroid.Thumbnail />
             </div>
         </div>
     </>;
