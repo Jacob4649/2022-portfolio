@@ -1,10 +1,10 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import './rotogranERP.css';
 import './projectPage.css';
 import '../../../App.css';
 import rotogranLogo from '../../../../public/images/rotogran-logo.png';
 import rotogranApp from '../../../../public/images/project_assets/rotogran_erp_android/home-screen.png';
-import queue from '../../../../public/images/project_assets/rotogran_erp_android/queue.png';
+import gearTrace from '../../../../public/images/project_assets/rotogran_erp/wrench-gear.svg';
 import lock from '../../../../public/images/project_assets/rotogran_erp_android/lock.png';
 import workOrder from '../../../../public/images/project_assets/rotogran_erp_android/work-order.png';
 import partsOrders from '../../../../public/images/project_assets/rotogran_erp_android/parts-orders.png';
@@ -15,6 +15,7 @@ import { TableOfContents, TableOfContentsItem } from '../projectComponents/table
 import ProjectWithSidebar from '../projectComponents/projectWithSidebar';
 import KeyTechnologies from '../projectComponents/keyTechnologies';
 import { Link, useNavigate } from 'react-router-dom';
+import Vivus from 'vivus';
 
 /**
  * Component for the rotogran erp project
@@ -30,7 +31,16 @@ export default function RotogranERP(props: any) {
     const achievementRef = useRef<HTMLSpanElement>(null);
     const roleRef = useRef<HTMLSpanElement>(null);
 
+    const wrenchGearRef = useRef<HTMLObjectElement>(null);
+
     const navigate = useNavigate();
+
+    useEffect(() => {
+        new Vivus(wrenchGearRef.current as HTMLElement, {
+            duration: 2000,
+            type: "oneByOne",
+        }).stop().reset().play();
+    }, []);
 
     let sidebar = <>
         <TableOfContents className="contents">
@@ -103,15 +113,11 @@ export default function RotogranERP(props: any) {
 
             </div>
 
-            <div className='shadow-box shadow-box-app-home-screen'>
+            <div className='shadow-box shadow-box-dark'>
                 <span className='section-title' ref={queueRef}>Work Queue</span>
-                <ResponsiveImageWithCaption src={queue} alt="queue" imageStyle={{
-                    borderRadius: "0.5rem"
-                }}>
-                    Different <b>subtasks</b> under different <b>work orders</b> can be assigned to workers.
-                    These tasks can be <b>queued</b> up, so that workers and plant managers have a clear idea of
-                    what is currently being done, and what will be done next.
-                </ResponsiveImageWithCaption>
+                <object className="wrench-gear-logo" ref={wrenchGearRef} type="image/svg+xml" data={gearTrace}>
+                    Jacob Klimczak
+                </object>
             </div>
 
             <div className='shadow-box shadow-box-app-home-screen'>
