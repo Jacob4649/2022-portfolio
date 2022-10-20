@@ -99,3 +99,11 @@
         border: 1px solid rgb(113, 113, 113);
     }
 }
+
+.wrench-gear-logo {
+    width: 15vmax;
+    height: 15vmax;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}

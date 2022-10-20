@@ -24,7 +24,7 @@ import Vivus from 'vivus';
 export default function RotogranERP(props: any) {
     const androidRef = useRef<HTMLSpanElement>(null);
     const authRef = useRef<HTMLSpanElement>(null);
-    const queueRef = useRef<HTMLSpanElement>(null);
+    const designRef = useRef<HTMLSpanElement>(null);
     const workOrderRef = useRef<HTMLSpanElement>(null);
     const summaryRef = useRef<HTMLSpanElement>(null);
     const inventoryRef = useRef<HTMLSpanElement>(null);
@@ -50,8 +50,8 @@ export default function RotogranERP(props: any) {
             <TableOfContentsItem targetRef={roleRef}>
                 My Role
             </TableOfContentsItem>
-            <TableOfContentsItem targetRef={queueRef}>
-                Work Queue
+            <TableOfContentsItem targetRef={designRef}>
+                Graphic Design
             </TableOfContentsItem>
             <TableOfContentsItem targetRef={androidRef}>
                 Android
@@ -113,10 +113,10 @@ export default function RotogranERP(props: any) {
 
             </div>
 
-            <div className='shadow-box shadow-box-dark'>
-                <span className='section-title' ref={queueRef}>Work Queue</span>
+            <div className='shadow-box shadow-box-dark-clear'>
+                <span className='section-title' ref={designRef}>Graphic Design</span>
                 <object className="wrench-gear-logo" ref={wrenchGearRef} type="image/svg+xml" data={gearTrace}>
-                    Jacob Klimczak
+                    An icon I created during my time working on the project
                 </object>
             </div>
 
