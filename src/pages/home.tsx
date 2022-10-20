@@ -111,8 +111,10 @@ export default function Home(props: any) {
                 FEATURED PROJECTS
             </span>
         </div>
-        <div className='featured-projects'>
-            <rotogranProject.Thumbnail />
+        <div className='featured-projects-background-wrapper'>
+            <div className='featured-projects'>
+                <rotogranProject.Thumbnail />
+            </div>
         </div>
     </>;
 }
