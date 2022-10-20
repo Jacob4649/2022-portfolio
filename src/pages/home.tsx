@@ -4,6 +4,7 @@ import logoTrace from '../../public/images/logo-trace.svg';
 import githubLogo from '../../public/images/github-logo-white.svg'
 import linkedinLogo from '../../public/images/linkedin-logo-tiny.svg'
 import './home.css';
+import projectDirectory from './projects/projectPages/projectDirectory';
 
 /**
  * Duration of the logo draw animation in milliseconds
@@ -84,6 +85,9 @@ export default function Home(props: any) {
             }
         }
     }, [text, selectedText, adding]);
+
+    let rotogranProject = projectDirectory.filter(x => x.id == 'rotogran-erp')[0];
+
     return <>
         <div className="landing-screen">
             <object className="landing-logo" ref={ref} type="image/svg+xml" data={logoTrace}>
@@ -101,6 +105,14 @@ export default function Home(props: any) {
                     <img src={linkedinLogo} alt="LinkedIn"></img>
                 </a>
             </div>
+        </div>
+        <div className='featured-projects-title'>
+            <span>
+                FEATURED PROJECTS
+            </span>
+        </div>
+        <div className='featured-projects'>
+            <rotogranProject.Thumbnail />
         </div>
     </>;
 }
