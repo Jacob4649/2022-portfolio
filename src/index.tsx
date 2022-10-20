@@ -10,25 +10,28 @@ import { Projects } from './pages/projects/projects';
 import Project from './pages/projects/project';
 import Contact from './pages/contacts/contact';
 import About from './pages/about/about';
+import ScrollToTop from './navigation/scrollToTop';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App />}>
-        <Route index element={<Navigate to='home' replace />} />
-        <Route path="home" element={<Home />} />
-        <Route path="projects">
-          <Route index element={<Projects />} />
-          <Route path=":projectId" element={<Project />} />
+    <ScrollToTop>
+      <Routes>
+        <Route path="/" element={<App />}>
+          <Route index element={<Navigate to='home' replace />} />
+          <Route path="home" element={<Home />} />
+          <Route path="projects">
+            <Route index element={<Projects />} />
+            <Route path=":projectId" element={<Project />} />
+          </Route>
+          <Route path="contact" element={<Contact />} />
+          <Route path="about" element={<About />} />
+          <Route path="*" element={<NoMatch />} />
         </Route>
-        <Route path="contact" element={<Contact />} />
-        <Route path="about" element={<About />} />
-        <Route path="*" element={<NoMatch />} />
-      </Route>
-    </Routes>
+      </Routes>
+    </ScrollToTop>
   </BrowserRouter>
 );
 
