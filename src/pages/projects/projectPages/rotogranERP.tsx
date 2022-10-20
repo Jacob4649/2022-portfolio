@@ -108,16 +108,20 @@ export default function RotogranERP(props: any) {
                 <b>Weekly Reports</b> On Low Stock Items
             </div>
 
-            <div className='shadow-box shadow-box-dark'>
+            <div className='shadow-box shadow-box-dark-clear'>
                 <span className='section-title' ref={roleRef}>My Role</span>
-
+                I was an integral member of the team for this project. I worked closesly with various departments to ensure this
+                application could be implemented and would not interfere with existing workflows, <b>designed and developed</b> key
+                subsystems, and made use of <b>modern software tooling</b> and <b>DevOps</b> practices over the course of this project.
             </div>
 
-            <div className='shadow-box shadow-box-dark-clear'>
+            <div className='shadow-box shadow-box-dark-clear graphic-design'>
                 <span className='section-title' ref={designRef}>Graphic Design</span>
                 <object className="wrench-gear-logo" ref={wrenchGearRef} type="image/svg+xml" data={gearTrace}>
                     An icon I created during my time working on the project
                 </object>
+                At Rotogran, I was given the opportunity to contribute to a significant amount of the <b>graphic design</b> involved in this
+                project. Here you can see an example of one of the <b>icons I created</b>.
             </div>
 
             <div className='shadow-box shadow-box-app-home-screen'>
