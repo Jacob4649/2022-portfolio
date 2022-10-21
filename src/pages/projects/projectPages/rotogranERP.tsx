@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import './rotogranERP.css';
 import './projectPage.css';
 import '../../../App.css';
-import rotogranLogo from '../../../../public/images/rotogran-logo.png';
+import rotogranLogo from '../../../../public/images/rotogran-logo-small-outline.svg';
 import rotogranApp from '../../../../public/images/project_assets/rotogran_erp_android/home-screen.png';
 import gearTrace from '../../../../public/images/project_assets/rotogran_erp/wrench-gear.svg';
 import lock from '../../../../public/images/project_assets/rotogran_erp_android/lock.png';
@@ -32,13 +32,23 @@ export default function RotogranERP(props: any) {
     const roleRef = useRef<HTMLSpanElement>(null);
 
     const wrenchGearRef = useRef<HTMLObjectElement>(null);
+    const rotogranLogoRef = useRef<HTMLObjectElement>(null);
 
     const navigate = useNavigate();
 
     useEffect(() => {
+        const wrenchDuration = 2000;
+
         new Vivus(wrenchGearRef.current as HTMLElement, {
-            duration: 2000,
+            duration: wrenchDuration,
             type: "oneByOne",
+        }).stop().reset().play();
+
+        const logoDuration = 3000;
+
+        new Vivus(rotogranLogoRef.current as HTMLElement, {
+            duration: logoDuration,
+            type: "oneByOne"
         }).stop().reset().play();
     }, []);
 
@@ -78,17 +88,18 @@ export default function RotogranERP(props: any) {
         sidebarClassname='sidebar rotogran-sidebar'>
         <h1 className='shadow-box-light-clear'>ROTOGRAN ERP</h1>
         <div className="shadow-box-container">
+            <div className='shadow-box shadow-box-light-clear'>
+                <object className="rotogran-logo" ref={rotogranLogoRef} type="image/svg+xml" data={rotogranLogo}>
+                    Rotogran Logo
+                </object>
+            </div>
+
             <div className="shadow-box shadow-box-dark-clear">
-                <ResponsiveImageWithCaption src={rotogranLogo} alt="Rotogran Logo" imageStyle={{
-                    height: "auto",
-                    width: "5rem"
-                }}>
-                    <span className='rotogran-text'>ROTOGRAN INTERNATIONAL INC</span>
-                    <br></br>
-                    <a className='rotogran-site-link' href='https://rotogran.com/' target="_blank" rel="noreferrer">
-                        Official Site
-                    </a>
-                </ResponsiveImageWithCaption>
+                <span className='rotogran-text'>ROTOGRAN INTERNATIONAL INC</span>
+                <br></br>
+                <a className='rotogran-site-link' href='https://rotogran.com/' target="_blank" rel="noreferrer">
+                    Official Site
+                </a>
             </div>
 
             <div className='shadow-box shadow-box-light-clear'>
