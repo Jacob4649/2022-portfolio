@@ -129,3 +129,70 @@
     background-repeat: no-repeat;
     background-position: center;
 }
+
+.rotogran-stack-diagram table {
+    border-collapse: separate;
+    border-spacing: 0.5rem 0.75rem;
+}
+
+.rotogran-stack-diagram td {
+    border: 1px solid rgb(51, 51, 51);
+    text-align: center;
+    padding: 1rem;
+    color: white;
+}
+
+.rotogran-stack-diagram tr:nth-child(1) td:nth-child(1) {
+    border-top-left-radius: 0.5rem;
+}
+
+.rotogran-stack-diagram tr:nth-child(1) td:nth-last-child(1) {
+    border-top-right-radius: 0.5rem;
+}
+
+.rotogran-stack-diagram tr:nth-last-child(1) td:nth-child(1) {
+    border-bottom-left-radius: 0.5rem;
+}
+
+.rotogran-stack-diagram tr:nth-last-child(1) td:nth-last-child(1) {
+    border-bottom-right-radius: 0.5rem;
+}
+
+.rotogran-stack-diagram .database {
+    background-image: linear-gradient(#640000, #290003);
+}
+
+.rotogran-stack-diagram .server {
+    background-image: linear-gradient(#970000, #640000);
+}
+
+.rotogran-stack-diagram .communication-protocol {
+    background-image: linear-gradient(#ca0000, #970000);
+}
+
+.rotogran-stack-diagram .csharp-client-library {
+    background-image: linear-gradient(#b66100, #ca0000);
+}
+
+.rotogran-stack-diagram .java-client-library {
+    background-image: linear-gradient(#b60046, #ca0000);
+}
+
+.rotogran-stack-diagram .windows-client {
+    background-image: linear-gradient(#b6b300, #b66100);
+}
+
+.rotogran-stack-diagram .android-client {
+    background-image: linear-gradient(#e40044, #b60046);
+}
+
+.rotogran-stack-diagram .embedded-systems {
+    background-image: linear-gradient(#df0089, #b60046);
+}
+
+.adobe-link {
+    text-decoration: none;
+    color: rgb(51, 51, 51);
+    font-style: italic;
+    font-weight: lighter;
+}

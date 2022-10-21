@@ -22,12 +22,12 @@ import './rotogranERP.css';
  * @param props properties for this component
  */
 export default function RotogranERP(props: any) {
-    const androidRef = useRef<HTMLSpanElement>(null);
+    const reRef = useRef<HTMLSpanElement>(null);
     const authRef = useRef<HTMLSpanElement>(null);
     const designRef = useRef<HTMLSpanElement>(null);
     const workOrderRef = useRef<HTMLSpanElement>(null);
-    const summaryRef = useRef<HTMLSpanElement>(null);
-    const inventoryRef = useRef<HTMLSpanElement>(null);
+    const stackRef = useRef<HTMLSpanElement>(null);
+    const stackDiagramRef = useRef<HTMLDivElement>(null);
     const achievementRef = useRef<HTMLSpanElement>(null);
     const roleRef = useRef<HTMLSpanElement>(null);
 
@@ -63,14 +63,11 @@ export default function RotogranERP(props: any) {
             <TableOfContentsItem targetRef={designRef}>
                 Graphic Design
             </TableOfContentsItem>
-            <TableOfContentsItem targetRef={androidRef}>
-                Android
+            <TableOfContentsItem targetRef={stackRef}>
+                Stack
             </TableOfContentsItem>
-            <TableOfContentsItem targetRef={summaryRef}>
-                Summaries
-            </TableOfContentsItem>
-            <TableOfContentsItem targetRef={inventoryRef}>
-                Inventory
+            <TableOfContentsItem targetRef={stackDiagramRef}>
+                Stack Diagram
             </TableOfContentsItem>
             <TableOfContentsItem targetRef={workOrderRef}>
                 Work Orders
@@ -124,6 +121,8 @@ export default function RotogranERP(props: any) {
                 I was an integral member of the team for this project. I worked closesly with various departments to ensure this
                 application could be implemented and would not interfere with existing workflows, <b>designed and developed</b> key
                 subsystems, and made use of <b>modern software tooling</b> and <b>DevOps</b> practices over the course of this project.
+                I contributed to this project at every level, not just to every part of the stack, but also in terms of the design,
+                direction, and conceptual development of this software suite.
             </div>
 
             <div className='shadow-box shadow-box-dark-clear graphic-design'>
@@ -135,36 +134,65 @@ export default function RotogranERP(props: any) {
                 project. Here you can see an example of one of the <b>icons I created</b>.
             </div>
 
-            <div className='shadow-box shadow-box-app-home-screen'>
-                <span className='section-title' ref={androidRef}>Android</span>
-                <ResponsiveImageWithCaption src={rotogranApp} alt="home screen" imageStyle={{
-                    borderRadius: "0.5rem"
-                }}>
-                    This application was built with the <b>Android SDK</b>.
-                    It makes extensive use of many elements of the SDK including <b>fragments</b>, <b>MVVM patterns</b>, and
-                    the <b>activity result flow</b>.
-                </ResponsiveImageWithCaption>
+            <div className='shadow-box shadow-box-dark-clear'>
+                <span className='section-title' ref={stackRef}>Stack</span>
+                The stack included a wide variety of technologies. The backend was built primarily in <b>C#</b>,
+                and also made use of some small <b>Lua</b> scripts. A <b>Microsoft SQL Server</b> database was used as the
+                primary means of storing persistent data, although other tools were also used in certain scenarios.
+                <br></br><br></br>
+                I created an <b>extensible framework</b> for receiving, parsing, executing, and responding to 
+                <b>requests</b> from client applications. This framework allowed for the easy addition of new
+                requests and responses to the backend.
+                <br></br><br></br>
+                Communication between the backend and client applications was faciiltated by a custom-built, <b>duplex communication protocol</b> built over <b>TCP/IP</b>, and  optimized for
+                low latency and security in the context of the ERP application, which I developed.
+                <br></br><br></br>
+                I developed client libraries for <b>Java</b> and <b>C#</b> allowing frontend applications to interact with the backend
+                easily.
+                <br></br><br></br>
+                I also worked on client applications for <b>Windows</b>, <b>Android</b> (Using the <b>Android SDK</b>) and certain
+                embedded systems (Using <b>Java</b>).
             </div>
 
-            <div className='shadow-box shadow-box-dark'>
-                <span className='section-title' ref={summaryRef}>Summaries</span>
-                Information is available to the user in various formats.
-                One of the most common formats is a <b>summary</b>&#x2014;a grid layout similar to an excel sheet
-                where important fields are laid out into their own columns. This visualization is used for
-                everything from <b>inventory</b> counts to incoming and outgoing <b>parts orders</b> to current <b>tasks</b>.
-                <img src={partsOrders} alt="summary example" className='center-image'></img>
-            </div>
-
-            <div className='shadow-box shadow-box-app-inventory'>
-                <span className='section-title' ref={inventoryRef}>Inventory</span>
-                <ResponsiveImageWithCaption src={inventory} alt="inventory" imageStyle={{
-                    borderRadius: "0.5rem"
-                }}>
-                    This project also makes it easy to keep track of <b>inventory</b>.
-                    Inventory can be viewed either by <b>item</b>, or in a summary view. Items are also
-                    broken down into different <b>categories</b>. Users are <b>alerted by email</b> when items fall
-                    below their set <b>minimum stock</b>.
-                </ResponsiveImageWithCaption>
+            <div className='shadow-box shadow-box-light-clear' ref={stackDiagramRef}>
+                <div className='rotogran-stack-diagram'>
+                    <table>
+                        <tr>
+                            <td className='windows-client'>
+                                Windows Client
+                            </td>
+                            <td className='android-client'>
+                                Android Client
+                            </td>
+                            <td className='embedded-systems'>
+                                Embedded Systems
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className='csharp-client-library'>
+                                C# Client Library
+                            </td>
+                            <td colSpan={2} className='java-client-library'>
+                                Java Client Library
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colSpan={3} className='communication-protocol'>
+                                Custom TCP/IP Communication Protocol
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colSpan={3} className='server'>
+                                Custom Server Framework
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colSpan={3} className='database'>
+                                Microsoft SQL Server
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             </div>
 
             <div className='shadow-box shadow-box-app-home-screen'>
@@ -187,10 +215,11 @@ export default function RotogranERP(props: any) {
                 }}>
                     <span className='section-title' ref={authRef}>Authentication</span>
                 </ResponsiveImageWithCaption>
-                Users are able to authenticate using their account name and password.
-                Accounts have varying levels of permissions.
-                Authentication is through a proprietary implementation.
-                Passwords are salted, and hashed with <b>SHA-256</b>. No part of the password is ever sent over the network.
+                I implemented a <b>session authentication</b> system for the application. Users can authenticate with their
+                username and password, and have varying levels of permission, as specified by an administrator. Passwords are <b>salted and hashed</b> before 
+                they are sent from the client, and the salted hashes are <b>encrypted</b> once in the database. While this type of care around passwords
+                should be standard, every so often multi-billion dollar companies 
+                like <a className='adobe-link' href="https://en.wikipedia.org/wiki/List_of_data_breaches" target="_blank" rel="noreferrer">Adobe</a> show us that it is not.
             </div>
 
             <div className="shadow-box shadow-box-dark see-also hover-box" onClick={() => navigate('/projects/rotogran-erp-android')}>
