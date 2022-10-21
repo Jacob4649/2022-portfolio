@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import Vivus from 'vivus';
+import githubLogo from '../../public/images/github-logo-white.svg';
+import linkedinLogo from '../../public/images/linkedin-logo-tiny.svg';
 import logoTrace from '../../public/images/logo-trace.svg';
-import githubLogo from '../../public/images/github-logo-white.svg'
-import linkedinLogo from '../../public/images/linkedin-logo-tiny.svg'
 import './home.css';
 import projectDirectory from './projects/projectPages/projectDirectory';
 
@@ -86,8 +86,8 @@ export default function Home(props: any) {
         }
     }, [text, selectedText, adding]);
 
-    let rotogranProject = projectDirectory.filter(x => x.id == 'rotogran-erp')[0];
-    let rotogranProjectAndroid = projectDirectory.filter(x => x.id == 'rotogran-erp-android')[0];
+    let rotogranProject = projectDirectory.filter(x => x.id === 'rotogran-erp')[0];
+    let rotogranProjectAndroid = projectDirectory.filter(x => x.id === 'rotogran-erp-android')[0];
 
     return <>
         <div className="landing-screen">

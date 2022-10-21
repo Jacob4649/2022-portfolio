@@ -1,21 +1,21 @@
 import { useEffect, useRef } from 'react';
-import './rotogranERP.css';
-import './projectPage.css';
-import '../../../App.css';
-import rotogranLogo from '../../../../public/images/rotogran-logo-small-outline.svg';
-import rotogranApp from '../../../../public/images/project_assets/rotogran_erp_android/home-screen.png';
+import { useNavigate } from 'react-router-dom';
+import Vivus from 'vivus';
 import gearTrace from '../../../../public/images/project_assets/rotogran_erp/wrench-gear.svg';
+import rotogranApp from '../../../../public/images/project_assets/rotogran_erp_android/home-screen.png';
+import inventory from '../../../../public/images/project_assets/rotogran_erp_android/inventory.png';
 import lock from '../../../../public/images/project_assets/rotogran_erp_android/lock.png';
-import workOrder from '../../../../public/images/project_assets/rotogran_erp_android/work-order.png';
 import partsOrders from '../../../../public/images/project_assets/rotogran_erp_android/parts-orders.png';
 import workOrderReport from '../../../../public/images/project_assets/rotogran_erp_android/work-order-report.png';
-import inventory from '../../../../public/images/project_assets/rotogran_erp_android/inventory.png';
+import workOrder from '../../../../public/images/project_assets/rotogran_erp_android/work-order.png';
+import rotogranLogo from '../../../../public/images/rotogran-logo-small-outline.svg';
+import '../../../App.css';
+import KeyTechnologies from '../projectComponents/keyTechnologies';
+import ProjectWithSidebar from '../projectComponents/projectWithSidebar';
 import ResponsiveImageWithCaption from '../projectComponents/responsiveImageWithCaption';
 import { TableOfContents, TableOfContentsItem } from '../projectComponents/tableOfContents';
-import ProjectWithSidebar from '../projectComponents/projectWithSidebar';
-import KeyTechnologies from '../projectComponents/keyTechnologies';
-import { Link, useNavigate } from 'react-router-dom';
-import Vivus from 'vivus';
+import './projectPage.css';
+import './rotogranERP.css';
 
 /**
  * Component for the rotogran erp project

@@ -1,7 +1,7 @@
 import { ReactNode, useEffect } from "react";
-import './projectWithSidebar.css';
 import { Link } from "react-router-dom";
 import arrow from '../../../../public/images/side-arrow.svg';
+import './projectWithSidebar.css';
 
 /**
  * Properties for a ProjectWithSidebar
@@ -62,7 +62,7 @@ export default function ProjectWithSidebar(props: ProjectWithSidebarProps) {
             if (props.bodyClassname)
                 body.classList.remove(props.bodyClassname);
         }
-    }, []);
+    }, [props.bodyClassname]);
 
     return <>
         <div className={props.sidebarClassname ?? "sidebar-dark sidebar"}>
