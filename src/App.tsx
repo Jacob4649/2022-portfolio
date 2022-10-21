@@ -35,7 +35,9 @@ export default function App() {
   return <>
     <NavigationBar collapsed={collapsed} height={activeHeight} />
     <div ref={ref} className={isHome ? "padding padding-landing-screen" : "padding"} />
-    <Outlet />
+    <div className='app-main-content'>
+      <Outlet />
+    </div>
     <Footer />
   </>;
 }

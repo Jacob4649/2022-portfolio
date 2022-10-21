@@ -71,3 +71,7 @@
     backdrop-filter: blur(0.4vmin);
     background-color: transparent;
 }
+
+.app-main-content {
+    min-height: calc(100vh - 8rem);
+}
