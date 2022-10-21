@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import Vivus from 'vivus';
+import githubLogo from '../../public/images/github-logo-white.svg';
+import linkedinLogo from '../../public/images/linkedin-logo-tiny.svg';
 import logoTrace from '../../public/images/logo-trace.svg';
-import githubLogo from '../../public/images/github-logo-white.svg'
-import linkedinLogo from '../../public/images/linkedin-logo-tiny.svg'
 import './home.css';
+import projectDirectory from './projects/projectPages/projectDirectory';
 
 /**
  * Duration of the logo draw animation in milliseconds
@@ -84,6 +85,10 @@ export default function Home(props: any) {
             }
         }
     }, [text, selectedText, adding]);
+
+    let rotogranProject = projectDirectory.filter(x => x.id === 'rotogran-erp')[0];
+    let rotogranProjectAndroid = projectDirectory.filter(x => x.id === 'rotogran-erp-android')[0];
+
     return <>
         <div className="landing-screen">
             <object className="landing-logo" ref={ref} type="image/svg+xml" data={logoTrace}>
@@ -100,6 +105,17 @@ export default function Home(props: any) {
                 <a href='https://www.linkedin.com/in/jacob-klimczak/' target="_blank" rel="noreferrer">
                     <img src={linkedinLogo} alt="LinkedIn"></img>
                 </a>
+            </div>
+        </div>
+        <div className='featured-projects-title'>
+            <span>
+                FEATURED PROJECTS
+            </span>
+        </div>
+        <div className='featured-projects-background-wrapper'>
+            <div className='featured-projects'>
+                <rotogranProject.Thumbnail />
+                <rotogranProjectAndroid.Thumbnail />
             </div>
         </div>
     </>;

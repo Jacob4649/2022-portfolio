@@ -33,9 +33,9 @@
 @media (min-width: 1001px) and (hover: hover) { /* laptop */
     .sidebar {
         height: calc(100vh - 7rem);
-        width: calc(20vw - 1rem);
+        width: calc(30vw - 1rem);
         position: fixed;
-        left: calc(1rem - 14vw);
+        left: calc(1rem - 24vw);
         transition: all 0.3s ease-in-out;
         top: 5rem;
         /* border: 1px solid black; */
@@ -44,6 +44,7 @@
         z-index: 1000;
         background-color: white;
         overflow-y: auto;
+        overflow-x: hidden;
     }
 
     .arrow-box {
@@ -114,6 +115,7 @@
     border-radius: 0.3rem;
     padding: 0.5rem;
     box-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
+    z-index: 10000;
 }
 
 .back-to-projects svg {

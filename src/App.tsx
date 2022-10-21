@@ -2,6 +2,7 @@ import { MutableRefObject, useEffect, useMemo, useRef, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import './App.css';
 import NavigationBar from './navigation/navigationBar';
+import Footer from './navigation/footer';
 
 /**
  * Height of nav bar in rem
@@ -34,7 +35,10 @@ export default function App() {
   return <>
     <NavigationBar collapsed={collapsed} height={activeHeight} />
     <div ref={ref} className={isHome ? "padding padding-landing-screen" : "padding"} />
-    <Outlet />
+    <div className='app-main-content'>
+      <Outlet />
+    </div>
+    <Footer />
   </>;
 }
 

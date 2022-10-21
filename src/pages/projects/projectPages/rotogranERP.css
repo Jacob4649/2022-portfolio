@@ -1,0 +1,202 @@
+.key-technologies-container {
+    margin-top: 1rem;
+}
+
+.rotogran-text {
+    display: inline-block;
+    font-size: x-large;
+    text-align: center;
+    width: 100%;
+}
+
+@media (max-width: 1000px) {
+    .key-technologies-container {
+        border-radius: 0.5rem;
+        box-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
+        padding: 0.5rem;
+        background-color: white;
+    }
+
+    .contents {
+        margin-top: 1.5rem;
+        border-radius: 0.5rem;
+        box-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
+        padding: 0.5rem;
+        background-color: white;
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (min-width: 1001px) {
+    .rotogran-text {
+        padding-right: 1rem;
+    }
+}
+
+.rotogran-site-link {
+    color: white;
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+    font-style: italic;
+    text-decoration: none;
+}
+
+.rotogran-site-link-dark {
+    color: rgb(51, 51, 51);
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+    font-style: italic;
+    text-decoration: none;
+}
+
+.lock-image {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100% !important;
+}
+
+.center-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    height: auto;
+    margin-top: 1rem;
+    border-radius: 0.5rem;
+}
+
+.shadow-box-app-inventory {
+    background-color: #fafafa;
+    color: rgb(51, 51, 51);
+}
+
+.see-also {
+    text-align: center;
+}
+
+.rotogran-body {
+    background-image: url('../../../../public/images/project_assets/rotogran_erp/granulator.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.rotogran-sidebar {
+    backdrop-filter: blur(0.4vmin);
+    background-color: transparent !important;
+}
+
+@media (max-width: 1000px), (hover: none) { /* mobile */
+    .rotogran-sidebar .contents, .rotogran-sidebar .key-technologies-container {
+        background-image: linear-gradient(127deg, rgba(215, 215, 215, 0.8), rgba(215, 215, 215, 0.9));
+        border: 1px solid rgb(235, 235, 235);
+        backdrop-filter: blur(0.4vmin);
+        background-color: transparent !important;
+    }
+}
+
+@media (min-width: 1001px) and (hover: hover) { /* laptop */
+    .rotogran-sidebar {
+        background-image: linear-gradient(127deg, rgba(51, 51, 51, 0.8), rgba(51, 51, 51, 0.9));
+        color: white !important;
+        border: 1px solid rgb(113, 113, 113);
+    }
+}
+
+.wrench-gear-logo {
+    width: 15vmax;
+    height: 15vmax;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.graphic-design {
+    text-align: center;
+}
+
+.rotogran-logo {
+    width: 14vmax;
+    height: 14vmax;
+    display: block;
+    background-size: 100% 140%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.rotogran-stack-diagram table {
+    border-collapse: separate;
+    border-spacing: 0.5rem 0.75rem;
+}
+
+.rotogran-stack-diagram td {
+    border: 1px solid rgb(51, 51, 51);
+    text-align: center;
+    padding: 1rem;
+    color: white;
+}
+
+.rotogran-stack-diagram tr:nth-child(1) td:nth-child(1) {
+    border-top-left-radius: 0.5rem;
+}
+
+.rotogran-stack-diagram tr:nth-child(1) td:nth-last-child(1) {
+    border-top-right-radius: 0.5rem;
+}
+
+.rotogran-stack-diagram tr:nth-last-child(1) td:nth-child(1) {
+    border-bottom-left-radius: 0.5rem;
+}
+
+.rotogran-stack-diagram tr:nth-last-child(1) td:nth-last-child(1) {
+    border-bottom-right-radius: 0.5rem;
+}
+
+.rotogran-stack-diagram .database {
+    background-image: linear-gradient(#640000, #290003);
+}
+
+.rotogran-stack-diagram .server {
+    background-image: linear-gradient(#970000, #640000);
+}
+
+.rotogran-stack-diagram .communication-protocol {
+    background-image: linear-gradient(#ca0000, #970000);
+}
+
+.rotogran-stack-diagram .csharp-client-library {
+    background-image: linear-gradient(#b66100, #ca0000);
+}
+
+.rotogran-stack-diagram .java-client-library {
+    background-image: linear-gradient(#b60046, #ca0000);
+}
+
+.rotogran-stack-diagram .windows-client {
+    background-image: linear-gradient(#b6b300, #b66100);
+}
+
+.rotogran-stack-diagram .android-client {
+    background-image: linear-gradient(#e40044, #b60046);
+}
+
+.rotogran-stack-diagram .embedded-systems {
+    background-image: linear-gradient(#df0089, #b60046);
+}
+
+.adobe-link {
+    text-decoration: none;
+    color: rgb(51, 51, 51);
+    font-style: italic;
+    font-weight: lighter;
+}
+
+.rotogran-interface-example {
+    text-align: center;
+    background-image: linear-gradient(127deg, rgba(53, 0, 0, 0.8), rgba(90, 0, 0, 0.9));
+    color: white;
+    border: 1px solid rgb(120, 0, 0);
+    backdrop-filter: blur(0.4vmin);
+    background-color: transparent;
+}

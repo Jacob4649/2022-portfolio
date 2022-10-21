@@ -1,0 +1,44 @@
+.under-construction {
+    background-image: url('../../public/images/construction-background.svg');
+    background-size: cover;
+    background-position-x: center;
+    background-position-y: center;
+    width: 40vmax;
+    height: 6vmax;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
+    border-radius: 2vmax;
+    font-size: 2.5vmax;
+    text-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
+    animation: construction-drop-down forwards ease-in-out 0.5s;
+    transition: 0.3s ease-in-out all;
+}
+
+.under-construction-parent {
+    width: 100%;
+    height: 75vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: xx-large;
+    font-weight: lighter;
+}
+
+.under-construction-parent > * {
+    margin: 1rem;
+}
+
+@keyframes construction-drop-down {
+    0% {
+        translate: 0 -100vh;
+    }
+
+    100% {
+        translate: 0 0;
+    }
+}
