@@ -2,12 +2,8 @@ import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Vivus from 'vivus';
 import gearTrace from '../../../../public/images/project_assets/rotogran_erp/wrench-gear.svg';
-import rotogranApp from '../../../../public/images/project_assets/rotogran_erp_android/home-screen.png';
-import inventory from '../../../../public/images/project_assets/rotogran_erp_android/inventory.png';
+import rotogranApp from '../../../../public/images/project_assets/rotogran_erp/transactions-screen.png';
 import lock from '../../../../public/images/project_assets/rotogran_erp_android/lock.png';
-import partsOrders from '../../../../public/images/project_assets/rotogran_erp_android/parts-orders.png';
-import workOrderReport from '../../../../public/images/project_assets/rotogran_erp_android/work-order-report.png';
-import workOrder from '../../../../public/images/project_assets/rotogran_erp_android/work-order.png';
 import rotogranLogo from '../../../../public/images/rotogran-logo-small-outline.svg';
 import '../../../App.css';
 import KeyTechnologies from '../projectComponents/keyTechnologies';
@@ -22,14 +18,13 @@ import './rotogranERP.css';
  * @param props properties for this component
  */
 export default function RotogranERP(props: any) {
-    const reRef = useRef<HTMLSpanElement>(null);
     const authRef = useRef<HTMLSpanElement>(null);
     const designRef = useRef<HTMLSpanElement>(null);
-    const workOrderRef = useRef<HTMLSpanElement>(null);
     const stackRef = useRef<HTMLSpanElement>(null);
     const stackDiagramRef = useRef<HTMLDivElement>(null);
     const achievementRef = useRef<HTMLSpanElement>(null);
     const roleRef = useRef<HTMLSpanElement>(null);
+    const interfaceRef = useRef<HTMLSpanElement>(null);
 
     const wrenchGearRef = useRef<HTMLObjectElement>(null);
     const rotogranLogoRef = useRef<HTMLObjectElement>(null);
@@ -60,20 +55,20 @@ export default function RotogranERP(props: any) {
             <TableOfContentsItem targetRef={roleRef}>
                 My Role
             </TableOfContentsItem>
-            <TableOfContentsItem targetRef={designRef}>
-                Graphic Design
-            </TableOfContentsItem>
             <TableOfContentsItem targetRef={stackRef}>
                 Stack
             </TableOfContentsItem>
             <TableOfContentsItem targetRef={stackDiagramRef}>
                 Stack Diagram
             </TableOfContentsItem>
-            <TableOfContentsItem targetRef={workOrderRef}>
-                Work Orders
+            <TableOfContentsItem targetRef={interfaceRef}>
+                Interface
             </TableOfContentsItem>
             <TableOfContentsItem targetRef={authRef}>
                 Authentication
+            </TableOfContentsItem>
+            <TableOfContentsItem targetRef={designRef}>
+                Graphic Design
             </TableOfContentsItem>
         </TableOfContents>
         <KeyTechnologies projectId='rotogran-erp' className='key-technologies-container'>
@@ -123,15 +118,6 @@ export default function RotogranERP(props: any) {
                 subsystems, and made use of <b>modern software tooling</b> and <b>DevOps</b> practices over the course of this project.
                 I contributed to this project at every level, not just to every part of the stack, but also in terms of the design,
                 direction, and conceptual development of this software suite.
-            </div>
-
-            <div className='shadow-box shadow-box-dark-clear graphic-design'>
-                <span className='section-title' ref={designRef}>Graphic Design</span>
-                <object className="wrench-gear-logo" ref={wrenchGearRef} type="image/svg+xml" data={gearTrace}>
-                    An icon I created during my time working on the project
-                </object>
-                At Rotogran, I was given the opportunity to contribute to a significant amount of the <b>graphic design</b> involved in this
-                project. Here you can see an example of one of the <b>icons I created</b>.
             </div>
 
             <div className='shadow-box shadow-box-dark-clear'>
@@ -195,17 +181,11 @@ export default function RotogranERP(props: any) {
                 </div>
             </div>
 
-            <div className='shadow-box shadow-box-app-home-screen'>
-                <span ref={workOrderRef} className='section-title'>Work Orders</span>
-                <ResponsiveImageWithCaption src={workOrder} alt="work order" imageStyle={{
-                    borderRadius: "0.5rem"
-                }}>
-                    <b>Work orders</b>&#x2014;orders for machines that must be assembled then delivered to a customer&#x2014;are tracked
-                    by the system. They can be viewed either by order, or in a <b>summary</b> with information about their <b>status</b>, <b>shipping</b>, and more.
-                    Each order in the system contains a detailed breakdown of all the different <b>components</b> that must be assembled, and to what <b>specifications</b> those
-                    components should be made.
-                </ResponsiveImageWithCaption>
-                <img src={workOrderReport} alt="work order summary" className='center-image'></img>
+            <div className='shadow-box rotogran-interface-example'>
+                <span ref={interfaceRef} className='section-title'>Interface</span>
+                <img src={rotogranApp} alt="transactions screen" className='center-image'></img>
+                <br></br>
+                An example of the Windows client application interface.
             </div>
 
             <div className='shadow-box shadow-box-light'>
@@ -220,6 +200,15 @@ export default function RotogranERP(props: any) {
                 they are sent from the client, and the salted hashes are <b>encrypted</b> once in the database. While this type of care around passwords
                 should be standard, every so often multi-billion dollar companies 
                 like <a className='adobe-link' href="https://en.wikipedia.org/wiki/List_of_data_breaches" target="_blank" rel="noreferrer">Adobe</a> show us that it is not.
+            </div>
+
+            <div className='shadow-box shadow-box-dark-clear graphic-design'>
+                <span className='section-title' ref={designRef}>Graphic Design</span>
+                <object className="wrench-gear-logo" ref={wrenchGearRef} type="image/svg+xml" data={gearTrace}>
+                    An icon I created during my time working on the project
+                </object>
+                At Rotogran, I was given the opportunity to contribute to a significant amount of the <b>graphic design</b> involved in this
+                project. Here you can see an example of one of the <b>icons I created</b>.
             </div>
 
             <div className="shadow-box shadow-box-dark see-also hover-box" onClick={() => navigate('/projects/rotogran-erp-android')}>

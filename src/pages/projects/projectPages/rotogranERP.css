@@ -51,11 +51,6 @@
     text-decoration: none;
 }
 
-.shadow-box-app-home-screen {
-    background-color: #d20021;
-    color: white;
-}
-
 .lock-image {
     margin-left: auto;
     margin-right: auto;
@@ -195,4 +190,13 @@
     color: rgb(51, 51, 51);
     font-style: italic;
     font-weight: lighter;
+}
+
+.rotogran-interface-example {
+    text-align: center;
+    background-image: linear-gradient(127deg, rgba(53, 0, 0, 0.8), rgba(90, 0, 0, 0.9));
+    color: white;
+    border: 1px solid rgb(120, 0, 0);
+    backdrop-filter: blur(0.4vmin);
+    background-color: transparent;
 }
