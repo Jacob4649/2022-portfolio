@@ -44,6 +44,7 @@
         z-index: 1000;
         background-color: white;
         overflow-y: auto;
+        overflow-x: hidden;
     }
 
     .arrow-box {
