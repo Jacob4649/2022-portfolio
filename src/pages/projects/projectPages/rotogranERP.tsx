@@ -96,7 +96,7 @@ export default function RotogranERP(props: any) {
 
             <div className='shadow-box shadow-box-light-clear'>
                 <span className="section-title" ref={achievementRef}>Achievements</span>
-                Currently in <b>use</b> by Rotogran International Inc.
+                Currently in use by Rotogran International Inc.
                 <br></br><br></br>
                 Tracks <b>more than 2500</b> incoming &amp; outgoing items.
                 <br></br><br></br>
@@ -108,7 +108,7 @@ export default function RotogranERP(props: any) {
                 <br></br><br></br>
                 <b>Google Calendar</b> &amp; <b>Outlook</b> Integration
                 <br></br><br></br>
-                <b>Weekly Reports</b> On Low Stock Items
+                Weekly Reports On Low Stock Items
             </div>
 
             <div className='shadow-box shadow-box-dark-clear'>
