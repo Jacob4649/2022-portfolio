@@ -225,7 +225,7 @@ export default function RotogranERP(props: any) {
                 project. Here you can see an example of one of the icons I assembled.
             </div>
 
-            <div className="shadow-box shadow-box-dark see-also hover-box" onClick={() => navigate('/projects/rotogran-erp-android')}>
+            <div className="shadow-box shadow-box-dark-clear see-also hover-box" onClick={() => navigate('/projects/rotogran-erp-android')}>
                 <span className='section-title'>See Also</span>
                 <i>Android Client</i>
             </div>
