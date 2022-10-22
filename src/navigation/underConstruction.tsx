@@ -1,10 +1,14 @@
+import { ReactNode } from 'react';
 import './underConstruction.css';
 
 /**
  * Properties for a UnderConstruction component
  */
 interface UnderConstructionProps {
-
+    /**
+     * Children of this under construction
+     */
+    children?: ReactNode;
 }
 
 /**
@@ -17,5 +21,6 @@ export default function UnderConstruction(props: UnderConstructionProps) {
             PAGE UNDER CONSTRUCTION
         </div>
         Check Back Again Soon!
+        {props.children}
     </div>
 }

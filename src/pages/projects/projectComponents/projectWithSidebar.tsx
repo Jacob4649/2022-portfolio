@@ -34,7 +34,7 @@ interface ProjectWithSidebarProps {
     bodyClassname?: string;
 }
 
-const backArrowPath = "M.602 23.586a2.103 2.103 0 0 0 " +
+export const backArrowPath = "M.602 23.586a2.103 2.103 0 0 0 " +
     ".014 2.958l22.84 22.84a2.102 2.102 0 0 0 2.974 0 " +
     "2.102 2.102 0 0 0 0-2.973L7.166 27.147l40.737-.10" +
     "2A2.102 2.102 0 0 0 50 24.938a2.102 2.102 0 0 0-2" +

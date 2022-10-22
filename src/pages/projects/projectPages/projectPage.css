@@ -14,3 +14,48 @@ h1 {
     box-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
     z-index: 1001;
 }
+
+.back-to-projects-construction {
+    display: flex;
+    height: fit-content;
+    width: fit-content;
+    justify-content: center;
+    align-items: center;
+    font-size: normal;
+    font-weight: lighter;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+    border-radius: 0.3rem;
+    padding: 0.5rem;
+    box-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
+    z-index: 10000;
+    color: white;
+    fill: white;
+    background-color: rgb(51, 51, 51);
+    animation: construction-arrow-fly-up forwards ease-in-out 0.5s;
+}
+
+.back-to-projects-construction svg {
+    height: 1rem;
+    width: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-right: 0.5rem;
+}
+
+@media (hover: hover) {
+    .back-to-projects-construction:hover {
+        scale: 105%;
+        cursor: pointer;
+    }
+}
+
+@keyframes construction-arrow-fly-up {
+    0% {
+        translate: 0 100vh;
+    }
+
+    100% {
+        translate: 0 0;
+    }
+}
