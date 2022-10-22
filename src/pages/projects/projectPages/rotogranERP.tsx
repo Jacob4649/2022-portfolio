@@ -126,12 +126,12 @@ export default function RotogranERP(props: any) {
                 and also made use of some small <b>Lua</b> scripts. A <b>Microsoft SQL Server</b> database was used as the
                 primary means of storing persistent data, although other tools were also used in certain scenarios.
                 <br></br><br></br>
-                I created an <b>extensible framework</b> for receiving, parsing, executing, and responding to 
-                <b>requests</b> from client applications. This framework allowed for the easy addition of new
+                I created an <b>extensible framework</b> for receiving, parsing, executing, and responding 
+                to <b>requests</b> from client applications. This framework allowed for the easy addition of new
                 requests and responses to the backend.
                 <br></br><br></br>
-                Communication between the backend and client applications was faciiltated by a custom-built, <b>duplex communication protocol</b> built over <b>TCP/IP</b>, and  optimized for
-                low latency and security in the context of the ERP application, which I developed.
+                Communication between the backend and client applications was faciiltated by a custom <b>duplex communication protocol</b> built over <b>TCP/IP</b>, and  optimized for
+                low latency and security in the context of the ERP application; which I developed.
                 <br></br><br></br>
                 I developed client libraries for <b>Java</b> and <b>C#</b> allowing frontend applications to interact with the backend
                 easily.
