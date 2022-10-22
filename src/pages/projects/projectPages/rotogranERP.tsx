@@ -199,7 +199,7 @@ export default function RotogranERP(props: any) {
                 <span ref={interfaceRef} className='section-title'>Interface</span>
                 <img src={rotogranApp} alt="transactions screen" className='center-image'></img>
                 <br></br>
-                An example of the Windows client application interface.
+                Image of the Windows client application interface.
             </div>
 
             <div className='shadow-box shadow-box-light-clear'>
