@@ -18,6 +18,7 @@ import './rotogranERP.css';
  * @param props properties for this component
  */
 export default function RotogranERP(props: any) {
+    const overviewRef = useRef<HTMLSpanElement>(null);
     const authRef = useRef<HTMLSpanElement>(null);
     const designRef = useRef<HTMLSpanElement>(null);
     const stackRef = useRef<HTMLSpanElement>(null);
@@ -49,6 +50,9 @@ export default function RotogranERP(props: any) {
 
     let sidebar = <>
         <TableOfContents className="contents">
+            <TableOfContentsItem targetRef={overviewRef}>
+                Overview
+            </TableOfContentsItem>
             <TableOfContentsItem targetRef={achievementRef}>
                 Achievements
             </TableOfContentsItem>
@@ -80,6 +84,16 @@ export default function RotogranERP(props: any) {
         sidebarClassname='sidebar rotogran-sidebar'>
         <h1 className='shadow-box-light-clear'>ROTOGRAN ERP</h1>
         <div className="shadow-box-container">
+            
+            <div className="shadow-box shadow-box-light-clear">
+                <span className='section-title' ref={overviewRef}>Overview</span>
+                This project is an <b>ERP</b> system I worked on for Rotogran International Inc. I've been working for
+                Rotogran as a developer for about 3 years, and have interacted with every level of this system.
+                <br></br><br></br>
+                This page deals with the system as a whole, but you can also check out my work on the Android client
+                specifically through the link at the bottom of the page.
+            </div>
+            
             <div className='shadow-box shadow-box-light-clear'>
                 <object className="rotogran-logo" ref={rotogranLogoRef} type="image/svg+xml" data={rotogranLogo}>
                     Rotogran Logo
@@ -208,7 +222,7 @@ export default function RotogranERP(props: any) {
                     An icon I created during my time working on the project
                 </object>
                 At Rotogran, I was given the opportunity to contribute to a significant amount of the <b>graphic design</b> involved in this
-                project. Here you can see an example of one of the <b>icons I created</b>.
+                project. Here you can see an example of one of the icons I assembled.
             </div>
 
             <div className="shadow-box shadow-box-dark see-also hover-box" onClick={() => navigate('/projects/rotogran-erp-android')}>
