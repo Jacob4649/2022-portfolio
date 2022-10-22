@@ -22,7 +22,7 @@ export default function About(props: any) {
             Science Specialist program.
             <br></br><br></br>
             Make sure to check out the <span style={{ fontStyle: "italic" }}>Projects</span> page.
-            There's a lot of neat stuff there, and it gives a pretty comprehensive overview, of what I consider
+            There's a lot of interesting stuff there, and it gives a pretty comprehensive overview of what I consider
             to be my best software undertakings.
             <br></br><br></br>
             Feel free to reach out and shoot me a message if you have any questions!

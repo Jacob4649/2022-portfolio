@@ -21,6 +21,7 @@ import { Link, useNavigate } from 'react-router-dom';
  * @param props properties for this component
  */
 export default function RotogranERPAndroid(props: any) {
+    const overviewRef = useRef<HTMLSpanElement>(null);
     const androidRef = useRef<HTMLSpanElement>(null);
     const authRef = useRef<HTMLSpanElement>(null);
     const queueRef = useRef<HTMLSpanElement>(null);
@@ -34,6 +35,9 @@ export default function RotogranERPAndroid(props: any) {
 
     let sidebar = <>
         <TableOfContents className="contents">
+            <TableOfContentsItem targetRef={overviewRef}>
+                Overview
+            </TableOfContentsItem>
             <TableOfContentsItem targetRef={achievementRef}>
                 Achievements
             </TableOfContentsItem>
@@ -67,6 +71,14 @@ export default function RotogranERPAndroid(props: any) {
     return <ProjectWithSidebar sidebar={sidebar}>
         <h1>ROTOGRAN ERP - ANDROID</h1>
         <div className="shadow-box-container">
+            
+            <div className="shadow-box shadow-box-light">
+                <span className='section-title' ref={overviewRef}>Overview</span>
+                This project covers an <b>Android client application</b> I built for Rotogran International Inc.'s <b>ERP</b> system. 
+                <br></br><br></br>
+                Check out the link at the bottom of the page for more information about the system as a whole.
+            </div>
+
             <div className="shadow-box shadow-box-dark">
                 <ResponsiveImageWithCaption src={rotogranLogo} alt="Rotogran Logo" imageStyle={{
                     height: "auto",
