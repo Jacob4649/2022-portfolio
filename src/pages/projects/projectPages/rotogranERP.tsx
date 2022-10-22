@@ -188,7 +188,7 @@ export default function RotogranERP(props: any) {
                 An example of the Windows client application interface.
             </div>
 
-            <div className='shadow-box shadow-box-light'>
+            <div className='shadow-box shadow-box-light-clear'>
                 <ResponsiveImageWithCaption className="lock-image" src={lock} alt="lock" imageStyle={{
                     width: 'auto',
                     height: '3em'
