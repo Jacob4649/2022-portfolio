@@ -6,12 +6,14 @@ import rLogo from '../../../../public/images/r-logo.svg';
 import rotogranlogo from '../../../../public/images/rotogran-logo.png';
 import codeNinjas from '../../../../public/images/white-belt-512.png';
 import { ProjectThumbnail } from "../projects";
+import CactusOfThings from "./cactusOfThings";
 import CodeNinjasTracker from "./codeNinjasTracker";
 import ExpediaAnalytics from "./expediaAnalytics";
 import Portfolio from "./portfolio";
 import RotogranERP from "./rotogranERP";
 import RotogranERPAndroid from "./rotogranERPAndroid";
 import VaccineAnalysis from "./vaccineAnalysis";
+import cactusOfThingsLogo from '../../../../public/images/cactus-logo.svg'
 
 /**
  * Represents a project on this portfolio
@@ -99,6 +101,8 @@ class Project {
 
 /**
  * Bundle of all the different tags projects can have
+ * 
+ * images from https://github.com/Ileriayo/markdown-badges
  */
 const tagsBundle: { [key: string]: string } = {
     firebase: "https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white",
@@ -117,7 +121,13 @@ const tagsBundle: { [key: string]: string } = {
     java: "https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white",
     windows: "https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white",
     kotlin: "https://img.shields.io/badge/kotlin-%237F52FF.svg?style=for-the-badge&logo=kotlin&logoColor=white",
-    reactRouter: "https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white"
+    reactRouter: "https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white",
+    go: "https://img.shields.io/badge/go-%2300ADD8.svg?style=for-the-badge&logo=go&logoColor=white",
+    c: "https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white",
+    googleCloud: "https://img.shields.io/badge/Google%20Cloud-1A73E8?style=for-the-badge&logo=googlecloud&logoColor=white",
+    docker: "https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white",
+    arduino: "https://img.shields.io/badge/-Arduino-00979D?style=for-the-badge&logo=Arduino&logoColor=white",
+    gradle: "https://img.shields.io/badge/Gradle-02303A.svg?style=for-the-badge&logo=Gradle&logoColor=white"
 }
 
 /**
@@ -128,7 +138,7 @@ const tagsBundle: { [key: string]: string } = {
  */
 const typesBundle: { [key: string]: string[] | null } = {
     all: null,
-    web: ["javaScript", "typeScript", "react", "web", "reactRouter"],
+    web: ["javaScript", "typeScript", "react", "web", "reactRouter", "firebase", "googleCloud"],
     analytics: ["r", "analytics"],
     android: ["android"],
     windows: ["windows"]
@@ -166,13 +176,21 @@ const directory: Project[] = [
         <ProjectThumbnail projectId='rotogran-erp' title='Rotogran ERP System'
             subheading='ERP System For Rotogran International Inc'
             content='ERP System with backend mostly in C#, and client applications for a variety of platforms.'
-            image={rotogranlogo}></ProjectThumbnail>, ["c#", "net", "lua", "java", "mssql", "windows"], 5),
+            image={rotogranlogo}></ProjectThumbnail>, ["c#", "net", "lua", "java", "mssql", "windows"], 4),
 
     new Project('rotogran-erp-android', <RotogranERPAndroid />,
         <ProjectThumbnail projectId='rotogran-erp-android' title='Rotogran ERP Android App'
             subheading='Android Client For Rotogran ERP System'
             content='Android ERP app for Android used by Rotogran International Inc.'
-            image={androidLogo}></ProjectThumbnail>, ["android", "java", "kotlin"], 5)
+            image={androidLogo}></ProjectThumbnail>, ["android", "java", "kotlin"], 4),
+
+    new Project('cactus-of-things', <CactusOfThings />,
+        <ProjectThumbnail projectId="cactus-of-things"
+            title="Cactus of Things"
+            subheading="Cactus Status Tracker"
+            content="Keeps me from forgetting to water my cactus"
+            image={cactusOfThingsLogo}></ProjectThumbnail>, ["c", "go", "arduino",
+        "googleCloud", "firebase", "docker", "react", "reactRouter", "typeScript"], 5)
 ];
 
 export default directory.sort((a, b) => b.wowFactor - a.wowFactor);
