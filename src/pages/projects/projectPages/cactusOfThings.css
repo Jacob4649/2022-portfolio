@@ -1,0 +1,15 @@
+.cactus-text {
+    display: inline-block;
+    font-size: x-large;
+    text-align: center;
+    width: 100%;
+}
+
+.cactus-of-things-site-link {
+    color: rgb(51, 51, 51);
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+    font-style: italic;
+    text-decoration: none;
+}
