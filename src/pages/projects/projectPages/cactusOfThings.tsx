@@ -1,19 +1,16 @@
-import { Link } from "react-router-dom";
-import UnderConstruction from "../../../navigation/underConstruction";
-import KeyTechnologies from "../projectComponents/keyTechnologies";
-import { backArrowPath } from "../projectComponents/projectWithSidebar";
-import { TableOfContents, TableOfContentsItem } from "../projectComponents/tableOfContents";
-import ProjectWithSidebar from '../projectComponents/projectWithSidebar';
-import '../projectPages/projectPage.css';
 import { useRef } from "react";
 import cactusOfThingsLogo from '../../../../public/images/cactus-logo.svg';
-import ResponsiveImageWithCaption from "../projectComponents/responsiveImageWithCaption";
-import './cactusOfThings.css';
-import cactusOfThingsPrototype from "../../../../public/images/project_assets/cactus_of_things/embedded-computer.jpg";
 import githubLogo from "../../../../public/images/github-logo-white.svg";
-import wifiTesting from "../../../../public/images/project_assets/cactus_of_things/embedded-wifi-testing.jpg";
 import dashboard from "../../../../public/images/project_assets/cactus_of_things/dashboard.png";
+import cactusOfThingsPrototype from "../../../../public/images/project_assets/cactus_of_things/embedded-computer.jpg";
 import running from "../../../../public/images/project_assets/cactus_of_things/embedded-draft.jpg";
+import wifiTesting from "../../../../public/images/project_assets/cactus_of_things/embedded-wifi-testing.jpg";
+import KeyTechnologies from "../projectComponents/keyTechnologies";
+import ProjectWithSidebar from '../projectComponents/projectWithSidebar';
+import ResponsiveImageWithCaption from "../projectComponents/responsiveImageWithCaption";
+import { TableOfContents, TableOfContentsItem } from "../projectComponents/tableOfContents";
+import '../projectPages/projectPage.css';
+import './cactusOfThings.css';
 
 /**
  * Component for the cactus of things project
@@ -184,8 +181,8 @@ export default function CactusOfThings(props: any) {
                 similar to <b>DynamoDB</b>, so are there any technical reasons I might prefer Google's offerings? <b>Yes!</b>
                 <br></br><br></br>
                 Configuration for Google's Cloud products is much simpler than for Amazon's. In <b>Lambda</b>, I would have had
-                to: configure an <b>API Gateway</b>, define triggers for <b>Lambda</b> functions, configure layers for my
-                <b>Lambda</b> functions, and probably fumble around trying to remember how <b>Lambda</b> parses HTTP requests into <b>Lambda</b> events.
+                to: configure an <b>API Gateway</b>, define triggers for <b>Lambda</b> functions, configure layers for
+                my <b>Lambda</b> functions, and probably fumble around trying to remember how <b>Lambda</b> parses HTTP requests into <b>Lambda</b> events.
                 <br></br><br></br>
                 I have the option to do all of that on <b>Cloud Run</b>, but I can also just setup a <b>Docker container</b> to run my backend, and
                 it just works. No need to implement special <b>Cloud Run</b> specific infrastructure, I can receive raw HTTP requests, and respond
