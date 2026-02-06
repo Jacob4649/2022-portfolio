@@ -21,7 +21,7 @@ export interface Publication {
   authors: string[];
   year: number;
   venue: string;
-  type: 'publication' | 'conference' | 'report' | 'under-review' | 'in-preparation';
+  type: 'publication' | 'conference' | 'under-review' | 'in-preparation';
   link?: string;
   doi?: string;
   description?: string;

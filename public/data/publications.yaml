@@ -14,7 +14,7 @@
   authors: ["Rivera-Gonzalez, C.", "Klimczak, J.", "Roorda, M."]
   year: 2024
   venue: "Government Report for Transport Canada"
-  type: report
+  type: publication
   description: "A report for Transport Canada on methods for visualizing traffic-related emissions with dashboard tools."
   associatedRoles: [freight-data-warehouse]
 
