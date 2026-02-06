@@ -1,8 +1,9 @@
 import React, { useState, useMemo, useRef } from 'react';
 import { useData } from '../DataContext';
 import { PageTransition, Badge } from '../components/UI';
-import { Calendar, MapPin, Search, ChevronRight, Layers, BookOpen } from 'lucide-react';
+import { Calendar, MapPin, Search, ChevronRight, Layers, BookOpen, X, ZoomIn, ZoomOut } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import Modal from '../components/Modal';
 import { Role } from '../types';
 
@@ -22,6 +23,9 @@ const Career: React.FC = () => {
   const [filter, setFilter] = useState<string>('All');
   const [search, setSearch] = useState('');
   const [selectedRole, setSelectedRole] = useState<Role | null>(null);
+  const [hoveredRoleId, setHoveredRoleId] = useState<string | null>(null);
+  const [pinnedRoleId, setPinnedRoleId] = useState<string | null>(null);
+  const [zoomLevel, setZoomLevel] = useState(1);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const fields = useMemo(() => {
@@ -51,6 +55,16 @@ const Career: React.FC = () => {
     };
   }, [roles]);
 
+  const years = useMemo(() => {
+    const startYear = timelineRange.start.getFullYear();
+    const endYear = timelineRange.end.getFullYear();
+    const result = [];
+    for (let y = startYear; y <= endYear; y++) {
+      result.push(y);
+    }
+    return result;
+  }, [timelineRange]);
+
   const filteredRoles = useMemo(() => {
     return rolesWithColors.filter(role => {
       const matchesFilter = filter === 'All' || role.field === filter;
@@ -74,30 +88,50 @@ const Career: React.FC = () => {
   };
 
   const roleLanes = useMemo(() => {
-    const lanes: number[] = []; // Stores the end time of the last role in each lane
-    const assignments: Record<string, number> = {};
+    if (filteredRoles.length === 0) return { assignments: {}, totalLanes: 0, centerLane: 0 };
 
-    // Sort by start date to assign lanes
-    const sortedByStart = [...rolesWithColors].sort((a, b) =>
+    // 1. Sort by start date for greedy assignment
+    const sortedByStart = [...filteredRoles].sort((a, b) =>
       parseDate(a.startDate).getTime() - parseDate(b.startDate).getTime()
     );
 
+    const lanes: string[][] = []; // Stores IDs of roles in each lane
+
     sortedByStart.forEach(role => {
       const start = parseDate(role.startDate).getTime();
-      const end = parseDate(role.endDate).getTime();
-
-      let laneIndex = lanes.findIndex(laneEnd => laneEnd < start);
-      if (laneIndex === -1) {
-        laneIndex = lanes.length;
-        lanes.push(end);
-      } else {
-        lanes[laneIndex] = end;
+      let assigned = false;
+      for (let i = 0; i < lanes.length; i++) {
+        const lastRoleId = lanes[i][lanes[i].length - 1];
+        const lastRole = rolesWithColors.find(r => r.id === lastRoleId)!;
+        if (parseDate(lastRole.endDate).getTime() < start) {
+          lanes[i].push(role.id);
+          assigned = true;
+          break;
+        }
       }
-      assignments[role.id] = laneIndex;
+      if (!assigned) {
+        lanes.push([role.id]);
+      }
     });
 
-    return { assignments, totalLanes: lanes.length };
-  }, [rolesWithColors]);
+    // 2. Identify the lane containing the longest role
+    let centerLaneIdx = 0;
+    let maxDuration = -1;
+    filteredRoles.forEach(role => {
+      const duration = parseDate(role.endDate).getTime() - parseDate(role.startDate).getTime();
+      if (duration > maxDuration) {
+        maxDuration = duration;
+        centerLaneIdx = lanes.findIndex(l => l.includes(role.id));
+      }
+    });
+
+    const assignments: Record<string, number> = {};
+    lanes.forEach((lane, idx) => {
+      lane.forEach(id => { assignments[id] = idx; });
+    });
+
+    return { assignments, totalLanes: lanes.length, centerLane: centerLaneIdx };
+  }, [filteredRoles, rolesWithColors]);
 
   if (loading) return <div className="flex justify-center p-12 text-slate-400">Loading...</div>;
 
@@ -142,66 +176,165 @@ const Career: React.FC = () => {
         </div>
 
         {/* Desktop Timeline */}
-        <div className="hidden md:block relative bg-white border border-slate-200 rounded-2xl p-8 shadow-sm overflow-hidden">
+        <div
+          className="hidden md:block relative bg-white border border-slate-200 rounded-2xl p-8 shadow-sm overflow-hidden"
+          onClick={() => setPinnedRoleId(null)}
+        >
           <div className="flex items-center justify-between mb-8">
             <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider">Interactive Timeline</h3>
-            <div className="flex items-center gap-4 text-xs font-medium text-slate-400">
-              <span>{timelineRange.start.getFullYear()}</span>
-              <div className="w-32 h-px bg-slate-100"></div>
-              <span>Present</span>
+
+            <div className="flex items-center bg-slate-50 rounded-lg p-1 border border-slate-100">
+              <button
+                onClick={(e: React.MouseEvent) => { e.stopPropagation(); setZoomLevel(prev => Math.max(1, prev - 0.5)); }}
+                className="p-1.5 rounded-md hover:bg-white hover:shadow-sm text-slate-500 transition-all"
+                title="Zoom Out"
+              >
+                <ZoomOut className="w-4 h-4" />
+              </button>
+              <div className="px-2 text-[10px] font-bold text-slate-400 w-12 text-center">
+                {Math.round(zoomLevel * 100)}%
+              </div>
+              <button
+                onClick={(e: React.MouseEvent) => { e.stopPropagation(); setZoomLevel(prev => Math.min(3, prev + 0.5)); }}
+                className="p-1.5 rounded-md hover:bg-white hover:shadow-sm text-slate-500 transition-all"
+                title="Zoom In"
+              >
+                <ZoomIn className="w-4 h-4" />
+              </button>
             </div>
           </div>
 
           <div className="overflow-x-auto pb-6 no-scrollbar" ref={scrollContainerRef}>
-            <div className="relative h-[320px] min-w-[1000px] mx-4">
+            <div
+              className="relative h-[400px] mx-4 transition-all duration-300"
+              style={{ minWidth: `${zoomLevel * 100}%` }}
+            >
               {/* Central Timeline Axis */}
               <div className="absolute top-1/2 left-0 right-0 h-1 bg-slate-100 -translate-y-1/2 rounded-full" />
+
+              {/* Year Markers */}
+              {years.map(year => {
+                const pos = getPosition(`${year}-01-01`);
+                if (pos < 0 || pos > 100) return null;
+                return (
+                  <div key={year} className="absolute inset-y-0 pointer-events-none" style={{ left: `${pos}%` }}>
+                    <div className="absolute inset-y-0 w-px bg-slate-100" />
+                    <div className="absolute bottom-4 -translate-x-1/2 text-[10px] font-bold text-slate-300">
+                      {year}
+                    </div>
+                  </div>
+                );
+              })}
+              <div className="absolute bottom-4 right-0 translate-x-1/2 text-[10px] font-bold text-slate-400">
+                Present
+              </div>
 
               {sortedRoles.map((role) => {
                 const startPos = getPosition(role.startDate);
                 const endPos = getPosition(role.endDate);
                 const width = endPos - startPos;
                 const laneIndex = roleLanes.assignments[role.id];
-                const trackIndex = laneIndex - (roleLanes.totalLanes - 1) / 2;
+                const trackIndex = laneIndex - roleLanes.centerLane;
                 const yOffset = trackIndex * 50; // Offset from center
 
                 return (
                   <div key={role.id} className="absolute inset-0 pointer-events-none">
                     {/* Branch line from center to track */}
                     <div
-                      className="absolute w-px bg-slate-200 transition-all duration-500"
+                      className="absolute w-px transition-all duration-500"
                       style={{
                         left: `${startPos}%`,
                         top: yOffset > 0 ? '50%' : `calc(50% + ${yOffset}px)`,
                         height: `${Math.abs(yOffset)}px`,
-                        opacity: 0.4
+                        opacity: 0.6,
+                        backgroundColor: role.color
                       }}
                     />
                     {/* Role Segment */}
-                    <button
-                      onClick={() => setSelectedRole(role)}
-                      className="absolute h-3 rounded-full transition-all duration-300 hover:h-5 hover:-translate-y-1 focus:outline-none pointer-events-auto shadow-sm group"
+                    <div
+                      className="absolute pointer-events-auto"
                       style={{
                         left: `${startPos}%`,
                         width: `${Math.max(width, 1)}%`,
                         top: `calc(50% + ${yOffset}px - 6px)`,
-                        backgroundColor: role.color,
+                        zIndex: (hoveredRoleId === role.id || pinnedRoleId === role.id) ? 50 : 10
                       }}
                     >
-                      <div className="absolute -top-8 left-0 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                        <span className="text-[10px] font-bold bg-slate-900 text-white px-2 py-1 rounded shadow-lg">
-                          {role.organization}
-                        </span>
-                      </div>
-                    </button>
+                      {/* Role Segment */}
+                      <button
+                        onMouseEnter={() => !pinnedRoleId && setHoveredRoleId(role.id)}
+                        onMouseLeave={() => setHoveredRoleId(null)}
+                        onClick={(e: React.MouseEvent) => {
+                          e.stopPropagation();
+                          setPinnedRoleId(role.id);
+                          setHoveredRoleId(null);
+                        }}
+                        className="w-full h-3 rounded-full transition-all duration-300 hover:h-5 hover:-translate-y-1 focus:outline-none shadow-sm group"
+                        style={{
+                          backgroundColor: role.color,
+                        }}
+                      >
+                        <div className="absolute -top-8 left-0 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                          <span className="text-[10px] font-bold bg-slate-900 text-white px-2 py-1 rounded shadow-lg">
+                            {role.organization}
+                          </span>
+                        </div>
+                      </button>
+
+                      <AnimatePresence>
+                        {(hoveredRoleId === role.id || pinnedRoleId === role.id) && (
+                          <motion.div
+                            initial={{ opacity: 0, scale: 0.9, y: yOffset > 0 ? 10 : -10 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.9, y: yOffset > 0 ? 10 : -10 }}
+                            className={`absolute z-50 w-72 bg-white rounded-xl shadow-2xl border border-slate-100 p-4 pointer-events-auto ${
+                              yOffset > 0 ? 'bottom-full mb-4' : 'top-full mt-4'
+                            } ${startPos > 70 ? 'right-0' : 'left-0'}`}
+                            onClick={(e: React.MouseEvent) => e.stopPropagation()}
+                          >
+                            {pinnedRoleId === role.id && (
+                              <button
+                                onClick={() => setPinnedRoleId(null)}
+                                className="absolute top-2 right-2 p-1 rounded-full hover:bg-slate-50 text-slate-400"
+                              >
+                                <X className="w-4 h-4" />
+                              </button>
+                            )}
+                            <div className="space-y-3">
+                              <div className="flex items-center gap-2">
+                                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full text-white" style={{ backgroundColor: role.color }}>
+                                  {role.organization}
+                                </span>
+                                <Badge variant="success">{role.field}</Badge>
+                              </div>
+                              <h4 className="font-bold text-slate-900 text-sm leading-tight">{role.title}</h4>
+                              <div className="flex items-center text-[10px] text-slate-400 font-medium">
+                                <Calendar className="w-3 h-3 mr-1" />
+                                {role.startDate} - {role.endDate}
+                              </div>
+                              <p className="text-xs text-slate-500 line-clamp-2">{role.description[0]}</p>
+                              <div className="pt-2 flex items-center justify-between">
+                                <Link
+                                  to={`/career/${role.id}`}
+                                  className="text-[10px] font-bold text-primary-600 hover:text-primary-700 flex items-center"
+                                >
+                                  View Full Experience Details <ChevronRight className="w-3 h-3 ml-1" />
+                                </Link>
+                              </div>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
                     {/* Merge line back to center */}
                     <div
-                      className="absolute w-px bg-slate-200 transition-all duration-500"
+                      className="absolute w-px transition-all duration-500"
                       style={{
                         left: `${endPos}%`,
                         top: yOffset > 0 ? '50%' : `calc(50% + ${yOffset}px)`,
                         height: `${Math.abs(yOffset)}px`,
-                        opacity: 0.4
+                        opacity: 0.6,
+                        backgroundColor: role.color
                       }}
                     />
                   </div>
@@ -216,12 +349,29 @@ const Career: React.FC = () => {
         <div className="md:hidden relative bg-white border border-slate-200 rounded-2xl p-6 shadow-sm overflow-hidden">
           <div className="flex items-center justify-between mb-8">
             <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider">Timeline</h3>
-            <span className="text-xs font-bold text-slate-400">Present</span>
           </div>
 
           <div className="relative min-h-[1000px] mx-2">
             {/* Vertical Central Axis */}
             <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-slate-100 -translate-x-1/2 rounded-full" />
+
+            {/* Year Markers */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-full mb-2 text-[10px] font-bold text-slate-400">
+              Present
+            </div>
+            {years.map(year => {
+              const pos = getPosition(`${year}-01-01`);
+              const top = 100 - pos;
+              if (top < 0 || top > 100) return null;
+              return (
+                <div key={year} className="absolute inset-x-0 pointer-events-none" style={{ top: `${top}%` }}>
+                  <div className="absolute inset-x-0 h-px bg-slate-100" />
+                  <div className="absolute left-0 -translate-y-1/2 text-[10px] font-bold text-slate-300">
+                    {year}
+                  </div>
+                </div>
+              );
+            })}
 
             {sortedRoles.map((role) => {
               const startPos = getPosition(role.startDate);
@@ -232,19 +382,20 @@ const Career: React.FC = () => {
               const height = bottom - top;
 
               const laneIndex = roleLanes.assignments[role.id];
-              const trackIndex = laneIndex - (roleLanes.totalLanes - 1) / 2;
+              const trackIndex = laneIndex - roleLanes.centerLane;
               const xOffset = trackIndex * 40; // Offset from center
 
               return (
                 <div key={role.id} className="absolute inset-0 pointer-events-none">
                   {/* Branch line from center to track */}
                   <div
-                    className="absolute h-px bg-slate-200 transition-all duration-500"
+                    className="absolute h-px transition-all duration-500"
                     style={{
                       top: `${top}%`,
                       left: xOffset > 0 ? '50%' : `calc(50% + ${xOffset}px)`,
                       width: `${Math.abs(xOffset)}px`,
-                      opacity: 0.4
+                      opacity: 0.6,
+                      backgroundColor: role.color
                     }}
                   />
                   {/* Role Segment */}
@@ -266,20 +417,18 @@ const Career: React.FC = () => {
                   </button>
                   {/* Merge line back to center */}
                   <div
-                    className="absolute h-px bg-slate-200 transition-all duration-500"
+                    className="absolute h-px transition-all duration-500"
                     style={{
                       top: `${bottom}%`,
                       left: xOffset > 0 ? '50%' : `calc(50% + ${xOffset}px)`,
                       width: `${Math.abs(xOffset)}px`,
-                      opacity: 0.4
+                      opacity: 0.6,
+                      backgroundColor: role.color
                     }}
                   />
                 </div>
               );
             })}
-          </div>
-          <div className="mt-8 text-center">
-            <span className="text-xs font-bold text-slate-400">{timelineRange.start.getFullYear()}</span>
           </div>
           <p className="text-center text-xs text-slate-400 mt-4 italic">Tap segments for role details</p>
         </div>
