@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useRef } from 'react';
 import { useData } from '../DataContext';
 import { PageTransition, Badge } from '../components/UI';
-import { Calendar, MapPin, Search, ChevronRight, Layers, BookOpen, X, ZoomIn, ZoomOut } from 'lucide-react';
+import { Calendar, MapPin, Search, ChevronRight, Layers, BookOpen, ZoomIn, ZoomOut } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import Modal from '../components/Modal';
@@ -24,7 +24,6 @@ const Career: React.FC = () => {
   const [search, setSearch] = useState('');
   const [selectedRole, setSelectedRole] = useState<Role | null>(null);
   const [hoveredRoleId, setHoveredRoleId] = useState<string | null>(null);
-  const [pinnedRoleId, setPinnedRoleId] = useState<string | null>(null);
   const [zoomLevel, setZoomLevel] = useState(1);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
@@ -49,10 +48,16 @@ const Career: React.FC = () => {
     if (roles.length === 0) return { start: new Date(), end: new Date() };
     const starts = roles.map(r => parseDate(r.startDate).getTime());
     const ends = roles.map(r => parseDate(r.endDate).getTime());
-    return {
-      start: new Date(Math.min(...starts)),
-      end: new Date(Math.max(...ends)),
-    };
+
+    const minStart = Math.min(...starts);
+    const maxEnd = Math.max(...ends);
+
+    // Start at Jan 1st of the earliest year
+    const start = new Date(new Date(minStart).getFullYear(), 0, 1);
+    // End at the end of the current year (or slightly after the latest date to ensure padding)
+    const end = new Date(new Date(maxEnd).getFullYear(), 11, 31);
+
+    return { start, end };
   }, [roles]);
 
   const years = useMemo(() => {
@@ -178,7 +183,6 @@ const Career: React.FC = () => {
         {/* Desktop Timeline */}
         <div
           className="hidden md:block relative bg-white border border-slate-200 rounded-2xl p-8 shadow-sm overflow-hidden"
-          onClick={() => setPinnedRoleId(null)}
         >
           <div className="flex items-center justify-between mb-8">
             <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider">Interactive Timeline</h3>
@@ -206,7 +210,7 @@ const Career: React.FC = () => {
 
           <div className="overflow-x-auto pb-6 no-scrollbar" ref={scrollContainerRef}>
             <div
-              className="relative h-[400px] mx-4 transition-all duration-300"
+              className="relative h-[400px] transition-all duration-300"
               style={{ minWidth: `${zoomLevel * 100}%` }}
             >
               {/* Central Timeline Axis */}
@@ -241,13 +245,14 @@ const Career: React.FC = () => {
                   <div key={role.id} className="absolute inset-0 pointer-events-none">
                     {/* Branch line from center to track */}
                     <div
-                      className="absolute w-px transition-all duration-500"
+                    className="absolute w-1 transition-all duration-500"
                       style={{
                         left: `${startPos}%`,
                         top: yOffset > 0 ? '50%' : `calc(50% + ${yOffset}px)`,
                         height: `${Math.abs(yOffset)}px`,
                         opacity: 0.6,
-                        backgroundColor: role.color
+                        backgroundColor: role.color,
+                        transform: 'translateX(-50%)'
                       }}
                     />
                     {/* Role Segment */}
@@ -257,17 +262,16 @@ const Career: React.FC = () => {
                         left: `${startPos}%`,
                         width: `${Math.max(width, 1)}%`,
                         top: `calc(50% + ${yOffset}px - 6px)`,
-                        zIndex: (hoveredRoleId === role.id || pinnedRoleId === role.id) ? 50 : 10
+                        zIndex: hoveredRoleId === role.id ? 50 : 10
                       }}
                     >
                       {/* Role Segment */}
                       <button
-                        onMouseEnter={() => !pinnedRoleId && setHoveredRoleId(role.id)}
+                        onMouseEnter={() => setHoveredRoleId(role.id)}
                         onMouseLeave={() => setHoveredRoleId(null)}
                         onClick={(e: React.MouseEvent) => {
                           e.stopPropagation();
-                          setPinnedRoleId(role.id);
-                          setHoveredRoleId(null);
+                          setSelectedRole(role);
                         }}
                         className="w-full h-3 rounded-full transition-all duration-300 hover:h-5 hover:-translate-y-1 focus:outline-none shadow-sm group"
                         style={{
@@ -282,44 +286,34 @@ const Career: React.FC = () => {
                       </button>
 
                       <AnimatePresence>
-                        {(hoveredRoleId === role.id || pinnedRoleId === role.id) && (
+                        {hoveredRoleId === role.id && (
                           <motion.div
-                            initial={{ opacity: 0, scale: 0.9, y: yOffset > 0 ? 10 : -10 }}
+                            initial={{ opacity: 0, scale: 0.9, y: yOffset > 0 ? 5 : -5 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
-                            exit={{ opacity: 0, scale: 0.9, y: yOffset > 0 ? 10 : -10 }}
-                            className={`absolute z-50 w-72 bg-white rounded-xl shadow-2xl border border-slate-100 p-4 pointer-events-auto ${
-                              yOffset > 0 ? 'bottom-full mb-4' : 'top-full mt-4'
+                            exit={{ opacity: 0, scale: 0.9, y: yOffset > 0 ? 5 : -5 }}
+                            className={`absolute z-50 w-64 bg-slate-900/95 backdrop-blur-sm text-white rounded-lg shadow-xl p-3 pointer-events-none ${
+                              yOffset > 0 ? 'bottom-full mb-3' : 'top-full mt-3'
                             } ${startPos > 70 ? 'right-0' : 'left-0'}`}
-                            onClick={(e: React.MouseEvent) => e.stopPropagation()}
                           >
-                            {pinnedRoleId === role.id && (
-                              <button
-                                onClick={() => setPinnedRoleId(null)}
-                                className="absolute top-2 right-2 p-1 rounded-full hover:bg-slate-50 text-slate-400"
-                              >
-                                <X className="w-4 h-4" />
-                              </button>
-                            )}
-                            <div className="space-y-3">
-                              <div className="flex items-center gap-2">
-                                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full text-white" style={{ backgroundColor: role.color }}>
+                            <div className="space-y-2">
+                              <div className="flex items-center justify-between gap-2">
+                                <span
+                                  className="text-[10px] font-bold uppercase tracking-wider"
+                                  style={{ color: role.color }}
+                                >
                                   {role.organization}
                                 </span>
-                                <Badge variant="success">{role.field}</Badge>
                               </div>
-                              <h4 className="font-bold text-slate-900 text-sm leading-tight">{role.title}</h4>
-                              <div className="flex items-center text-[10px] text-slate-400 font-medium">
-                                <Calendar className="w-3 h-3 mr-1" />
-                                {role.startDate} - {role.endDate}
-                              </div>
-                              <p className="text-xs text-slate-500 line-clamp-2">{role.description[0]}</p>
-                              <div className="pt-2 flex items-center justify-between">
-                                <Link
-                                  to={`/career/${role.id}`}
-                                  className="text-[10px] font-bold text-primary-600 hover:text-primary-700 flex items-center"
-                                >
-                                  View Full Experience Details <ChevronRight className="w-3 h-3 ml-1" />
-                                </Link>
+                              <h4 className="font-bold text-white text-sm leading-tight">{role.title}</h4>
+                              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10px] text-slate-300">
+                                <span className="flex items-center">
+                                  <Calendar className="w-2.5 h-2.5 mr-1" />
+                                  {role.startDate} - {role.endDate}
+                                </span>
+                                <span className="flex items-center">
+                                  <MapPin className="w-2.5 h-2.5 mr-1" />
+                                  {role.location}
+                                </span>
                               </div>
                             </div>
                           </motion.div>
@@ -328,13 +322,14 @@ const Career: React.FC = () => {
                     </div>
                     {/* Merge line back to center */}
                     <div
-                      className="absolute w-px transition-all duration-500"
+                      className="absolute w-1 transition-all duration-500"
                       style={{
                         left: `${endPos}%`,
                         top: yOffset > 0 ? '50%' : `calc(50% + ${yOffset}px)`,
                         height: `${Math.abs(yOffset)}px`,
                         opacity: 0.6,
-                        backgroundColor: role.color
+                        backgroundColor: role.color,
+                        transform: 'translateX(-50%)'
                       }}
                     />
                   </div>
@@ -389,13 +384,14 @@ const Career: React.FC = () => {
                 <div key={role.id} className="absolute inset-0 pointer-events-none">
                   {/* Branch line from center to track */}
                   <div
-                    className="absolute h-px transition-all duration-500"
+                    className="absolute h-1 transition-all duration-500"
                     style={{
                       top: `${top}%`,
                       left: xOffset > 0 ? '50%' : `calc(50% + ${xOffset}px)`,
                       width: `${Math.abs(xOffset)}px`,
                       opacity: 0.6,
-                      backgroundColor: role.color
+                      backgroundColor: role.color,
+                      transform: 'translateY(-50%)'
                     }}
                   />
                   {/* Role Segment */}
@@ -407,23 +403,30 @@ const Career: React.FC = () => {
                       height: `${Math.max(height, 2)}%`,
                       left: `calc(50% + ${xOffset}px - 5px)`,
                       backgroundColor: role.color,
+                      zIndex: 10
                     }}
                   >
-                    <div className={`absolute ${xOffset >= 0 ? 'left-6' : 'right-6'} top-0 whitespace-nowrap opacity-100 pointer-events-none`}>
-                      <span className="text-[10px] font-extrabold bg-white border border-slate-100 text-slate-900 px-2 py-1 rounded shadow-sm">
+                    <div
+                      className={`absolute ${xOffset >= 0 ? 'left-6' : 'right-6'} top-0 whitespace-nowrap opacity-100 pointer-events-none z-20`}
+                    >
+                      <span
+                        className="text-[10px] font-extrabold bg-white border border-slate-100 px-2 py-1 rounded shadow-md"
+                        style={{ color: role.color }}
+                      >
                         {role.organization}
                       </span>
                     </div>
                   </button>
                   {/* Merge line back to center */}
                   <div
-                    className="absolute h-px transition-all duration-500"
+                    className="absolute h-1 transition-all duration-500"
                     style={{
                       top: `${bottom}%`,
                       left: xOffset > 0 ? '50%' : `calc(50% + ${xOffset}px)`,
                       width: `${Math.abs(xOffset)}px`,
                       opacity: 0.6,
-                      backgroundColor: role.color
+                      backgroundColor: role.color,
+                      transform: 'translateY(-50%)'
                     }}
                   />
                 </div>
