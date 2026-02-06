@@ -1,65 +1,44 @@
-import { MutableRefObject, useEffect, useMemo, useRef, useState } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
-import './App.css';
-import NavigationBar from './navigation/navigationBar';
-import Footer from './navigation/footer';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
+import Layout from './components/Layout';
+import Career from './pages/Career';
+import Publications from './pages/Publications';
+import Projects from './pages/Projects';
+import Awards from './pages/Awards';
+import RoleDetail from './pages/RoleDetail';
+import PublicationDetail from './pages/PublicationDetail';
+import { DataProvider } from './DataContext';
 
-/**
- * Height of nav bar in rem
- */
-const defaultNavHeight: number = 4;
+function AnimatedRoutes() {
+  const location = useLocation();
 
-/**
- * Collapsed height of nav bar in rem
- */
-const collapsedNavHeight: number = 2.5;
-
-/**
- * The root component for this application
- * @returns Root component for this SPA
- */
-export default function App() {
-
-  const ref = useRef(null);
-
-  const inView = useIsInViewport(ref);
-
-  const path = useLocation();
-
-  let isHome = path.pathname.toLowerCase().endsWith("home");
-
-  let collapsed = inView && isHome;
-
-  let activeHeight = collapsed ? `${collapsedNavHeight}rem` : `${defaultNavHeight}rem`;
-
-  return <>
-    <NavigationBar collapsed={collapsed} height={activeHeight} />
-    <div ref={ref} className={isHome ? "padding padding-landing-screen" : "padding"} />
-    <div className='app-main-content'>
-      <Outlet />
-    </div>
-    <Footer />
-  </>;
-}
-
-function useIsInViewport(ref: MutableRefObject<any>) {
-  const [isIntersecting, setIsIntersecting] = useState(false);
-
-  const observer = useMemo(
-    () =>
-      new IntersectionObserver(([entry]) =>
-        setIsIntersecting(entry.isIntersecting),
-      ),
-    [],
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<Navigate to="/career" replace />} />
+        <Route path="/career" element={<Career />} />
+        <Route path="/career/:id" element={<RoleDetail />} />
+        <Route path="/publications" element={<Publications />} />
+        <Route path="/publications/:id" element={<PublicationDetail />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/awards" element={<Awards />} />
+        <Route path="*" element={<Navigate to="/career" replace />} />
+      </Routes>
+    </AnimatePresence>
   );
-
-  useEffect(() => {
-    observer.observe(ref.current);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [ref, observer]);
-
-  return isIntersecting;
 }
+
+function App() {
+  return (
+    <DataProvider>
+      <Router>
+        <Layout>
+          <AnimatedRoutes />
+        </Layout>
+      </Router>
+    </DataProvider>
+  );
+}
+
+export default App;

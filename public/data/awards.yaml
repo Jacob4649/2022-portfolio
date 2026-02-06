@@ -1,0 +1,32 @@
+- id: deans-list-2023
+  title: "Dean's List"
+  date: "2023"
+  organization: "University of Toronto"
+  description: "Recognized for academic excellence during the 2022-2023 academic year."
+
+- id: clue-best-paper-2025
+  title: "Best Paper in Data & Modeling"
+  date: "2025"
+  organization: "CLUE Symposium"
+  description: "Won for the paper 'Quantifying the Effects of Induced Demand by the Toronto Blue Jays'."
+  associatedPublications: [clue-symposium-2025-induced-demand]
+
+- id: imi-big-data-winner-2025
+  title: "Winner, U of T IMI Big Data and AI Competition"
+  date: "2025"
+  organization: "Scotiabank / U of T"
+  description: "First place for developing a bank customer foundation model for money laundering detection."
+  associatedProjects: [scotiabank-money-laundering]
+
+- id: cra-outstanding-researcher-2025
+  title: "Outstanding Undergraduate Researcher Honorable Mention"
+  date: "2025"
+  organization: "Computing Research Association (CRA)"
+  description: "Recognized for significant research contributions as an undergraduate."
+
+- id: runway-ready-top3
+  title: "Top 3, Runway Ready Challenge"
+  date: "2025"
+  organization: "Dexterra / Pearson Airport"
+  description: "Recognized for developing an innovative queuing model for airport facility management."
+  associatedProjects: [dexterra-airport-queuing]

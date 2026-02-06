@@ -1,0 +1,52 @@
+- id: freight-data-repository-paper
+  title: "A Freight Data Repository as a Foundational Pillar for Urban Freight Research"
+  authors: ["Rivera-Gonzalez, C.", "Feng, Z.", "Klimczak, J.", "Bayanouni, H.", "Carr, K.", "Roorda, M."]
+  year: 2025
+  venue: "Research in Transportation Business & Management"
+  type: publication
+  doi: "10.1016/j.rtbm.2025.101417"
+  link: "https://doi.org/10.1016/j.rtbm.2025.101417"
+  description: "Describes the development and impact of a foundational freight data repository."
+  associatedRoles: [freight-data-warehouse]
+
+- id: dashboard-visualization-report
+  title: "Dashboard Visualization of GHGs and Air Contaminants"
+  authors: ["Rivera-Gonzalez, C.", "Klimczak, J.", "Roorda, M."]
+  year: 2024
+  venue: "Government Report for Transport Canada"
+  type: report
+  description: "A report for Transport Canada on methods for visualizing traffic-related emissions with dashboard tools."
+  associatedRoles: [freight-data-warehouse]
+
+- id: community-visualization-tool
+  title: "A Tool for Visualizing the Physical Elements of Communities"
+  authors: ["Wagner, S.", "Diamond, S.", "Kossowsky, D.", "Wang, C.", "Klimczak, J.", "Roorda, M."]
+  year: 2026
+  venue: "HCI International"
+  type: publication
+  associatedRoles: [freight-data-warehouse]
+
+- id: gis-education-conf-2025
+  title: "Visualization of Extreme Climate Events"
+  authors: ["Gismondi, G.", "Klimczak, J.", "Seok, J."]
+  year: 2025
+  venue: "2025 GIS in Education and Research Conference"
+  type: conference
+  associatedRoles: [dgp-lab-ml-researcher]
+
+- id: clue-symposium-2025-induced-demand
+  title: "Quantifying the Effects of Induced Demand by the Toronto Blue Jays"
+  authors: ["Klimczak, J.", "Rivera-Gonzalez, C.", "Roorda, M."]
+  year: 2025
+  venue: "4th City Logistics for the Urban Economy Symposium"
+  type: conference
+  associatedAwards: [clue-best-paper-2025]
+  associatedRoles: [freight-data-warehouse]
+
+- id: ctrf-2024-gridlock
+  title: "Gridlock in the Dugout: Induced Demand and the Toronto Blue Jays"
+  authors: ["Klimczak, J.", "Rivera-Gonzalez, C.", "Roorda, M."]
+  year: 2024
+  venue: "59th Canadian Transportation Research Forum"
+  type: conference
+  associatedRoles: [freight-data-warehouse]
