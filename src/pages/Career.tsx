@@ -47,15 +47,12 @@ const Career: React.FC = () => {
   const timelineRange = useMemo(() => {
     if (roles.length === 0) return { start: new Date(), end: new Date() };
     const starts = roles.map(r => parseDate(r.startDate).getTime());
-    const ends = roles.map(r => parseDate(r.endDate).getTime());
-
     const minStart = Math.min(...starts);
-    const maxEnd = Math.max(...ends);
 
     // Start at Jan 1st of the earliest year
     const start = new Date(new Date(minStart).getFullYear(), 0, 1);
-    // End at the end of the current year (or slightly after the latest date to ensure padding)
-    const end = new Date(new Date(maxEnd).getFullYear(), 11, 31);
+    // End at the actual present
+    const end = new Date();
 
     return { start, end };
   }, [roles]);
@@ -84,12 +81,17 @@ const Career: React.FC = () => {
     return [...filteredRoles].sort((a, b) => parseDate(b.startDate).getTime() - parseDate(a.startDate).getTime());
   }, [filteredRoles]);
 
-  const getPosition = (dateStr: string) => {
+  const getPosition = (dateStr: string, isEnd = false) => {
     const date = parseDate(dateStr).getTime();
     const start = timelineRange.start.getTime();
     const end = timelineRange.end.getTime();
-    const pos = ((date - start) / (end - start)) * 100;
-    return Math.max(0, Math.min(100, pos));
+    let pos = ((date - start) / (end - start)) * 100;
+
+    if (isEnd && dateStr === 'Present') {
+      return 115; // Continue off edge for present roles
+    }
+
+    return Math.max(0, Math.min(115, pos));
   };
 
   const roleLanes = useMemo(() => {
@@ -208,13 +210,13 @@ const Career: React.FC = () => {
             </div>
           </div>
 
-          <div className="overflow-x-auto pb-6 no-scrollbar" ref={scrollContainerRef}>
+          <div className={`${zoomLevel > 1 ? 'overflow-x-auto' : 'overflow-x-hidden'} pb-6 no-scrollbar`} ref={scrollContainerRef}>
             <div
               className="relative h-[400px] transition-all duration-300"
               style={{ minWidth: `${zoomLevel * 100}%` }}
             >
               {/* Central Timeline Axis */}
-              <div className="absolute top-1/2 left-0 right-0 h-1 bg-slate-100 -translate-y-1/2 rounded-full" />
+              <div className="absolute top-1/2 left-0 right-0 h-1 bg-slate-200 -translate-y-1/2 rounded-full" />
 
               {/* Year Markers */}
               {years.map(year => {
@@ -223,19 +225,26 @@ const Career: React.FC = () => {
                 return (
                   <div key={year} className="absolute inset-y-0 pointer-events-none" style={{ left: `${pos}%` }}>
                     <div className="absolute inset-y-0 w-px bg-slate-100" />
-                    <div className="absolute bottom-4 -translate-x-1/2 text-[10px] font-bold text-slate-300">
+                    <div className={`absolute bottom-4 text-[10px] font-bold text-slate-300 ${
+                      pos < 5 ? 'left-0' : pos > 95 ? 'right-0' : '-translate-x-1/2'
+                    }`}>
                       {year}
                     </div>
                   </div>
                 );
               })}
-              <div className="absolute bottom-4 right-0 translate-x-1/2 text-[10px] font-bold text-slate-400">
-                Present
+
+              {/* Present Marker */}
+              <div className="absolute inset-y-0 pointer-events-none" style={{ left: '100%' }}>
+                <div className="absolute inset-y-0 w-px border-l border-dashed border-primary-200" />
+                <div className="absolute bottom-4 right-0 text-[10px] font-bold text-primary-500 bg-white px-1">
+                  Present
+                </div>
               </div>
 
               {sortedRoles.map((role) => {
                 const startPos = getPosition(role.startDate);
-                const endPos = getPosition(role.endDate);
+                const endPos = getPosition(role.endDate, true);
                 const width = endPos - startPos;
                 const laneIndex = roleLanes.assignments[role.id];
                 const trackIndex = laneIndex - roleLanes.centerLane;
@@ -250,7 +259,6 @@ const Career: React.FC = () => {
                         left: `${startPos}%`,
                         top: yOffset > 0 ? '50%' : `calc(50% + ${yOffset}px)`,
                         height: `${Math.abs(yOffset)}px`,
-                        opacity: 0.6,
                         backgroundColor: role.color,
                         transform: 'translateX(-50%)'
                       }}
@@ -259,8 +267,8 @@ const Career: React.FC = () => {
                     <div
                       className="absolute pointer-events-auto"
                       style={{
-                        left: `${startPos}%`,
-                        width: `${Math.max(width, 1)}%`,
+                        left: `calc(${startPos}% - 6px)`,
+                        width: `calc(${Math.max(width, 1)}% + 12px)`,
                         top: `calc(50% + ${yOffset}px - 6px)`,
                         zIndex: hoveredRoleId === role.id ? 50 : 10
                       }}
@@ -273,17 +281,11 @@ const Career: React.FC = () => {
                           e.stopPropagation();
                           setSelectedRole(role);
                         }}
-                        className="w-full h-3 rounded-full transition-all duration-300 hover:h-5 hover:-translate-y-1 focus:outline-none shadow-sm group"
+                        className="w-full h-3 rounded-full transition-all duration-300 hover:h-4 focus:outline-none shadow-sm group"
                         style={{
                           backgroundColor: role.color,
                         }}
-                      >
-                        <div className="absolute -top-8 left-0 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                          <span className="text-[10px] font-bold bg-slate-900 text-white px-2 py-1 rounded shadow-lg">
-                            {role.organization}
-                          </span>
-                        </div>
-                      </button>
+                      />
 
                       <AnimatePresence>
                         {hoveredRoleId === role.id && (
@@ -291,7 +293,7 @@ const Career: React.FC = () => {
                             initial={{ opacity: 0, scale: 0.9, y: yOffset > 0 ? 5 : -5 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.9, y: yOffset > 0 ? 5 : -5 }}
-                            className={`absolute z-50 w-64 bg-slate-900/95 backdrop-blur-sm text-white rounded-lg shadow-xl p-3 pointer-events-none ${
+                            className={`absolute z-50 w-64 bg-white/95 backdrop-blur-md text-slate-900 rounded-xl shadow-2xl border border-slate-100 p-4 pointer-events-none ${
                               yOffset > 0 ? 'bottom-full mb-3' : 'top-full mt-3'
                             } ${startPos > 70 ? 'right-0' : 'left-0'}`}
                           >
@@ -304,14 +306,14 @@ const Career: React.FC = () => {
                                   {role.organization}
                                 </span>
                               </div>
-                              <h4 className="font-bold text-white text-sm leading-tight">{role.title}</h4>
-                              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10px] text-slate-300">
+                              <h4 className="font-bold text-slate-900 text-sm leading-tight">{role.title}</h4>
+                              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10px] text-slate-500 font-medium">
                                 <span className="flex items-center">
-                                  <Calendar className="w-2.5 h-2.5 mr-1" />
+                                  <Calendar className="w-3 h-3 mr-1 text-slate-400" />
                                   {role.startDate} - {role.endDate}
                                 </span>
                                 <span className="flex items-center">
-                                  <MapPin className="w-2.5 h-2.5 mr-1" />
+                                  <MapPin className="w-3 h-3 mr-1 text-slate-400" />
                                   {role.location}
                                 </span>
                               </div>
@@ -327,7 +329,6 @@ const Career: React.FC = () => {
                         left: `${endPos}%`,
                         top: yOffset > 0 ? '50%' : `calc(50% + ${yOffset}px)`,
                         height: `${Math.abs(yOffset)}px`,
-                        opacity: 0.6,
                         backgroundColor: role.color,
                         transform: 'translateX(-50%)'
                       }}
@@ -348,12 +349,9 @@ const Career: React.FC = () => {
 
           <div className="relative min-h-[1000px] mx-2">
             {/* Vertical Central Axis */}
-            <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-slate-100 -translate-x-1/2 rounded-full" />
+            <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-slate-200 -translate-x-1/2 rounded-full" />
 
             {/* Year Markers */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-full mb-2 text-[10px] font-bold text-slate-400">
-              Present
-            </div>
             {years.map(year => {
               const pos = getPosition(`${year}-01-01`);
               const top = 100 - pos;
@@ -368,9 +366,17 @@ const Career: React.FC = () => {
               );
             })}
 
+            {/* Present Marker (Mobile) */}
+            <div className="absolute inset-x-0 pointer-events-none" style={{ top: '0%' }}>
+              <div className="absolute inset-x-0 h-px border-t border-dashed border-primary-200" />
+              <div className="absolute right-0 -translate-y-1/2 text-[10px] font-bold text-primary-500 bg-white px-1">
+                Present
+              </div>
+            </div>
+
             {sortedRoles.map((role) => {
               const startPos = getPosition(role.startDate);
-              const endPos = getPosition(role.endDate);
+              const endPos = getPosition(role.endDate, true);
               // Invert for mobile: Present (100) at top (0)
               const top = 100 - endPos;
               const bottom = 100 - startPos;
@@ -389,7 +395,6 @@ const Career: React.FC = () => {
                       top: `${top}%`,
                       left: xOffset > 0 ? '50%' : `calc(50% + ${xOffset}px)`,
                       width: `${Math.abs(xOffset)}px`,
-                      opacity: 0.6,
                       backgroundColor: role.color,
                       transform: 'translateY(-50%)'
                     }}
@@ -399,24 +404,13 @@ const Career: React.FC = () => {
                     onClick={() => setSelectedRole(role)}
                     className="absolute w-2.5 rounded-full transition-all duration-300 hover:w-4 hover:-translate-x-1 focus:outline-none pointer-events-auto shadow-sm group"
                     style={{
-                      top: `${top}%`,
-                      height: `${Math.max(height, 2)}%`,
+                      top: `calc(${top}% - 5px)`,
+                      height: `calc(${Math.max(height, 2)}% + 10px)`,
                       left: `calc(50% + ${xOffset}px - 5px)`,
                       backgroundColor: role.color,
                       zIndex: 10
                     }}
-                  >
-                    <div
-                      className={`absolute ${xOffset >= 0 ? 'left-6' : 'right-6'} top-0 whitespace-nowrap opacity-100 pointer-events-none z-20`}
-                    >
-                      <span
-                        className="text-[10px] font-extrabold bg-white border border-slate-100 px-2 py-1 rounded shadow-md"
-                        style={{ color: role.color }}
-                      >
-                        {role.organization}
-                      </span>
-                    </div>
-                  </button>
+                  />
                   {/* Merge line back to center */}
                   <div
                     className="absolute h-1 transition-all duration-500"
@@ -424,11 +418,38 @@ const Career: React.FC = () => {
                       top: `${bottom}%`,
                       left: xOffset > 0 ? '50%' : `calc(50% + ${xOffset}px)`,
                       width: `${Math.abs(xOffset)}px`,
-                      opacity: 0.6,
                       backgroundColor: role.color,
                       transform: 'translateY(-50%)'
                     }}
                   />
+                </div>
+              );
+            })}
+
+            {/* Mobile Role Labels (Separate layer to ensure they stay on top) */}
+            {sortedRoles.map((role) => {
+              const endPos = getPosition(role.endDate, true);
+              const top = 100 - endPos;
+              const laneIndex = roleLanes.assignments[role.id];
+              const trackIndex = laneIndex - roleLanes.centerLane;
+              const xOffset = trackIndex * 40;
+
+              return (
+                <div
+                  key={`${role.id}-label`}
+                  className={`absolute whitespace-nowrap pointer-events-none z-30`}
+                  style={{
+                    top: `calc(${top}% - 5px)`,
+                    left: xOffset >= 0 ? `calc(50% + ${xOffset}px + 8px)` : 'auto',
+                    right: xOffset < 0 ? `calc(50% - ${xOffset}px + 8px)` : 'auto',
+                  }}
+                >
+                  <span
+                    className="text-[10px] font-extrabold bg-white/90 backdrop-blur-sm border border-slate-100 px-2 py-1 rounded shadow-md"
+                    style={{ color: role.color }}
+                  >
+                    {role.organization}
+                  </span>
                 </div>
               );
             })}
