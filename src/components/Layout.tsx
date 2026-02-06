@@ -19,18 +19,18 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   ];
 
   return (
-    <div className="flex min-h-screen bg-black text-white">
+    <div className="flex min-h-screen bg-zinc-950 text-zinc-50">
       {/* Mobile Backdrop */}
       {isSidebarOpen && (
         <div
-          className="fixed inset-0 z-40 bg-black/80 lg:hidden"
+          className="fixed inset-0 z-40 bg-zinc-950/80 lg:hidden"
           onClick={() => setIsSidebarOpen(false)}
         />
       )}
 
       {/* Sidebar */}
       <aside className={cn(
-        "fixed inset-y-0 left-0 z-50 w-64 bg-zinc-950 border-r border-zinc-900 transform transition-transform duration-300 ease-in-out lg:relative lg:translate-x-0",
+        "fixed inset-y-0 left-0 z-50 w-64 bg-zinc-950 border-r border-zinc-900/50 transform transition-transform duration-300 ease-in-out lg:relative lg:translate-x-0",
         isSidebarOpen ? "translate-x-0" : "-translate-x-full"
       )}>
         <div className="flex flex-col h-full">
@@ -58,7 +58,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             ))}
           </nav>
 
-          <div className="p-4 border-t border-zinc-900">
+          <div className="p-4 border-t border-zinc-900/50">
             <div className="flex justify-around items-center">
               <a href="https://github.com/jacob-klimczak" target="_blank" rel="noreferrer" className="p-2 text-zinc-500 hover:text-white transition-colors">
                 <Github className="w-5 h-5" />
@@ -75,8 +75,8 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 min-w-0">
-        <header className="sticky top-0 z-30 flex items-center h-16 px-4 bg-black/80 backdrop-blur-md border-b border-zinc-900 lg:hidden">
+      <main className="flex-1 min-w-0 bg-zinc-950">
+        <header className="sticky top-0 z-30 flex items-center h-16 px-4 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-900/50 lg:hidden">
           <button
             onClick={() => setIsSidebarOpen(true)}
             className="p-2 -ml-2 text-zinc-400 hover:text-white"

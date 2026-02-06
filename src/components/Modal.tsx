@@ -36,7 +36,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }) => {
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="relative w-full max-w-4xl max-h-[90vh] overflow-hidden bg-zinc-950 border border-zinc-900 rounded-2xl shadow-2xl flex flex-col"
+            className="relative w-full max-w-4xl max-h-[90vh] overflow-hidden bg-zinc-900 border border-zinc-800 rounded-2xl shadow-2xl flex flex-col"
           >
             <div className="flex items-center justify-between p-6 border-b border-zinc-900">
               <h3 className="text-xl font-bold text-white">{title}</h3>

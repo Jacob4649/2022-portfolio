@@ -80,7 +80,7 @@ const RoleDetail: React.FC = () => {
           </div>
 
           <div className="space-y-8">
-            <div className="bg-zinc-950 rounded-2xl border border-zinc-900 p-6 space-y-6 sticky top-24">
+            <div className="bg-zinc-900 rounded-2xl border border-zinc-800 p-6 space-y-6 sticky top-24 shadow-xl">
               <div>
                 <h3 className="text-sm font-bold text-zinc-500 uppercase tracking-wider mb-4">Technologies</h3>
                 <div className="flex flex-wrap gap-2">

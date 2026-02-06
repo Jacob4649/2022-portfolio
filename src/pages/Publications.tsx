@@ -38,7 +38,7 @@ const Publications: React.FC = () => {
                 key={t}
                 onClick={() => setActiveType(t)}
                 className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors capitalize ${
-                  activeType === t ? 'bg-primary-600 text-white' : 'bg-zinc-950 text-zinc-400 border border-zinc-900 hover:bg-zinc-900'
+                  activeType === t ? 'bg-primary-600 text-white' : 'bg-zinc-900 text-zinc-400 border border-zinc-800 hover:bg-zinc-800'
                 }`}
               >
                 {t === 'All' ? t : `${t}s`}

@@ -156,7 +156,7 @@ const Career: React.FC = () => {
               <input
                 type="text"
                 placeholder="Search skills, roles..."
-                className="pl-10 pr-4 py-2 bg-zinc-900 border border-zinc-800 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none w-full sm:w-64 text-white"
+                className="pl-10 pr-4 py-2 bg-zinc-900 border border-zinc-800 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none w-full sm:w-64 text-zinc-100 placeholder-zinc-500"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
@@ -167,7 +167,7 @@ const Career: React.FC = () => {
                   key={f}
                   onClick={() => setFilter(f)}
                   className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors whitespace-nowrap ${
-                    filter === f ? 'bg-primary-600 text-white' : 'bg-zinc-900 text-zinc-500 border border-zinc-800 hover:bg-zinc-800 hover:text-white'
+                    filter === f ? 'bg-primary-600 text-white' : 'bg-zinc-900 text-zinc-400 border border-zinc-800 hover:bg-zinc-800 hover:text-white'
                   }`}
                 >
                   {f}
@@ -179,7 +179,7 @@ const Career: React.FC = () => {
 
         {/* Desktop Timeline */}
         <div
-          className="hidden md:block relative bg-zinc-950 border border-zinc-900 rounded-2xl p-8 shadow-2xl overflow-hidden"
+          className="hidden md:block relative bg-zinc-900 border border-zinc-800 rounded-2xl p-8 shadow-2xl overflow-hidden"
         >
           <div className="flex items-center justify-between mb-8">
             <h3 className="text-sm font-bold text-zinc-500 uppercase tracking-wider">Interactive Timeline</h3>
@@ -344,7 +344,7 @@ const Career: React.FC = () => {
         </div>
 
         {/* Mobile Timeline */}
-        <div className="md:hidden relative bg-zinc-950 border border-zinc-900 rounded-2xl p-6 shadow-2xl overflow-hidden">
+        <div className="md:hidden relative bg-zinc-900 border border-zinc-800 rounded-2xl p-6 shadow-2xl overflow-hidden">
           <div className="flex items-center justify-between mb-8">
             <h3 className="text-sm font-bold text-zinc-500 uppercase tracking-wider">Timeline</h3>
           </div>

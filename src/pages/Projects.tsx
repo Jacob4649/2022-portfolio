@@ -32,9 +32,9 @@ const Projects: React.FC = () => {
           <p className="text-zinc-500">A collection of personal, academic, and commercial projects.</p>
         </div>
 
-        <div className="overflow-hidden bg-zinc-950 border border-zinc-900 rounded-xl shadow-sm">
-          <table className="min-w-full divide-y divide-zinc-900">
-            <thead className="bg-zinc-900">
+        <div className="overflow-hidden bg-zinc-900 border border-zinc-800 rounded-xl shadow-sm">
+          <table className="min-w-full divide-y divide-zinc-800">
+            <thead className="bg-zinc-900/50">
               <tr>
                 <th className="px-6 py-4 text-left text-xs font-bold text-zinc-500 uppercase tracking-wider">Project</th>
                 <th className="px-6 py-4 text-left text-xs font-bold text-zinc-500 uppercase tracking-wider hidden sm:table-cell">Type</th>
@@ -43,9 +43,9 @@ const Projects: React.FC = () => {
                 <th className="px-6 py-4 text-right text-xs font-bold text-zinc-500 uppercase tracking-wider">Action</th>
               </tr>
             </thead>
-            <tbody className="bg-zinc-950 divide-y divide-zinc-900">
+            <tbody className="bg-zinc-900 divide-y divide-zinc-800">
               {projects.map((project) => (
-                <tr key={project.id} className="hover:bg-zinc-900 transition-colors group cursor-pointer" onClick={() => openProject(project.id)}>
+                <tr key={project.id} className="hover:bg-zinc-800/50 transition-colors group cursor-pointer" onClick={() => openProject(project.id)}>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
                       <div className="flex-shrink-0 w-8 h-8 rounded bg-primary-900/30 text-primary-400 flex items-center justify-center mr-3">

@@ -29,7 +29,7 @@ export const Badge: React.FC<{ children: React.ReactNode, variant?: 'primary' | 
 
 export const Card: React.FC<{ children: React.ReactNode, className?: string, onClick?: () => void }> = ({ children, className, onClick }) => (
   <div
-    className={`bg-zinc-900/50 backdrop-blur-md rounded-xl border border-zinc-800/50 shadow-sm hover:shadow-md transition-all duration-200 ${onClick ? 'cursor-pointer hover:border-zinc-700' : ''} ${className}`}
+    className={`bg-zinc-900 rounded-xl border border-zinc-800 shadow-sm hover:shadow-md transition-all duration-200 ${onClick ? 'cursor-pointer hover:border-zinc-700' : ''} ${className}`}
     onClick={onClick}
   >
     {children}
