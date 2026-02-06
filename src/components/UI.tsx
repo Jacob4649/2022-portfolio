@@ -14,10 +14,10 @@ export const PageTransition: React.FC<{ children: React.ReactNode }> = ({ childr
 
 export const Badge: React.FC<{ children: React.ReactNode, variant?: 'primary' | 'secondary' | 'outline' | 'success' }> = ({ children, variant = 'primary' }) => {
   const variants = {
-    primary: 'bg-primary-50 text-primary-700 border-primary-100',
-    secondary: 'bg-slate-100 text-slate-700 border-slate-200',
-    outline: 'bg-transparent text-slate-600 border-slate-200',
-    success: 'bg-emerald-50 text-emerald-700 border-emerald-100',
+    primary: 'bg-primary-900/30 text-primary-400 border-primary-800/50',
+    secondary: 'bg-zinc-800 text-zinc-300 border-zinc-700',
+    outline: 'bg-transparent text-zinc-400 border-zinc-800',
+    success: 'bg-emerald-900/30 text-emerald-400 border-emerald-800/50',
   };
 
   return (
@@ -29,7 +29,7 @@ export const Badge: React.FC<{ children: React.ReactNode, variant?: 'primary' | 
 
 export const Card: React.FC<{ children: React.ReactNode, className?: string, onClick?: () => void }> = ({ children, className, onClick }) => (
   <div
-    className={`bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow duration-200 ${onClick ? 'cursor-pointer' : ''} ${className}`}
+    className={`bg-zinc-900 rounded-xl border border-zinc-800 shadow-sm hover:shadow-md transition-all duration-200 ${onClick ? 'cursor-pointer hover:border-zinc-700' : ''} ${className}`}
     onClick={onClick}
   >
     {children}

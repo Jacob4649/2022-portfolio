@@ -22,36 +22,36 @@ const Projects: React.FC = () => {
     setSearchParams({});
   };
 
-  if (loading) return <div className="flex justify-center p-12 text-slate-400">Loading...</div>;
+  if (loading) return <div className="flex justify-center p-12 text-zinc-400">Loading...</div>;
 
   return (
     <PageTransition>
       <div className="space-y-8">
         <div>
-          <h2 className="text-3xl font-bold text-slate-900">Projects</h2>
-          <p className="text-slate-500">A collection of personal, academic, and commercial projects.</p>
+          <h2 className="text-3xl font-bold text-white">Projects</h2>
+          <p className="text-zinc-500">A collection of personal, academic, and commercial projects.</p>
         </div>
 
-        <div className="overflow-hidden bg-white border border-slate-200 rounded-xl shadow-sm">
-          <table className="min-w-full divide-y divide-slate-200">
-            <thead className="bg-slate-50">
+        <div className="overflow-hidden bg-zinc-900 border border-zinc-800 rounded-xl shadow-sm">
+          <table className="min-w-full divide-y divide-zinc-800">
+            <thead className="bg-zinc-900/50">
               <tr>
-                <th className="px-6 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">Project</th>
-                <th className="px-6 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-wider hidden sm:table-cell">Type</th>
-                <th className="px-6 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-wider hidden md:table-cell">Technologies</th>
-                <th className="px-6 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">Date</th>
-                <th className="px-6 py-4 text-right text-xs font-bold text-slate-500 uppercase tracking-wider">Action</th>
+                <th className="px-6 py-4 text-left text-xs font-bold text-zinc-500 uppercase tracking-wider">Project</th>
+                <th className="px-6 py-4 text-left text-xs font-bold text-zinc-500 uppercase tracking-wider hidden sm:table-cell">Type</th>
+                <th className="px-6 py-4 text-left text-xs font-bold text-zinc-500 uppercase tracking-wider hidden md:table-cell">Technologies</th>
+                <th className="px-6 py-4 text-left text-xs font-bold text-zinc-500 uppercase tracking-wider">Date</th>
+                <th className="px-6 py-4 text-right text-xs font-bold text-zinc-500 uppercase tracking-wider">Action</th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-slate-200">
+            <tbody className="bg-zinc-900 divide-y divide-zinc-800">
               {projects.map((project) => (
-                <tr key={project.id} className="hover:bg-slate-50 transition-colors group cursor-pointer" onClick={() => openProject(project.id)}>
+                <tr key={project.id} className="hover:bg-zinc-800/50 transition-colors group cursor-pointer" onClick={() => openProject(project.id)}>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
-                      <div className="flex-shrink-0 w-8 h-8 rounded bg-primary-50 text-primary-600 flex items-center justify-center mr-3">
+                      <div className="flex-shrink-0 w-8 h-8 rounded bg-primary-900/30 text-primary-400 flex items-center justify-center mr-3">
                         <Code className="w-4 h-4" />
                       </div>
-                      <div className="text-sm font-bold text-slate-900">{project.name}</div>
+                      <div className="text-sm font-bold text-white">{project.name}</div>
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap hidden sm:table-cell">
@@ -60,16 +60,16 @@ const Projects: React.FC = () => {
                   <td className="px-6 py-4 hidden md:table-cell">
                     <div className="flex flex-wrap gap-1">
                       {project.technologies.slice(0, 2).map(t => (
-                        <span key={t} className="px-2 py-0.5 bg-slate-100 text-slate-600 rounded text-[10px] font-bold uppercase tracking-wide">{t}</span>
+                        <span key={t} className="px-2 py-0.5 bg-zinc-900 text-zinc-400 rounded text-[10px] font-bold uppercase tracking-wide">{t}</span>
                       ))}
-                      {project.technologies.length > 2 && <span className="text-[10px] text-slate-400">+{project.technologies.length - 2}</span>}
+                      {project.technologies.length > 2 && <span className="text-[10px] text-zinc-400">+{project.technologies.length - 2}</span>}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-500 font-medium">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-zinc-500 font-medium">
                     {project.startDate}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <button className="text-primary-600 hover:text-primary-900 flex items-center justify-end w-full">
+                    <button className="text-primary-400 hover:text-primary-900 flex items-center justify-end w-full">
                       Details <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
                     </button>
                   </td>
@@ -88,21 +88,21 @@ const Projects: React.FC = () => {
             <div className="space-y-8">
               <div className="flex flex-wrap gap-2">
                 <Badge variant="primary">{selectedProject.type}</Badge>
-                <div className="flex items-center text-sm text-slate-500">
+                <div className="flex items-center text-sm text-zinc-500">
                   <Calendar className="w-4 h-4 mr-1.5" />
                   {selectedProject.startDate} - {selectedProject.endDate}
                 </div>
               </div>
 
               <div className="space-y-4">
-                <h4 className="text-lg font-bold text-slate-900">About the Project</h4>
-                <p className="text-slate-600 leading-relaxed">
+                <h4 className="text-lg font-bold text-white">About the Project</h4>
+                <p className="text-zinc-400 leading-relaxed">
                   {selectedProject.longDescription || selectedProject.description}
                 </p>
               </div>
 
               <div className="space-y-4">
-                <h4 className="text-lg font-bold text-slate-900">Technologies Used</h4>
+                <h4 className="text-lg font-bold text-white">Technologies Used</h4>
                 <div className="flex flex-wrap gap-2">
                   {selectedProject.technologies.map(t => (
                     <Badge key={t} variant="outline">{t}</Badge>
@@ -111,7 +111,7 @@ const Projects: React.FC = () => {
               </div>
 
               {selectedProject.link && (
-                <div className="pt-4 border-t border-slate-100">
+                <div className="pt-4 border-t border-zinc-800">
                   <a
                     href={selectedProject.link}
                     target="_blank"

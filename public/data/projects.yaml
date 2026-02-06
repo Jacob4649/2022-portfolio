@@ -6,7 +6,7 @@
   technologies: [Python, PyTorch, Perceiver, SWIN Transformer]
   description: "A machine learning model for forecasting forest fires in Canada, integrating insights from governmental organizations."
   longDescription: "Led a team of 5 students to build a fire-forecasting model, integrating insights from the Canadian Forest Service and Ontario Ministry of Natural Resources. Extended Perceiver Encoder and SWIN Transformer-based model using Python and PyTorch, enabling the testing of 12 hypothetical fire scenarios and digitally recreating Canada’s biggest-ever wildfire."
-  associatedRoles: [dgp-lab-ml-researcher]
+  associatedRoles: [dgp-lab-ml-researcher, uoft-student]
 
 - id: scotiabank-money-laundering
   name: Bank Customer Foundation Model
@@ -17,6 +17,7 @@
   description: "Developed a bank customer foundation model for anomaly detection to find instances of money laundering."
   longDescription: "Won U of T IMI Big Data and AI Competition in 2025 for developing a bank customer foundation model created with a contrastive learning approach; and applying it to anomaly detection models to find instances of money laundering. The model’s performance led Scotiabank to test the model for internal use."
   associatedAwards: [imi-big-data-winner-2025]
+  associatedRoles: [uoft-student]
 
 - id: dexterra-airport-queuing
   name: Pearson Airport Demand Forecasting
@@ -27,3 +28,4 @@
   description: "Developed a demand forecasting and queuing model for facility management at Pearson International Airport."
   longDescription: "Placed top 3 in the Runway Ready challenge with Dexterra in 2025 for developing a demand forecasting and queuing model for facility management at Pearson International Airport in Toronto. Later funded by Dexterra to enhance the original prototype."
   associatedAwards: [runway-ready-top3]
+  associatedRoles: [uoft-student]
