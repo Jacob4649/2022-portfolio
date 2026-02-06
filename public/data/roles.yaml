@@ -1,0 +1,62 @@
+- id: dgp-lab-ml-researcher
+  title: Machine Learning Researcher
+  organization: DGP Lab
+  location: University of Toronto
+  startDate: 2025-05
+  endDate: Present
+  field: Data Science
+  languages: [Python]
+  technologies: [PyTorch, Perceiver, SWIN Transformer]
+  description: ["Led a team of 5 students to build a fire-forecasting model, integrating insights from the Canadian Forest Service and Ontario Ministry of Natural Resources.", "Extended Perceiver Encoder and SWIN Transformer-based model using Python and PyTorch.", "Designed modular pipeline infrastructure, reducing test load to 1/6th by creating shared model interfaces."]
+  points: ["Led team of 5", "Fire-forecasting model", "Modular pipeline infrastructure"]
+  projects: [fire-forecasting-model]
+
+- id: freight-data-warehouse
+  title: Data Engineer
+  organization: Freight Data Warehouse
+  location: University of Toronto
+  startDate: 2023-01
+  endDate: Present
+  field: Data Science
+  languages: [Python, C#, SQL]
+  technologies: [Postgres, MongoDB, MySQL, SQL Server, VMWare, AWS]
+  description: ["Technical lead for a large Canadian transportation data repository, collaborating with 20+ partners including Transport Canada and the American Transportation Research Institute.", "Engineered 3 high-volume data pipelines to anonymize and process 300+ GB/day of sensitive data.", "Scaled up emissions models for Transport Canada, optimizing pipelines to process 100x more data."]
+  points: ["Technical lead", "300+ GB/day data pipelines", "Genetic algorithms for GIS"]
+  projects: [transportation-data-repository]
+  publications: [freight-data-repository-paper, dashboard-visualization-report]
+
+- id: intel-altera-intern
+  title: Software Engineer Intern
+  organization: Intel/Altera
+  location: Toronto, ON
+  startDate: 2024-05
+  endDate: 2025-09
+  field: Systems
+  languages: [C++, Perl]
+  technologies: [Boost, Qt, VTune, Valgrind]
+  description: ["Implemented EDA features in a multi-million line C++ codebase reducing customer ramp time by a month.", "Built Boost index data structures, cutting hierarchical filtering from minutes to ~20 ms on 10+ GB chip designs.", "Resolved Qt-based memory corruption bugs using VTune and Valgrind.", "Migrated 2000+ legacy Perl tests to new testing framework."]
+  points: ["EDA features", "Boost index structures", "Memory corruption debugging"]
+
+- id: temerity-analytics
+  title: Full-Stack Developer
+  organization: Temerity Analytics Inc.
+  location: Remote
+  startDate: 2023-05
+  endDate: 2024-02
+  field: Web
+  languages: [TypeScript, Python]
+  technologies: [Angular, Django, Postgres, Flink]
+  description: ["Expanded Angular and Django-based platform displaying locations and fleet performance for ~150 vehicles.", "Developed Postgres data solutions and sharded database, reducing speeding detection latency by 50%.", "Implemented ~150hz Flink streaming logic for event-time vehicle tracking and fleet-wide metric aggregation."]
+  points: ["Fleet performance platform", "Sharded database", "Flink streaming"]
+
+- id: rotogran-international
+  title: Full-Stack Developer
+  organization: Rotogran International Inc.
+  location: Concord, ON
+  startDate: 2019-11
+  endDate: 2023-01
+  field: Web
+  languages: [C#, Java, JavaScript]
+  technologies: [React, Docker, Github Actions, MSSQL, OCR]
+  description: ["Decomposed monolithic systems into containerized microservices with Docker.", "Enabled CI/CD pipelines with Github Actions.", "Implemented C# pipelines digitizing paper records via OCR.", "Developed C# and Java SDKs for API interaction."]
+  points: ["Microservices migration", "CI/CD pipelines", "OCR digitization"]
