@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 const Awards: React.FC = () => {
   const { awards, loading } = useData();
 
+  const sortedAwards = [...awards].sort((a, b) => b.date.localeCompare(a.date));
+
   if (loading) return <div className="flex justify-center p-12 text-slate-400">Loading...</div>;
 
   return (
@@ -18,7 +20,7 @@ const Awards: React.FC = () => {
         </div>
 
         <div className="grid gap-6 sm:grid-cols-2">
-          {awards.map((award) => (
+          {sortedAwards.map((award) => (
             <Card key={award.id} className="p-6 flex flex-col">
               <div className="flex items-center justify-between mb-4">
                 <div className="w-10 h-10 rounded-lg bg-amber-50 text-amber-500 flex items-center justify-center">

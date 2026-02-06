@@ -8,13 +8,15 @@ const Publications: React.FC = () => {
   const { publications, loading } = useData();
   const [activeType, setActiveType] = useState<string>('All');
 
-  const types = ['All', 'publication', 'conference', 'report'];
+  const types = ['All', 'publication', 'conference'];
 
   const filteredPublications = useMemo(() => {
-    return publications.filter(pub => {
-      if (activeType === 'All') return true;
-      return pub.type === activeType;
-    });
+    return publications
+      .filter(pub => {
+        if (activeType === 'All') return true;
+        return pub.type === activeType;
+      })
+      .sort((a, b) => b.year - a.year);
   }, [publications, activeType]);
 
   if (loading) return <div className="flex justify-center p-12 text-slate-400">Loading...</div>;
