@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useRef } from 'react';
 import { useData } from '../DataContext';
 import { PageTransition, Badge } from '../components/UI';
-import { Calendar, MapPin, Search, ChevronRight, Layers, BookOpen, ZoomIn, ZoomOut } from 'lucide-react';
+import { Calendar, MapPin, Search, ChevronRight, Layers, BookOpen, ZoomIn, ZoomOut, Briefcase, Trophy } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import Modal from '../components/Modal';
@@ -19,7 +19,7 @@ const COLORS = [
 ];
 
 const Career: React.FC = () => {
-  const { roles, loading, projects, publications } = useData();
+  const { roles, loading, projects, publications, awards } = useData();
   const [filter, setFilter] = useState<string>('All');
   const [search, setSearch] = useState('');
   const [selectedRole, setSelectedRole] = useState<Role | null>(null);
@@ -133,28 +133,30 @@ const Career: React.FC = () => {
     return { assignments, totalLanes: lanes.length, midLane: mid };
   }, [filteredRoles, rolesWithColors]);
 
-  if (loading) return <div className="flex justify-center p-12 text-slate-400">Loading...</div>;
+  if (loading) return <div className="flex justify-center p-12 text-zinc-500">Loading...</div>;
 
   const selectedRoleFull = selectedRole ? rolesWithColors.find(r => r.id === selectedRole.id) : null;
   const associatedProjects = selectedRoleFull ? projects.filter(p => selectedRoleFull.projects?.includes(p.id)) : [];
   const associatedPublications = selectedRoleFull ? publications.filter(p => selectedRoleFull.publications?.includes(p.id)) : [];
+  const associatedAwards = selectedRoleFull ? awards.filter(a => selectedRoleFull.awards?.includes(a.id)) : [];
+  const relatedRoles = selectedRoleFull ? roles.filter(r => selectedRoleFull.relatedRoles?.includes(r.id)) : [];
 
   return (
     <PageTransition>
       <div className="space-y-12">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <h2 className="text-3xl font-bold text-slate-900">Career</h2>
-            <p className="text-slate-500">A timeline of my professional experience and research.</p>
+            <h2 className="text-3xl font-bold text-white">Career</h2>
+            <p className="text-zinc-500">A timeline of my professional experience and research.</p>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
               <input
                 type="text"
                 placeholder="Search skills, roles..."
-                className="pl-10 pr-4 py-2 bg-white border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none w-full sm:w-64"
+                className="pl-10 pr-4 py-2 bg-zinc-900 border border-zinc-800 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none w-full sm:w-64 text-white"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
@@ -165,7 +167,7 @@ const Career: React.FC = () => {
                   key={f}
                   onClick={() => setFilter(f)}
                   className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors whitespace-nowrap ${
-                    filter === f ? 'bg-primary-600 text-white' : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
+                    filter === f ? 'bg-primary-600 text-white' : 'bg-zinc-900 text-zinc-500 border border-zinc-800 hover:bg-zinc-800 hover:text-white'
                   }`}
                 >
                   {f}
@@ -177,25 +179,25 @@ const Career: React.FC = () => {
 
         {/* Desktop Timeline */}
         <div
-          className="hidden md:block relative bg-white border border-slate-200 rounded-2xl p-8 shadow-sm overflow-hidden"
+          className="hidden md:block relative bg-zinc-950 border border-zinc-900 rounded-2xl p-8 shadow-2xl overflow-hidden"
         >
           <div className="flex items-center justify-between mb-8">
-            <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider">Interactive Timeline</h3>
+            <h3 className="text-sm font-bold text-zinc-500 uppercase tracking-wider">Interactive Timeline</h3>
 
-            <div className="flex items-center bg-slate-50 rounded-lg p-1 border border-slate-100">
+            <div className="flex items-center bg-zinc-900 rounded-lg p-1 border border-zinc-800">
               <button
                 onClick={(e: React.MouseEvent) => { e.stopPropagation(); setZoomLevel(prev => Math.max(1, prev - 0.5)); }}
-                className="p-1.5 rounded-md hover:bg-white hover:shadow-sm text-slate-500 transition-all"
+                className="p-1.5 rounded-md hover:bg-zinc-800 hover:shadow-sm text-zinc-500 transition-all"
                 title="Zoom Out"
               >
                 <ZoomOut className="w-4 h-4" />
               </button>
-              <div className="px-2 text-[10px] font-bold text-slate-400 w-12 text-center">
+              <div className="px-2 text-[10px] font-bold text-zinc-500 w-12 text-center">
                 {Math.round(zoomLevel * 100)}%
               </div>
               <button
                 onClick={(e: React.MouseEvent) => { e.stopPropagation(); setZoomLevel(prev => Math.min(3, prev + 0.5)); }}
-                className="p-1.5 rounded-md hover:bg-white hover:shadow-sm text-slate-500 transition-all"
+                className="p-1.5 rounded-md hover:bg-zinc-800 hover:shadow-sm text-zinc-500 transition-all"
                 title="Zoom In"
               >
                 <ZoomIn className="w-4 h-4" />
@@ -210,7 +212,7 @@ const Career: React.FC = () => {
             >
               {/* Central Timeline Axis */}
               <div
-                className="absolute left-0 right-0 h-1 bg-slate-200 rounded-full transition-all duration-500"
+                className="absolute left-0 right-0 h-1 bg-zinc-800 rounded-full transition-all duration-500"
                 style={{ top: 'calc(50% - 2px)' }}
               />
 
@@ -220,8 +222,8 @@ const Career: React.FC = () => {
                 if (pos < 0 || pos > 100) return null;
                 return (
                   <div key={year} className="absolute inset-y-0 pointer-events-none" style={{ left: `${pos}%` }}>
-                    <div className="absolute inset-y-0 w-px bg-slate-100" />
-                    <div className={`absolute bottom-4 text-[10px] font-bold text-slate-300 ${
+                    <div className="absolute inset-y-0 w-px bg-zinc-900" />
+                    <div className={`absolute bottom-4 text-[10px] font-bold text-zinc-700 ${
                       pos < 5 ? 'left-0' : pos > 95 ? 'right-0' : '-translate-x-1/2'
                     }`}>
                       {year}
@@ -232,8 +234,8 @@ const Career: React.FC = () => {
 
               {/* Present Marker */}
               <div className="absolute inset-y-0 pointer-events-none" style={{ left: '100%' }}>
-                <div className="absolute inset-y-0 w-px border-l border-dashed border-primary-200" />
-                <div className="absolute bottom-4 right-0 text-[10px] font-bold text-primary-500 bg-white px-1">
+                <div className="absolute inset-y-0 w-px border-l border-dashed border-primary-900/50" />
+                <div className="absolute bottom-4 right-0 text-[10px] font-bold text-primary-500 bg-zinc-950 px-1">
                   Present
                 </div>
               </div>
@@ -291,7 +293,7 @@ const Career: React.FC = () => {
                             initial={{ opacity: 0, scale: 0.9, y: yOffset > 0 ? 5 : -5 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.9, y: yOffset > 0 ? 5 : -5 }}
-                            className={`absolute z-50 w-64 bg-white/95 backdrop-blur-md text-slate-900 rounded-xl shadow-2xl border border-slate-100 p-4 pointer-events-none ${
+                            className={`absolute z-50 w-64 bg-zinc-900/95 backdrop-blur-md text-white rounded-xl shadow-2xl border border-zinc-800 p-4 pointer-events-none ${
                               yOffset > 0 ? 'bottom-full mb-3' : 'top-full mt-3'
                             } ${startPos > 70 ? 'right-0' : 'left-0'}`}
                           >
@@ -304,14 +306,14 @@ const Career: React.FC = () => {
                                   {role.organization}
                                 </span>
                               </div>
-                              <h4 className="font-bold text-slate-900 text-sm leading-tight">{role.title}</h4>
-                              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10px] text-slate-500 font-medium">
+                              <h4 className="font-bold text-white text-sm leading-tight">{role.title}</h4>
+                              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10px] text-zinc-500 font-medium">
                                 <span className="flex items-center">
-                                  <Calendar className="w-3 h-3 mr-1 text-slate-400" />
+                                  <Calendar className="w-3 h-3 mr-1 text-zinc-500" />
                                   {role.startDate} - {role.endDate}
                                 </span>
                                 <span className="flex items-center">
-                                  <MapPin className="w-3 h-3 mr-1 text-slate-400" />
+                                  <MapPin className="w-3 h-3 mr-1 text-zinc-500" />
                                   {role.location}
                                 </span>
                               </div>
@@ -338,19 +340,19 @@ const Career: React.FC = () => {
               })}
             </div>
           </div>
-          <p className="text-center text-xs text-slate-400 mt-4">Scroll horizontally to explore & click segments for details</p>
+          <p className="text-center text-xs text-zinc-500 mt-4">Scroll horizontally to explore & click segments for details</p>
         </div>
 
         {/* Mobile Timeline */}
-        <div className="md:hidden relative bg-white border border-slate-200 rounded-2xl p-6 shadow-sm overflow-hidden">
+        <div className="md:hidden relative bg-zinc-950 border border-zinc-900 rounded-2xl p-6 shadow-2xl overflow-hidden">
           <div className="flex items-center justify-between mb-8">
-            <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider">Timeline</h3>
+            <h3 className="text-sm font-bold text-zinc-500 uppercase tracking-wider">Timeline</h3>
           </div>
 
           <div className="relative min-h-[1000px] mx-2">
             {/* Vertical Central Axis */}
             <div
-              className="absolute top-0 bottom-0 w-1 bg-slate-200 rounded-full transition-all duration-500"
+              className="absolute top-0 bottom-0 w-1 bg-zinc-800 rounded-full transition-all duration-500"
               style={{ left: 'calc(50% - 2px)' }}
             />
 
@@ -361,8 +363,8 @@ const Career: React.FC = () => {
               if (top < 0 || top > 100) return null;
               return (
                 <div key={year} className="absolute inset-x-0 pointer-events-none" style={{ top: `${top}%` }}>
-                  <div className="absolute inset-x-0 h-px bg-slate-100" />
-                  <div className="absolute left-0 -translate-y-1/2 text-[10px] font-bold text-slate-300">
+                  <div className="absolute inset-x-0 h-px bg-zinc-900" />
+                  <div className="absolute left-0 -translate-y-1/2 text-[10px] font-bold text-zinc-700">
                     {year}
                   </div>
                 </div>
@@ -371,8 +373,8 @@ const Career: React.FC = () => {
 
             {/* Present Marker (Mobile) */}
             <div className="absolute inset-x-0 pointer-events-none" style={{ top: '0%' }}>
-              <div className="absolute inset-x-0 h-px border-t border-dashed border-primary-200" />
-              <div className="absolute right-0 -translate-y-1/2 text-[10px] font-bold text-primary-500 bg-white px-1">
+              <div className="absolute inset-x-0 h-px border-t border-dashed border-primary-900/50" />
+              <div className="absolute right-0 -translate-y-1/2 text-[10px] font-bold text-primary-500 bg-zinc-950 px-1">
                 Present
               </div>
             </div>
@@ -453,7 +455,7 @@ const Career: React.FC = () => {
                   }}
                 >
                   <span
-                    className="text-[10px] font-extrabold bg-white/90 backdrop-blur-sm border border-slate-100 px-2 py-1 rounded shadow-md"
+                    className="text-[10px] font-extrabold bg-zinc-900/90 backdrop-blur-sm border border-zinc-800 px-2 py-1 rounded shadow-md"
                     style={{ color: role.color }}
                   >
                     {role.organization}
@@ -462,7 +464,7 @@ const Career: React.FC = () => {
               );
             })}
           </div>
-          <p className="text-center text-xs text-slate-400 mt-4 italic">Tap segments for role details</p>
+          <p className="text-center text-xs text-zinc-500 mt-4 italic">Tap segments for role details</p>
         </div>
 
         {/* Role Detail Modal */}
@@ -481,11 +483,11 @@ const Career: React.FC = () => {
                   {selectedRoleFull.organization}
                 </div>
                 <Badge variant="success">{selectedRoleFull.field}</Badge>
-                <div className="flex items-center text-xs font-medium text-slate-400">
+                <div className="flex items-center text-xs font-medium text-zinc-500">
                   <Calendar className="w-3.5 h-3.5 mr-1.5" />
                   {selectedRoleFull.startDate} - {selectedRoleFull.endDate}
                 </div>
-                <div className="flex items-center text-xs font-medium text-slate-400">
+                <div className="flex items-center text-xs font-medium text-zinc-500">
                   <MapPin className="w-3.5 h-3.5 mr-1.5" />
                   {selectedRoleFull.location}
                 </div>
@@ -494,17 +496,17 @@ const Career: React.FC = () => {
               <div className="grid md:grid-cols-3 gap-8">
                 <div className="md:col-span-2 space-y-6">
                   <section>
-                    <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-3">Overview</h4>
-                    <p className="text-slate-600 leading-relaxed">
+                    <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-3">Overview</h4>
+                    <p className="text-zinc-500 leading-relaxed">
                       {selectedRoleFull.description[0]}
                     </p>
                   </section>
 
                   <section>
-                    <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-3">Key Highlights</h4>
+                    <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-3">Key Highlights</h4>
                     <ul className="space-y-2">
                       {selectedRoleFull.points.map((p, i) => (
-                        <li key={i} className="flex items-start text-sm text-slate-600">
+                        <li key={i} className="flex items-start text-sm text-zinc-500">
                           <div className="mr-2 mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: selectedRoleFull.color }} />
                           {p}
                         </li>
@@ -515,7 +517,7 @@ const Career: React.FC = () => {
                   <div className="pt-4">
                     <Link
                       to={`/career/${selectedRoleFull.id}`}
-                      className="inline-flex items-center px-6 py-3 rounded-xl text-white font-bold text-sm transition-all hover:brightness-110 shadow-lg shadow-slate-200"
+                      className="inline-flex items-center px-6 py-3 rounded-xl text-white font-bold text-sm transition-all hover:brightness-110 shadow-lg shadow-zinc-950"
                       style={{ backgroundColor: selectedRoleFull.color }}
                     >
                       View Full Experience Details
@@ -526,7 +528,7 @@ const Career: React.FC = () => {
 
                 <div className="space-y-6">
                   <div>
-                    <h4 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-3">Tech Stack</h4>
+                    <h4 className="text-sm font-bold text-zinc-500 uppercase tracking-wider mb-3">Tech Stack</h4>
                     <div className="flex flex-wrap gap-1.5">
                       {selectedRoleFull.languages.map(l => <Badge key={l} variant="primary">{l}</Badge>)}
                       {selectedRoleFull.technologies.map(t => <Badge key={t} variant="outline">{t}</Badge>)}
@@ -535,11 +537,24 @@ const Career: React.FC = () => {
 
                   {associatedProjects.length > 0 && (
                     <div>
-                      <h4 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-3">Related Projects</h4>
+                      <h4 className="text-sm font-bold text-zinc-500 uppercase tracking-wider mb-3">Related Projects</h4>
                       <div className="space-y-2">
                         {associatedProjects.map(p => (
-                          <Link key={p.id} to={`/projects?id=${p.id}`} className="flex items-center text-xs font-bold text-slate-600 hover:text-primary-600">
+                          <Link key={p.id} to={`/projects?id=${p.id}`} className="flex items-center text-xs font-bold text-zinc-500 hover:text-primary-600">
                             <Layers className="w-3 h-3 mr-2" /> {p.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {associatedAwards.length > 0 && (
+                    <div>
+                      <h4 className="text-sm font-bold text-zinc-500 uppercase tracking-wider mb-3">Awards</h4>
+                      <div className="space-y-2">
+                        {associatedAwards.map(a => (
+                          <Link key={a.id} to={`/awards`} className="flex items-center text-xs font-bold text-zinc-500 hover:text-primary-600">
+                            <Trophy className="w-3 h-3 mr-2" /> {a.title}
                           </Link>
                         ))}
                       </div>
@@ -548,11 +563,24 @@ const Career: React.FC = () => {
 
                   {associatedPublications.length > 0 && (
                     <div>
-                      <h4 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-3">Related Publications</h4>
+                      <h4 className="text-sm font-bold text-zinc-500 uppercase tracking-wider mb-3">Related Publications</h4>
                       <div className="space-y-2">
                         {associatedPublications.map(p => (
-                          <Link key={p.id} to={`/publications/${p.id}`} className="flex items-center text-xs font-bold text-slate-600 hover:text-primary-600">
+                          <Link key={p.id} to={`/publications/${p.id}`} className="flex items-center text-xs font-bold text-zinc-500 hover:text-primary-600">
                             <BookOpen className="w-3 h-3 mr-2" /> {p.title}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {relatedRoles.length > 0 && (
+                    <div>
+                      <h4 className="text-sm font-bold text-zinc-500 uppercase tracking-wider mb-3">Related Roles</h4>
+                      <div className="space-y-2">
+                        {relatedRoles.map(r => (
+                          <Link key={r.id} to={`/career/${r.id}`} className="flex items-center text-xs font-bold text-zinc-500 hover:text-primary-600">
+                            <Briefcase className="w-3 h-3 mr-2" /> {r.title} @ {r.organization}
                           </Link>
                         ))}
                       </div>

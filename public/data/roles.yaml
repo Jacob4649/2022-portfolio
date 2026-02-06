@@ -1,3 +1,44 @@
+- id: uoft-student
+  title: Computer Science Specialist (ASIP Co-op)
+  organization: University of Toronto
+  location: Toronto, ON
+  startDate: 2021-09
+  endDate: Present
+  field: Systems & Data Science
+  languages: [Python, C++, Java, C#, SQL, Go]
+  technologies: [Git, Docker, Linux]
+  description: ["Maintaining a 3.78/4.0 CGPA while specializing in Computer Science with a focus on Systems and Data Science.", "Actively participating in multiple research labs across the university, applying academic knowledge to real-world problems in environmental modeling and transportation."]
+  points: ["3.78/4.0 CGPA", "Dean’s List scholar in 2022 & 2023", "Recipient of University of Toronto Scholar, Ruth Joyce Norton, and Isabel Bader scholarships", "Won CLUE Symposium Best Paper in Data & Modeling (2025)", "Nominated for CRA Outstanding Undergraduate Researcher award (2025)", "Won U of T IMI Big Data and AI Competition (2025)"]
+  relatedRoles: [dgp-lab-ml-researcher, freight-data-warehouse, fire-lab-operations-researcher, james-lab-fire-researcher]
+  projects: [scotiabank-money-laundering, dexterra-airport-queuing]
+  awards: [deans-list-2023, clue-best-paper-2025, imi-big-data-winner-2025, cra-outstanding-researcher-2025, runway-ready-top3]
+
+- id: fire-lab-operations-researcher
+  title: Operations Researcher
+  organization: Fire Lab
+  location: University of Toronto
+  startDate: 2025-09
+  endDate: Present
+  field: Data Science
+  languages: [Python]
+  technologies: [Simulation, Multi-agent Systems]
+  description: ["Researching optimization of air tanker sharing policies under Prof. Dave Martell at the University of Toronto Fire Lab.", "Developing advanced simulation environments to evaluate and optimize performance of fire management policies."]
+  points: ["Studying optimization of air tanker sharing under Prof. Dave Martell", "Building multi-agent simulation models of air tankers to evaluate and optimize performance of scheduling, dispatch, and sharing policies", "Architecting and creating Python simulation bed to support event-based simulations"]
+  relatedRoles: [uoft-student]
+
+- id: james-lab-fire-researcher
+  title: Fire Researcher
+  organization: James Lab
+  location: University of Toronto
+  startDate: 2022-11
+  endDate: Present
+  field: Data Science
+  languages: [Python, Go]
+  technologies: [LIDAR, Signal Processing, Wavelets, Cellular Automata]
+  description: ["Studying wildfire behavior and computational modeling under Prof. Patrick James.", "Developing novel computational tools for analyzing forest fuel structure and simulating fire spread."]
+  points: ["Studying wildfire behavior and computational modeling under Prof. Patrick James", "Researching the use of signal processing techniques (wavelets) for analysis of 3D fuel structure to detect insects, characterize fire risk, and summarize TLS scans", "Building resource-efficient, cellular-automata, fire models to allow for quick stand-level fire simulation", "Creating open-source, parallelized voxelizations tools in Go", "Examining the Canadian Forest Service’s TLS guidelines to reduce field costs by eliminating redundant scans"]
+  relatedRoles: [uoft-student]
+
 - id: dgp-lab-ml-researcher
   title: Machine Learning Researcher
   organization: DGP Lab
@@ -10,6 +51,7 @@
   description: ["Led a team of 5 students to build a fire-forecasting model, integrating insights from the Canadian Forest Service and Ontario Ministry of Natural Resources.", "Extended Perceiver Encoder and SWIN Transformer-based model using Python and PyTorch.", "Designed modular pipeline infrastructure, reducing test load to 1/6th by creating shared model interfaces."]
   points: ["Led team of 5", "Fire-forecasting model", "Modular pipeline infrastructure"]
   projects: [fire-forecasting-model]
+  relatedRoles: [uoft-student]
 
 - id: freight-data-warehouse
   title: Data Engineer
@@ -24,6 +66,7 @@
   points: ["Technical lead", "300+ GB/day data pipelines", "Genetic algorithms for GIS"]
   projects: [transportation-data-repository]
   publications: [freight-data-repository-paper, dashboard-visualization-report]
+  relatedRoles: [uoft-student]
 
 - id: intel-altera-intern
   title: Software Engineer Intern

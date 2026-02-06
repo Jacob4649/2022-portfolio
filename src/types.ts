@@ -13,6 +13,7 @@ export interface Role {
   projects?: string[]; // IDs of associated projects
   publications?: string[]; // IDs of associated publications
   awards?: string[]; // IDs of associated awards
+  relatedRoles?: string[]; // IDs of related roles (e.g., student role related to research labs)
 }
 
 export interface Publication {
