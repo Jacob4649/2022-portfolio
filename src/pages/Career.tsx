@@ -95,7 +95,7 @@ const Career: React.FC = () => {
   };
 
   const roleLanes = useMemo(() => {
-    if (filteredRoles.length === 0) return { assignments: {}, totalLanes: 0, centerLane: 0 };
+    if (filteredRoles.length === 0) return { assignments: {}, totalLanes: 0, midLane: 0 };
 
     // 1. Sort by start date for greedy assignment
     const sortedByStart = [...filteredRoles].sort((a, b) =>
@@ -121,23 +121,16 @@ const Career: React.FC = () => {
       }
     });
 
-    // 2. Identify the lane containing the longest role
-    let centerLaneIdx = 0;
-    let maxDuration = -1;
-    filteredRoles.forEach(role => {
-      const duration = parseDate(role.endDate).getTime() - parseDate(role.startDate).getTime();
-      if (duration > maxDuration) {
-        maxDuration = duration;
-        centerLaneIdx = lanes.findIndex(l => l.includes(role.id));
-      }
-    });
+    // Balanced assignment:
+    // We want the set of lanes to be centered around the axis.
+    const mid = (lanes.length - 1) / 2;
 
     const assignments: Record<string, number> = {};
     lanes.forEach((lane, idx) => {
-      lane.forEach(id => { assignments[id] = idx; });
+      lane.forEach(id => { assignments[id] = idx - mid; });
     });
 
-    return { assignments, totalLanes: lanes.length, centerLane: centerLaneIdx };
+    return { assignments, totalLanes: lanes.length, midLane: mid };
   }, [filteredRoles, rolesWithColors]);
 
   if (loading) return <div className="flex justify-center p-12 text-slate-400">Loading...</div>;
@@ -216,7 +209,10 @@ const Career: React.FC = () => {
               style={{ minWidth: `${zoomLevel * 100}%` }}
             >
               {/* Central Timeline Axis */}
-              <div className="absolute top-1/2 left-0 right-0 h-1 bg-slate-200 -translate-y-1/2 rounded-full" />
+              <div
+                className="absolute left-0 right-0 h-1 bg-slate-200 rounded-full transition-all duration-500"
+                style={{ top: 'calc(50% - 2px)' }}
+              />
 
               {/* Year Markers */}
               {years.map(year => {
@@ -244,10 +240,10 @@ const Career: React.FC = () => {
 
               {sortedRoles.map((role) => {
                 const startPos = getPosition(role.startDate);
-                const endPos = getPosition(role.endDate, true);
+                const isPresent = role.endDate === 'Present';
+                const endPos = isPresent ? 100 : getPosition(role.endDate);
                 const width = endPos - startPos;
-                const laneIndex = roleLanes.assignments[role.id];
-                const trackIndex = laneIndex - roleLanes.centerLane;
+                const trackIndex = roleLanes.assignments[role.id];
                 const yOffset = trackIndex * 50; // Offset from center
 
                 return (
@@ -268,7 +264,7 @@ const Career: React.FC = () => {
                       className="absolute pointer-events-auto"
                       style={{
                         left: `calc(${startPos}% - 6px)`,
-                        width: `calc(${Math.max(width, 1)}% + 12px)`,
+                        width: isPresent ? `calc(${Math.max(width, 0)}% + 6px)` : `calc(${Math.max(width, 1)}% + 12px)`,
                         top: `calc(50% + ${yOffset}px - 6px)`,
                         zIndex: hoveredRoleId === role.id ? 50 : 10
                       }}
@@ -281,7 +277,9 @@ const Career: React.FC = () => {
                           e.stopPropagation();
                           setSelectedRole(role);
                         }}
-                        className="w-full h-3 rounded-full transition-all duration-300 hover:h-4 focus:outline-none shadow-sm group"
+                        className={`w-full h-3 transition-all duration-300 hover:h-4 focus:outline-none shadow-sm group ${
+                          isPresent ? 'rounded-l-full' : 'rounded-full'
+                        }`}
                         style={{
                           backgroundColor: role.color,
                         }}
@@ -323,16 +321,18 @@ const Career: React.FC = () => {
                       </AnimatePresence>
                     </div>
                     {/* Merge line back to center */}
-                    <div
-                      className="absolute w-1 transition-all duration-500"
-                      style={{
-                        left: `${endPos}%`,
-                        top: yOffset > 0 ? '50%' : `calc(50% + ${yOffset}px)`,
-                        height: `${Math.abs(yOffset)}px`,
-                        backgroundColor: role.color,
-                        transform: 'translateX(-50%)'
-                      }}
-                    />
+                    {!isPresent && (
+                      <div
+                        className="absolute w-1 transition-all duration-500"
+                        style={{
+                          left: `${endPos}%`,
+                          top: yOffset > 0 ? '50%' : `calc(50% + ${yOffset}px)`,
+                          height: `${Math.abs(yOffset)}px`,
+                          backgroundColor: role.color,
+                          transform: 'translateX(-50%)'
+                        }}
+                      />
+                    )}
                   </div>
                 );
               })}
@@ -349,7 +349,10 @@ const Career: React.FC = () => {
 
           <div className="relative min-h-[1000px] mx-2">
             {/* Vertical Central Axis */}
-            <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-slate-200 -translate-x-1/2 rounded-full" />
+            <div
+              className="absolute top-0 bottom-0 w-1 bg-slate-200 rounded-full transition-all duration-500"
+              style={{ left: 'calc(50% - 2px)' }}
+            />
 
             {/* Year Markers */}
             {years.map(year => {
@@ -376,14 +379,14 @@ const Career: React.FC = () => {
 
             {sortedRoles.map((role) => {
               const startPos = getPosition(role.startDate);
-              const endPos = getPosition(role.endDate, true);
+              const isPresent = role.endDate === 'Present';
+              const endPos = isPresent ? 100 : getPosition(role.endDate);
               // Invert for mobile: Present (100) at top (0)
               const top = 100 - endPos;
               const bottom = 100 - startPos;
               const height = bottom - top;
 
-              const laneIndex = roleLanes.assignments[role.id];
-              const trackIndex = laneIndex - roleLanes.centerLane;
+              const trackIndex = roleLanes.assignments[role.id];
               const xOffset = trackIndex * 40; // Offset from center
 
               return (
@@ -402,36 +405,40 @@ const Career: React.FC = () => {
                   {/* Role Segment */}
                   <button
                     onClick={() => setSelectedRole(role)}
-                    className="absolute w-2.5 rounded-full transition-all duration-300 hover:w-4 hover:-translate-x-1 focus:outline-none pointer-events-auto shadow-sm group"
+                    className={`absolute w-2.5 transition-all duration-300 hover:w-4 focus:outline-none pointer-events-auto shadow-sm group ${
+                      isPresent ? 'rounded-b-full' : 'rounded-full'
+                    }`}
                     style={{
-                      top: `calc(${top}% - 5px)`,
-                      height: `calc(${Math.max(height, 2)}% + 10px)`,
+                      top: isPresent ? '0%' : `calc(${top}% - 5px)`,
+                      height: isPresent ? `${bottom}%` : `calc(${Math.max(height, 2)}% + 10px)`,
                       left: `calc(50% + ${xOffset}px - 5px)`,
                       backgroundColor: role.color,
                       zIndex: 10
                     }}
                   />
                   {/* Merge line back to center */}
-                  <div
-                    className="absolute h-1 transition-all duration-500"
-                    style={{
-                      top: `${bottom}%`,
-                      left: xOffset > 0 ? '50%' : `calc(50% + ${xOffset}px)`,
-                      width: `${Math.abs(xOffset)}px`,
-                      backgroundColor: role.color,
-                      transform: 'translateY(-50%)'
-                    }}
-                  />
+                  {!isPresent && (
+                    <div
+                      className="absolute h-1 transition-all duration-500"
+                      style={{
+                        top: `${bottom}%`,
+                        left: xOffset > 0 ? '50%' : `calc(50% + ${xOffset}px)`,
+                        width: `${Math.abs(xOffset)}px`,
+                        backgroundColor: role.color,
+                        transform: 'translateY(-50%)'
+                      }}
+                    />
+                  )}
                 </div>
               );
             })}
 
             {/* Mobile Role Labels (Separate layer to ensure they stay on top) */}
             {sortedRoles.map((role) => {
-              const endPos = getPosition(role.endDate, true);
+              const isPresent = role.endDate === 'Present';
+              const endPos = isPresent ? 100 : getPosition(role.endDate);
               const top = 100 - endPos;
-              const laneIndex = roleLanes.assignments[role.id];
-              const trackIndex = laneIndex - roleLanes.centerLane;
+              const trackIndex = roleLanes.assignments[role.id];
               const xOffset = trackIndex * 40;
 
               return (
@@ -439,9 +446,10 @@ const Career: React.FC = () => {
                   key={`${role.id}-label`}
                   className={`absolute whitespace-nowrap pointer-events-none z-30`}
                   style={{
-                    top: `calc(${top}% - 5px)`,
-                    left: xOffset >= 0 ? `calc(50% + ${xOffset}px + 8px)` : 'auto',
-                    right: xOffset < 0 ? `calc(50% - ${xOffset}px + 8px)` : 'auto',
+                    top: isPresent ? '0%' : `${top}%`,
+                    transform: isPresent ? 'none' : 'translateY(-50%)',
+                    left: xOffset >= 0 ? `calc(50% + ${xOffset}px + 12px)` : 'auto',
+                    right: xOffset < 0 ? `calc(50% - ${xOffset}px + 12px)` : 'auto',
                   }}
                 >
                   <span
